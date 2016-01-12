@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>二列布局</title>
+<style>
+body{ margin:0; padding:0; font-size:30px; font-weight:bold}
+div{ text-align:center; line-height:50px}
+.main{ width:100%; height:800px; margin:0 auto}
+.left{ width:300px; height:800px; background:white; float:left; box-shadow:1px 0px 15px 1px gray;}
+.right{ width:650px; height:800px; background:white; float:right}
+
+
+.head_img{ background:url(images/kitten3.jpg) 0 0 no-repeat; width:160px; height:160px; margin:50px 70px 20px 70px; border-radius:80px;}
+.head_img:hover{ border:2px solid red;}
+.nickname{ font-weight:bold; font-size:36px; font-family:微软雅黑;}
+.deccriptionText{font-size:8px; font-family:黑体; text-align:center; line-height:30px;}
+.left a{ text-decoration:none; font-size:18px; font-family:黑体; text-align:center;}
+
+img.img-circle{border: 2px solid #CCFFFF; transition:2s; border-radius:10px;}
+img.img-circle:hover{transform: rotateY(180deg); -webkit-transform: rotateY(180deg); /* Safari 和 Chrome */ -moz-transform: rotateY(180deg);    /* Firefox */ 
+}
+</style>
+</head>
+
+<body>
+<div class="main">
+    <div class="left">
+        <div class="head_img"></div>
+        <span class="nickname">Mark Lewis</span><br />
+        <span class="deccriptionText">一个iOS程序员的成长之路</span><br />
+        <span class="deccriptionText">记录学习的点滴</span><br />
+
+        <a href="http://weibo.com/1838207932/"><img class="img-circle" src="images/weibo.jpg"  height="50px" width="50px" alt="weibo_logo"/></a>
+	        <a href="https://github.com/michellewkx"><img class="img-circle" src="images/github.jpg" height="50px" width="50px" alt="github_logo"/></a>
+        <br />
+        <a href="#">文章</a> | <a href="#">字数</a> | <a href="#">关注</a>   
+    </div>
+    <div class="right">right</div>
+</div>
+</body>
+</html>
