@@ -1,42 +1,121 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Ling's Blog</title>
-    <style>
-        body{ margin:0; padding:0; font-size:30px; font-weight:bold}
-    div{ text-align:center; line-height:50px}
-    .main{ width:100%; height:800px; margin:0 auto}
-    .left{ width:300px; height:800px; background:white; float:left; box-shadow:1px 0px 15px 1px gray;}
-    .right{ width:650px; height:800px; background:white; float:right}
+	<title>Ling's Blog</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta charset="utf-8">
+
+	<style type="text/css">
+	*{margin: 0; padding: 0;}
+	a{text-decoration: none; color: black;}
+	.wrap{width: 100%; margin: 0 auto;}
+	.main{height: 3000px;}
+	.user-aside{
+		position: fixed; 
+		left: 0px; 
+		top: 0px; 
+		bottom: 0px; 
+		float: left; 
+		width: 300px; 
+		background-color: white;
+		/*background-color: lavender;*/
+		box-shadow: -1px 1px 6px rgba(0, 0, 0, 0.35);
+	}
+
+	.people{
+		margin: 50px auto;
+		text-align: center;
+
+	}
+	.head_img{
+		background:url(images/kitten3.jpg) 0 0 no-repeat; 
+		width:160px; height:160px; 
+		margin:0 auto 20px; 
+		border-radius:80px;
+		border:  2px solid #fff;
+	}
+	.head_img:hover{ border:2px solid lavender;}
+
+	.nickname{
+		display: block; 
+		font-weight:bold; 
+		font-size:36px; 
+		font-family: 黑体; 
+		margin:0 auto;
+	}
+	.deccriptionText{
+		font-weight: 
+		bold;font-size:15px; 
+		font-family:黑体; 
+		text-align:center; 
+		line-height:30px;}
+
+	img.img-circle{
+		border: 2px solid #ccc; 
+		transition:2s; 
+		margin:  15px auto 0;
+		border-radius:10px;
+	}
+	img.img-circle:hover{
+		transform: rotateY(180deg); 
+		-webkit-transform: rotateY(180deg); /* Safari 和 Chrome */ 
+		-moz-transform: rotateY(180deg);    /* Firefox */ 
+	}
+
+	.recent-post{
+		margin-left: 300px;
+		padding: 30px 80px;
+		height: 3000px;
+		background:#f8f8f8 url('/images/noise.png?1399388440') top left;
+	}
+
+	.p1{
+		font-family: "Helvetica Neue", "Helvetica", 黑体;
+		font-size: 32px;
+		color: #e7e7e7;
+		text-shadow: rgba(0, 0, 0, 1) 0px -1px 0px;
+	}
 
 
-    .head_img{ background:url(images/kitten3.jpg) 0 0 no-repeat; width:160px; height:160px; margin:50px 70px 20px 70px; border-radius:80px;}
-    .head_img:hover{ border:2px solid red;}
-    .nickname{ font-weight:bold; font-size:36px; font-family:微软雅黑;}
-    .deccriptionText{font-size:16px; font-family:黑体; text-align:center; line-height:30px;}
-    .left a{ text-decoration:none; font-size:18px; font-family:黑体; text-align:center;}
-
-    img.img-circle{border: 2px solid #ccc; transition:2s; border-radius:10px;}
-    img.img-circle:hover{transform: rotateY(180deg); -webkit-transform: rotateY(180deg); /* Safari 和 Chrome */ -moz-transform: rotateY(180deg);    /* Firefox */ }
-    </style>
+	</style>
 </head>
-
 <body>
-    <div class="main">
-        <div class="left">
-        <div class="head_img"></div>
-        <span class="nickname">Mark Lewis</span><br />
-        <span class="deccriptionText">一个iOS程序员的成长之路</span><br />
-        <span class="deccriptionText">记录学习的点滴</span><br />
+	<div class="wrap">
+		<div class="main">
+			<div class="user-aside">
+				<div class="people">
+					<div class="head_img"></div>
+        			<span class="nickname">Mark Lewis</span><br />
+        			<span class="deccriptionText">一个iOS程序员的成长之路</span><br />
+        			<span class="deccriptionText">记录学习的点滴</span><br />
+        			<a href="#">
+        				<img class="img-circle" src="images/weibo.jpg"  height="50px" width="50px" alt="weibo_logo"/>	
+        			</a>
+	        	
+	        		<a href="https://github.com/liu-jing-jing">
+	        			<img class="img-circle" src="images/github.jpg" height="50px" width="50px" alt="github_logo"/>
 
-        <a href=""><img class="img-circle" src="images/weibo.jpg"  height="50px" width="50px" alt="weibo_logo"/></a>
-        <a href="https://github.com/liu-jing-jing"><img class="img-circle" src="images/github.jpg" height="50px" width="50px" alt="github_logo"/></a>
-        <br />
-        <a href="#">文章</a> | <a href="#">字数</a> | <a href="#">关注</a>   
-        </div>
-        <div class="right">你好，这是我的第一版博客</div>
-    </div>
+	        		</a>
+        			<br />
+        			
+        			<a href="#">文章</a> | <a href="#">字数</a> | <a href="#">关注</a>   
+				</div>
+			</div>
+
+			<div class="recent-post">
+				<p class="p1">你好,这是我的第一版博客</p>
+				<p class="p1">test</p>
+				<br />
+				<video 	src="video/test.mp4" 
+						poster="images/face.jpg" 
+						width="672" 
+						height="378" 
+						preload
+						controls
+						loop>
+				</video>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
