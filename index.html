@@ -65,13 +65,19 @@
 	.recent-post{
 		margin-left: 300px;
 		padding: 30px 80px;
+		width: 960px;
 		height: 3000px;
 		background:#f8f8f8 url('/images/noise.png?1399388440') top left;
 	}
 
+	.nav{list-style:none; height:30px; border-bottom:3px solid #ccc; margin:0 300px 20px 0;}
+	.nav li{float: left;}
+	.nav li a{display: block; height: 30px; width: 100px; text-align: center; line-height: 30px;}
+	.nav li a:hover{border-bottom: 3px solid black; color: #ccc;}
 	.p1{
+		clear: both;
 		font-family: "Helvetica Neue", "Helvetica", 黑体;
-		font-size: 32px;
+		font-size:44px;
 		color: #e7e7e7;
 		text-shadow: rgba(0, 0, 0, 1) 0px -1px 0px;
 	}
@@ -92,7 +98,7 @@
         				<img class="img-circle" src="images/weibo.jpg"  height="50px" width="50px" alt="weibo_logo"/>	
         			</a>
 	        	
-	        		<a href="https://github.com/liu-jing-jing">
+	        		<a href="https://github.com/liu-jing-jing" target="_blank">
 	        			<img class="img-circle" src="images/github.jpg" height="50px" width="50px" alt="github_logo"/>
 
 	        		</a>
@@ -103,7 +109,13 @@
 			</div>
 
 			<div class="recent-post">
-				<p class="p1">你好,这是我的第一版博客</p>
+				<ul class="nav">
+					<li><a href="#">Recently</a></li>
+					<li><a href="#">About Me</a></li>
+
+				</ul>
+				<p class="p1">你好, 这是我的第一版博客</p>
+				<p class="p1">Welcome to My Blog</p>
 				<p class="p1">test</p>
 				<br />
 				<video 	src="video/test.mp4" 
