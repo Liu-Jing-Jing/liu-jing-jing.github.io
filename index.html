@@ -18,13 +18,31 @@
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <base target="_blank">
-	<link href="css/style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    
+    <script>
+        function getLocalTime(nS) {     
+            return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17)
+         }
+         window.onload = function(){
+            //alert(11111)
+            var timestamp = new Date().getTime();
+            // var a=(new Date()).toLocaleDateString();
+
+            var theDaysOfYear = Math.ceil(( new Date() - new Date(new Date().getFullYear().toString()))/(24*60*60*1000))+1;
+            //alert(theDaysOfYear);
+            var text = document.getElementById('dayTimer');
+            var num = theDaysOfYear+53;
+            //alert(num);
+            text.innerHTML = '认识你的' + num +'甜';
+         }
+    </script>
 </head>
 
 <body class="impress-not-supported">
 
 <div class="fallback-message">
-    <p>您的浏览器 <b>不支持</b> impress.js的展示要求, 将为您呈现简化版的展示</p>
+    <p>您的浏览器 <b>不支持</b> 网页的展示要求, 将为您呈现简化版的展示</p>
     <p>为了获取最佳效果，请使用最新版的<b>Chrome</b>, <b>Safari</b> 或 <b>Firefox</b> 浏览器</p>
     <p>珍爱生命，保护地球，远离IE。</p>
 </div>
@@ -33,8 +51,8 @@
 
 <div id="title" class="step">
     <h1>
-        <span class="short">你好 蒲甜</span>
-        <span class="css">welcome to 刘竞的博客</span>
+        <span class="short">欢迎来到刘竞的技术博客</span><br>
+        <span class="css" id="dayTimer"></span>
         <span class="short">这里是我的生活总结、积累、成长的地方</span>
     </h1>
 	
@@ -42,13 +60,13 @@
 </div>
 
     <div id="welcome" class="step" data-x="-640" data-y="0" data-rotate="30" data-scale="0.1">
-        <p><span class="title"><b>现在的我</b></span></p>
+        <p><span class="title"><b>中意你</b></span></p>
     </div>
 
     <div id="me" class="step" data-x="0" data-y="-2500" data-scale="2">
-        <b class="now_me">现在的我：</b>
-		  <p>爱"写程序"的 iOS开发者</p>
-		    <p>试图入门 机器学习 小白</p>
+        <b class="now_me">To 蒲甜:</b>
+		    <p>喜欢一个人的感觉就像:p我喜欢🍓, 但🍓蛋糕不行，🍓汁不行。不是苹果也不行;</p>
+		    <p>我喜欢你，长得像你不行，性格像你也不行。蒲甜不是你就是不行😄</p>
 			 
     </div>
 
