@@ -34,7 +34,7 @@
 
             var text = document.getElementById('dayTimer');
             var num = theDaysOfYear+54;
-            if(theDaysOfYear == NaN) num = 99;
+            if(isNaN(theDaysOfYear)) num = 99;
             //alert(num);
             text.innerHTML = '认识你的' + num +'甜';
          }
