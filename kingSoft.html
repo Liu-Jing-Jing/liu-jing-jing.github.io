@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #313440;
+        }
+
+        body {
+            font-size: 16px;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .clearfix::after {
+            content: "";
+            height: 0;
+            visibility: hidden;
+            display: block;
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .w {
+            width: 999px;
+            margin: 0 auto;
+        }
+
+        /* header start */
+        header {
+            height: 33px;
+            background-color: #dc363b;
+
+        }
+
+        header a {
+            color: #fff;
+            line-height: 33px;
+            font-size: 14px;
+            padding: 0 16px;
+            border-right: 1px solid #fff;
+        }
+
+        header .register {
+            border: none;
+        }
+
+        header .last {
+            border: 1px solid #fff;
+            padding: 3px 8px;
+            border-radius: 3px;
+        }
+
+        /* header end */
+        /* nav start */
+        nav {
+            height: 68px;
+            background-color: #d7e0f2;
+        }
+
+        nav .logo {
+            margin-top: 18px;
+        }
+
+        nav li {
+            float: left;
+            margin-left: 30px;
+        }
+
+        nav li a {
+            display: block;
+            height: 65px;
+            line-height: 65px;
+            padding: 0 8px;
+        }
+
+        nav li:hover a {
+            color: #dc363b;
+            border-bottom: 3px solid #dc363b;
+        }
+
+        nav li.last a {
+            padding-right: 0px;
+        }
+
+        /* nav end */
+        /* banner start  */
+        .banner {
+            height: 650px;
+            background: url("./images/003_02.jpg") no-repeat center;
+            background-size: auto 100%;
+        }
+
+        /* banner end  */
+        /* main start */
+        .main {
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .main .plan>h3,
+        .main .service>h3 {
+            margin-top: 40px;
+            height: 60px;
+            font-size: 34px;
+            font-weight: 400;
+        }
+
+        .main .plan>p,
+        .main .service>p {
+            font-size: 14px;
+            color: #69676f;
+            height: 65px;
+        }
+
+        /* service start */
+        .service {
+            height: 385px;
+        }
+
+
+
+        .service li {
+            float: left;
+            margin-right: 1px;
+            width: 165px;
+            height: 175px;
+            background-color: #79797a;
+            text-align: center;
+            color: #fff;
+        }
+
+        .service li .pic {
+            height: 72px;
+            width: 72px;
+            margin: 44px auto 20px;
+            background: #fff url("./images/0015.png") no-repeat center;
+            border-radius: 50%;
+        }
+
+        /* service end  */
+        /* plan start */
+        .plan .general .right {
+            width: 500px;
+            text-align: left;
+        }
+
+        .plan h4 {
+            display: inline-block;
+            margin-top: 40px;
+            font-size: 28px;
+            padding-bottom: 14px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .plan p {
+            font-size: 12px;
+            color: #666;
+            line-height: 28px;
+        }
+
+        .plan .right a {
+            display: inline-block;
+            padding: 11px 25px;
+            margin-top: 12px;
+            border: 1px solid red;
+        }
+
+        /* plan end */
+        /* band start */
+        .band div {
+            float: left;
+            height: 288px;
+            width: 290px;
+            margin-right: 64px;
+
+            text-align: left;
+        }
+
+        .band div h3 {
+            display: inline-block;
+            font-size: 24px;
+            padding-bottom: 14px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid #ccc;
+            font-weight: 400;
+        }
+
+        .band div li {
+            line-height: 34px;
+            color: #999;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .band div.right {
+            margin-right: 0;
+        }
+
+        /* band end */
+        /* footer start */
+        footer {
+            height: 345px;
+            background-color: #333232;
+        }
+
+        footer dl {
+            float: left;
+            margin-right: 110px;
+            color: #a7a6a6;
+
+            padding-top: 40px;
+        }
+
+        footer dl dt {
+            height: 45px;
+        }
+
+        footer dl dd {
+            font-size: 12px;
+            line-height: 28px;
+        }
+
+        footer dl.last {
+            width: 238px;
+            margin-right: 0;
+
+        }
+
+        footer dl.last dt {
+            position: relative;
+            margin-top: 5px;
+            height: 115px;
+            width: 105px;
+        }
+
+        footer dl.last dt i {
+            position: absolute;
+            top: 4px;
+            border: 8px solid transparent;
+            border-left-color: #fff;
+
+        }
+
+        footer dl.last dd {
+            line-height: 43px;
+            font-size: 12px;
+        }
+
+        footer dl.last dd span {
+            margin-right: 3px;
+        }
+
+        /* footer end */
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="w">
+            <div class="fr">
+                <a href="#">备案</a>
+                <a href="#">登录</a>
+                <a href="#" class="register">注册</a>
+                <a href="#" class="last">控制台</a>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <div class="w">
+            <div class="logo fl">
+                <img src="./images/002.png" alt="">
+            </div>
+
+            <ul class="list fr">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">产品与服务</a></li>
+                <li><a href="#">解决方案</a></li>
+                <li><a href="#">梦想＋</a></li>
+                <li><a href="#">帮助与支持</a></li>
+                <li class="last"><a href="#">关于我们</a></li>
+            </ul>
+
+        </div>
+    </nav>
+    <div class="banner">
+
+    </div>
+    <div class="main">
+        <div class="w">
+            <div class="service">
+                <h3>基础云服务</h3>
+                <p>竭力为您提供便捷、安全、稳定的云计算服务</p>
+                <ul>
+                    <li>
+                        <div class="pic"></div>
+                        <span>云服务器</span>
+                    </li>
+                    <li>
+                        <div class="pic"></div>
+                        <span>云服务器</span>
+                    </li>
+                    <li>
+                        <div class="pic"></div>
+                        <span>云服务器</span>
+                    </li>
+                    <li>
+                        <div class="pic"></div>
+                        <span>云服务器</span>
+                    </li>
+                    <li>
+                        <div class="pic"></div>
+                        <span>云服务器</span>
+                    </li>
+                    <li>
+                        <div class="pic"></div>
+                        <span>云服务器</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="plan">
+                <h3>基础云服务</h3>
+                <p>竭力为您提供便捷、安全、稳定的云计算服务</p>
+                <div class="general clearfix">
+                    <div class="left fl">
+                        <img src="./images/31.png" alt="">
+                    </div>
+                    <div class="right fr">
+                        <h4>通用建站</h4>
+                        <p>
+                            针对各个行业用户的建站需求，我们专门打造了建站解决方案。旨为用户提供高性能、高稳定的云产品服务，并且根据您的业务需求进行弹性扩容。金山云提供高效贴心的备案服务以及全方位安全监控，让您省时省力省心，更专注于核心业务的发展。
+                        </p>
+                        <a href="#">了解更多</a>
+                    </div>
+                </div>
+            </div>
+            <div class="band clearfix">
+                <div class="left">
+                    <h3>品牌事件</h3>
+                    <ul>
+                        <li>【05-09】 金山云完成C+轮融资 国内公有云市场排名前三</li>
+                        <li>【05-09】 金山软件CEO张宏江：中国云市场规模仅相当于美国3%</li>
+                        <li>【04-13】 标杆先行 金山云开启区域卫生医疗云新时代</li>
+                        <li>【03-17】 金山云斩获TFC“金苹果”奖 成就年度云服务商大赢家</li>
+                    </ul>
+                </div>
+                <div class="center">
+                    <h3>品牌事件</h3>
+                    <ul>
+                        <li>【05-09】 金山云完成C+轮融资 国内公有云市场排名前三</li>
+                        <li>【05-09】 金山软件CEO张宏江：中国云市场规模仅相当于美国3%</li>
+                        <li>【04-13】 标杆先行 金山云开启区域卫生医疗云新时代</li>
+                        <li>【03-17】 金山云斩获TFC“金苹果”奖 成就年度云服务商大赢家</li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <h3>品牌事件</h3>
+                    <ul>
+                        <li><img src="./images/40.jpg" alt=""></li>
+                        <li>【05-09】 金山云完成C+轮融资 国内公有云市场排名前三</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="w">
+            <dl>
+                <dt>产品与服务</dt>
+                <dd>云服务器</dd>
+                <dd>关系型数据库</dd>
+                <dd>对象存储</dd>
+                <dd>内容分发网络</dd>
+                <dd>负载均衡</dd>
+                <dd>缓存</dd>
+                <dd>云物理主机</dd>
+            </dl>
+            <dl>
+                <dt>产品与服务</dt>
+                <dd>云服务器</dd>
+                <dd>关系型数据库</dd>
+                <dd>对象存储</dd>
+                <dd>内容分发网络</dd>
+                <dd>负载均衡</dd>
+                <dd>缓存</dd>
+                <dd>云物理主机</dd>
+            </dl>
+            <dl>
+                <dt>产品与服务</dt>
+                <dd>云服务器</dd>
+                <dd>关系型数据库</dd>
+                <dd>对象存储</dd>
+                <dd>内容分发网络</dd>
+                <dd>负载均衡</dd>
+                <dd>缓存</dd>
+                <dd>云物理主机</dd>
+            </dl>
+            <dl>
+                <dt>产品与服务</dt>
+                <dd>云服务器</dd>
+                <dd>关系型数据库</dd>
+                <dd>对象存储</dd>
+                <dd>内容分发网络</dd>
+                <dd>负载均衡</dd>
+                <dd>缓存</dd>
+                <dd>云物理主机</dd>
+            </dl>
+            <dl class="last">
+                <dt class="fl">
+                    <img src="./images/422.png" alt="">
+                    <i></i>
+                </dt>
+                <dd>
+                    <span class="iconfont icon-icon_phone"></span> 金山云APP
+                </dd>
+                <dd><span class="iconfont icon-weixin"></span>金山云微信公众号</dd>
+                <dd><span class="iconfont icon-icon_phone"></span>金山云APP</dd>
+                <dd><span class="iconfont icon-icon_phone"></span>客服热线：400-028-9900</dd>
+                <dd><span class="iconfont icon-icon_phone"></span>金山云APP</dd>
+            </dl>
+        </div>
+    </footer>
+</body>
+
+</html>
