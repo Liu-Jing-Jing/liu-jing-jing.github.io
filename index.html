@@ -31,8 +31,10 @@
 
             var theDaysOfYear = Math.ceil(( new Date() - new Date(new Date().getFullYear().toString()))/(24*60*60*1000))+1;
             alert(theDaysOfYear);
+
             var text = document.getElementById('dayTimer');
             var num = theDaysOfYear+54;
+            if(parseInt(theDaysOfYear)<1) num = 99;
             //alert(num);
             text.innerHTML = '认识你的' + num +'甜';
          }
