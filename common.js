@@ -22,3 +22,22 @@ function getNextElement(elm) {
     // 返回数组
     return arr;
 }
+
+
+//
+function getPreviousElement(elm) {
+    // 声明一个空数组,来存储后面的元素
+    let arr = [];
+    while (elm) {
+        // 获取下一个元素节点然后赋值给 elm
+        elm = elm.previousElementSibling;
+
+        // 判断获得下一个元素节点是否存在
+        // 如果获得节点存在,则将节点存储到数组中
+        if (elm != null) {
+            arr.unshift(elm)
+        }
+    }
+    // 返回数组
+    return arr;
+}
