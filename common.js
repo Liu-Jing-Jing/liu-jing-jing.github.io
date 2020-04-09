@@ -169,3 +169,17 @@ function slowAnimationWithMultiArgs(ele, obj) {
         20
     );
 }
+
+
+// 阻止事件冒泡的封装
+function stopBubble(e){
+    e = window.event || e;
+    // 能力检查
+    if(e.stopPropagation){
+        e.stopPropagation();
+    }
+    else
+    {
+        e.cancelBubble = true;
+    }
+}
