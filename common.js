@@ -1,5 +1,44 @@
-// 自己封装的函数工具包
-// 封装代码的目的就是为了节省写代码的时间
+// 自己封装的函数工具包MKTools
+// 封装代码的目的就是为了节省写代码的时间 快捷获取元素的方法
+function my$(id) {
+  return document.getElementById(id);
+}
+
+// 处理浏览器兼容性
+// 获取第一个子元素
+function getFirstElementChild(element) {
+    var node, nodes = element.childNodes, i = 0;
+    while (node = nodes[i++]) {
+        if (node.nodeType === 1) {
+            return node;
+        }
+    }
+    return null;
+}
+
+// 处理浏览器兼容性
+// 获取下一个兄弟元素
+ function getNextElementSibling(element) {
+    var el = element;
+    while (el = el.nextSibling) {
+      if (el.nodeType === 1) {
+          return el;
+      }
+    }
+    return null;
+  }
+
+
+// 处理innerText和textContent的兼容性问题Firefox的Bug
+// 设置标签之间的内容
+function setInnerText(element, content) {
+  // 判断当前浏览器是否支持 innerText
+  if (typeof element.innerText === 'string') {
+    element.innerText = content;
+  } else {
+    element.textContent = content;
+  }
+}
 /**
  * 获得页面滚动距离的兼容代码
  * 返回一个对象,拥有水平与垂直的距离
