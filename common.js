@@ -330,3 +330,5 @@ window.undefined=window.undefined;function jQuery(d,f){if(d&&d.constructor==Func
 function $(value){
   document.querySelector(value);
 }
+
+ECMA Script6
