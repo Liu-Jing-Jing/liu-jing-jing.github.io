@@ -1,44 +1,57 @@
 atom.js
 
 //first commit
-window.onload = function() {
-  var JavaScriptMode, bindKey, canon, editor;
+window.onload = function() {  var JavaScriptMode, editor, filename, save, saveAs;
   console.log = OSX.NSLog;
   editor = ace.edit("editor");
   editor.setTheme("ace/theme/twilight");
-  var JavaScriptMode = require("ace/mode/javascript").Mode;
   JavaScriptMode = require("ace/mode/javascript").Mode;
-  editor.getSession().setMode(new JavaScriptMode());
-};
-  canon = require('pilot/canon');
-  bindKey = function(name, shortcut, callback) {
-    return canon.addCommand({
-      name: name,
-      exec: callback,
-      bindKey: {
-        win: null,
-        mac: shortcut,
-        sender: 'editor'
-      }
-    });
+  editor.getSession().setMode(new JavaScriptMode);
+  editor.getSession().setUseSoftTabs(true);
+  editor.getSession().setTabSize(2);
+  filename = null;
+  save = function() {
+    return File.write(filename, editor.getSession().getValue());
   };
-  bindKey('open', 'Command-O', function(env, args, request) {
-    var file, panel;
-    panel = OSX.NSOpenPanel.openPanel;
-    if (panel.runModal !== OSX.NSFileHandlingPanelOKButton) {
-      return null;
+  saveAs = function() {
+    var file;
+    if (file = Chrome.savePanel()) {
+      filename = file;
+      App.window.title = _.last(filename.split('/'));
+      return save();
     }
-    if (file = panel.filenames.lastObject) {
-      return env.editor.getSession().setValue(OSX.NSString.stringWithContentsOfFile(file));
+  };
+  Chrome.bindKey('open', 'Command-O', function(env, args, request) {
+    var code, file;
+    if (file = Chrome.openPanel()) {
+      filename = file;
+      App.window.title = _.last(filename.split('/'));
+      code = File.read(file);
+      return env.editor.getSession().setValue(code);
     }
   });
-  bindKey('eval', 'Command-R', function(env, args, request) {
+  Chrome.bindKey('saveAs', 'Command-Shift-S', function(env, args, request) {
+    return saveAs();
+  });
+  Chrome.bindKey('save', 'Command-S', function(env, args, request) {
+    if (filename) {
+      return save();
+    } else {
+      return saveAs();
+    }
+  });
+  Chrome.bindKey('copy', 'Command-C', function(env, args, request) {
+    var text;
+    text = editor.getSession().doc.getTextRange(editor.getSelectionRange());
+    return Chrome.writeToPasteboard(text);
+  });
+  Chrome.bindKey('eval', 'Command-R', function(env, args, request) {
     return eval(env.editor.getSession().getValue());
   });
-  bindKey('togglecomment', 'Command-/', function(env) {
+  Chrome.bindKey('togglecomment', 'Command-/', function(env) {
     return env.editor.toggleCommentLines();
   });
-  bindKey('fullscreen', 'Command-Return', function(env) {
+  Chrome.bindKey('fullscreen', 'Command-Return', function(env) {
     return OSX.NSLog('coming soon');
   });
 };
