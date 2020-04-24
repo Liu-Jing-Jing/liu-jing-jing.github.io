@@ -2,8 +2,6 @@ atom.js
 
 //first commit
 window.onload = function() {
-  var editor = ace.edit("editor");
-(function() {
   var JavaScriptMode, bindKey, canon, editor;
   console.log = OSX.NSLog;
   editor = ace.edit("editor");
@@ -43,4 +41,4 @@ window.onload = function() {
   bindKey('fullscreen', 'Command-Return', function(env) {
     return OSX.NSLog('coming soon');
   });
-}).call(this);
+};
