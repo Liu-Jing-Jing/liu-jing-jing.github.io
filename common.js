@@ -324,11 +324,99 @@ function getInterval(start, end) {
   }
 }
 
-// jQuery 1.0 mini
-window.undefined=window.undefined;function jQuery(d,f){if(d&&d.constructor==Function&&jQuery.fn.ready){return jQuery(document).ready(d)}d=d||jQuery.context||document;if(d.jquery){return $(jQuery.merge(d,[]))}if(f&&f.jquery){return $(f).find(d)}if(window==this){return new jQuery(d,f)}var b=/^[^<]*(<.+>)[^>]*$/.exec(d);if(b){d=jQuery.clean([b[1]])}this.get(d.constructor==Array||d.length&&!d.nodeType&&d[0]!=undefined&&d[0].nodeType?jQuery.merge(d,[]):jQuery.find(d,f));var e=arguments[arguments.length-1];if(e&&e.constructor==Function){this.each(e)}}if(typeof $!="undefined"){jQuery._$=$}var $=jQuery;jQuery.fn=jQuery.prototype={jquery:"$Rev$",size:function(){return this.length},get:function(a){if(a&&a.constructor==Array){this.length=0;[].push.apply(this,a);return this}else{return a==undefined?jQuery.map(this,function(b){return b}):this[a]}},each:function(b,a){return jQuery.each(this,b,a)},index:function(a){var b=-1;this.each(function(c){if(this==a){b=c}});return b},attr:function(a,c,b){return a.constructor!=String||c!=undefined?this.each(function(){if(c==undefined){for(var d in a){jQuery.attr(b?this.style:this,d,a[d])}}else{jQuery.attr(b?this.style:this,a,c)}}):jQuery[b||"attr"](this[0],a)},css:function(a,b){return this.attr(a,b,"curCSS")},text:function(f){f=f||this;var c="";for(var a=0;a<f.length;a++){var d=f[a].childNodes;for(var b=0;b<d.length;b++){if(d[b].nodeType!=8){c+=d[b].nodeType!=1?d[b].nodeValue:jQuery.fn.text([d[b]])}}}return c},wrap:function(){var b=jQuery.clean(arguments);return this.each(function(){var a=b[0].cloneNode(true);this.parentNode.insertBefore(a,this);while(a.firstChild){a=a.firstChild}a.appendChild(this)})},append:function(){return this.domManip(arguments,true,1,function(b){this.appendChild(b)})},prepend:function(){return this.domManip(arguments,true,-1,function(b){this.insertBefore(b,this.firstChild)})},before:function(){return this.domManip(arguments,false,1,function(b){this.parentNode.insertBefore(b,this)})},after:function(){return this.domManip(arguments,false,-1,function(b){this.parentNode.insertBefore(b,this.nextSibling)})},end:function(){return this.get(this.stack.pop())},find:function(a){return this.pushStack(jQuery.map(this,function(b){return jQuery.find(a,b)}),arguments)},clone:function(a){return this.pushStack(jQuery.map(this,function(b){return b.cloneNode(a!=undefined?a:true)}),arguments)},filter:function(a){return this.pushStack(a.constructor==Array&&jQuery.map(this,function(b){for(var c=0;c<a.length;c++){if(jQuery.filter(a[c],[b]).r.length){return b}}})||a.constructor==Boolean&&(a?this.get():[])||a.constructor==Function&&jQuery.grep(this,a)||jQuery.filter(a,this).r,arguments)},not:function(a){return this.pushStack(a.constructor==String?jQuery.filter(a,this,false).r:jQuery.grep(this,function(b){return b!=a}),arguments)},add:function(a){return this.pushStack(jQuery.merge(this,a.constructor==String?jQuery.find(a):a.constructor==Array?a:[a]),arguments)},is:function(a){return a?jQuery.filter(a,this).r.length>0:this.length>0},domManip:function(d,f,c,e){var g=this.size()>1;var b=jQuery.clean(d);return this.each(function(){var j=this;if(f&&this.nodeName=="TABLE"&&b[0].nodeName!="THEAD"){var a=this.getElementsByTagName("tbody");if(!a.length){j=document.createElement("tbody");this.appendChild(j)}else{j=a[0]}}for(var h=(c<0?b.length-1:0);h!=(c<0?c:b.length);h+=c){e.apply(j,[g?b[h].cloneNode(true):b[h]])}})},pushStack:function(c,d){var e=d&&d[d.length-1];if(!e||e.constructor!=Function){if(!this.stack){this.stack=[]}this.stack.push(this.get());this.get(c)}else{var b=this.get();this.get(c);if(e.constructor==Function){return this.each(e)}this.get(b)}return this}};jQuery.extend=jQuery.fn.extend=function(b,c){if(!c){c=b;b=this}for(var a in c){b[a]=c[a]}return b};jQuery.extend({init:function(){jQuery.initDone=true;jQuery.each(jQuery.macros.axis,function(a,b){jQuery.fn[a]=function(c){var d=jQuery.map(this,b);if(c&&c.constructor==String){d=jQuery.filter(c,d).r}return this.pushStack(d,arguments)}});jQuery.each(jQuery.macros.to,function(a,b){jQuery.fn[a]=function(){var c=arguments;return this.each(function(){for(var d=0;d<c.length;d++){$(c[d])[b](this)}})}});jQuery.each(jQuery.macros.each,function(a,b){jQuery.fn[a]=function(){return this.each(b,arguments)}});jQuery.each(jQuery.macros.filter,function(a,b){jQuery.fn[b]=function(c,d){return this.filter(":"+b+"("+c+")",d)}});jQuery.each(jQuery.macros.attr,function(a,b){b=b||a;jQuery.fn[a]=function(c){return c==undefined?this.length?this[0][b]:null:this.attr(b,c)}});jQuery.each(jQuery.macros.css,function(a,b){jQuery.fn[b]=function(c){return c==undefined?(this.length?jQuery.css(this[0],b):null):this.css(b,c)}})},each:function(d,c,a){if(d.length==undefined){for(var b in d){c.apply(d[b],a||[b,d[b]])}}else{for(var b=0;b<d.length;b++){c.apply(d[b],a||[b,d[b]])}}return d},className:{add:function(a,b){if(jQuery.className.has(a,b)){return}a.className+=(a.className?" ":"")+b},remove:function(a,b){a.className=!b?"":a.className.replace(new RegExp("(^|\\s*\\b[^-])"+b+"($|\\b(?=[^-]))","g"),"")},has:function(c,b){if(c.className!=undefined){c=c.className}return new RegExp("(^|\\s)"+b+"(\\s|$)").test(c)}},swap:function(c,d,b){for(var a in d){c.style["old"+a]=c.style[a];c.style[a]=d[a]}b.apply(c,[]);for(var a in d){c.style[a]=c.style["old"+a]}},css:function(h,g){if(g=="height"||g=="width"){var b={},c,a,j=["Top","Bottom","Right","Left"];for(var f in j){b["padding"+j[f]]=0;b["border"+j[f]+"Width"]=0}jQuery.swap(h,b,function(){if(jQuery.css(h,"display")!="none"){c=h.offsetHeight;a=h.offsetWidth}else{h=$(h.cloneNode(true)).css({visibility:"hidden",position:"absolute",display:"block"}).prependTo("body")[0];c=h.clientHeight;a=h.clientWidth;h.parentNode.removeChild(h)}});return g=="height"?c:a}else{if(g=="opacity"&&jQuery.browser.msie){return parseFloat(jQuery.curCSS(h,"filter").replace(/[^0-9.]/,""))||1}}return jQuery.curCSS(h,g)},curCSS:function(b,f,c){var a;if(!c&&b.style[f]){a=b.style[f]}else{if(b.currentStyle){var d=f.replace(/\-(\w)/g,function(g,h){return h.toUpperCase()});a=b.currentStyle[f]||b.currentStyle[d]}else{if(document.defaultView&&document.defaultView.getComputedStyle){f=f.replace(/([A-Z])/g,"-$1").toLowerCase();var e=document.defaultView.getComputedStyle(b,null);if(e){a=e.getPropertyValue(f)}else{if(f=="display"){a="none"}else{jQuery.swap(b,{display:"block"},function(){a=document.defaultView.getComputedStyle(this,null).getPropertyValue(f)})}}}}}return a},clean:function(b){var g=[];for(var e=0;e<b.length;e++){if(b[e].constructor==String){var f="";if(!b[e].indexOf("<thead")||!b[e].indexOf("<tbody")){f="thead";b[e]="<table>"+b[e]+"</table>"}else{if(!b[e].indexOf("<tr")){f="tr";b[e]="<table>"+b[e]+"</table>"}else{if(!b[e].indexOf("<td")||!b[e].indexOf("<th")){f="td";b[e]="<table><tbody><tr>"+b[e]+"</tr></tbody></table>"}}}var h=document.createElement("div");h.innerHTML=b[e];if(f){h=h.firstChild;if(f!="thead"){h=h.firstChild}if(f=="td"){h=h.firstChild}}for(var d=0;d<h.childNodes.length;d++){g.push(h.childNodes[d])}}else{if(b[e].jquery||b[e].length&&!b[e].nodeType){for(var c=0;c<b[e].length;c++){g.push(b[e][c])}}else{if(b[e]!==null){g.push(b[e].nodeType?b[e]:document.createTextNode(b[e].toString()))}}}}return g},expr:{"":"m[2]== '*'||a.nodeName.toUpperCase()==m[2].toUpperCase()","#":"a.getAttribute('id')&&a.getAttribute('id')==m[2]",":":{lt:"i<m[3]-0",gt:"i>m[3]-0",nth:"m[3]-0==i",eq:"m[3]-0==i",first:"i==0",last:"i==r.length-1",even:"i%2==0",odd:"i%2","nth-child":"jQuery.sibling(a,m[3]).cur","first-child":"jQuery.sibling(a,0).cur","last-child":"jQuery.sibling(a,0).last","only-child":"jQuery.sibling(a).length==1",parent:"a.childNodes.length",empty:"!a.childNodes.length",contains:"(a.innerText||a.innerHTML).indexOf(m[3])>=0",visible:"a.type!='hidden'&&jQuery.css(a,'display')!='none'&&jQuery.css(a,'visibility')!='hidden'",hidden:"a.type=='hidden'||jQuery.css(a,'display')=='none'||jQuery.css(a,'visibility')=='hidden'",enabled:"!a.disabled",disabled:"a.disabled",checked:"a.checked",selected:"a.selected"},".":"jQuery.className.has(a,m[2])","@":{"=":"z==m[4]","!=":"z!=m[4]","^=":"!z.indexOf(m[4])","$=":"z.substr(z.length - m[4].length,m[4].length)==m[4]","*=":"z.indexOf(m[4])>=0","":"z"},"[":"jQuery.find(m[2],a).length"},token:["\\.\\.|/\\.\\.","a.parentNode",">|/","jQuery.sibling(a.firstChild)","\\+","jQuery.sibling(a).next","~",function(b){var e=[];var d=jQuery.sibling(b);if(d.n>0){for(var c=d.n;c<d.length;c++){e.push(d[c])}}return e}],find:function(o,b){if(b&&b.nodeType==undefined){b=null}b=b||jQuery.context||document;if(o.constructor!=String){return[o]}if(!o.indexOf("//")){b=b.documentElement;o=o.substr(2,o.length)}else{if(!o.indexOf("/")){b=b.documentElement;o=o.substr(1,o.length);if(o.indexOf("/")>=1){o=o.substr(o.indexOf("/"),o.length)}}}var k=[b];var f=[];var l=null;while(o.length>0&&l!=o){var a=[];l=o;o=jQuery.trim(o).replace(/^\/\//i,"");var j=false;for(var g=0;g<jQuery.token.length;g+=2){if(j){continue}var n=new RegExp("^("+jQuery.token[g]+")");var e=n.exec(o);if(e){a=k=jQuery.map(k,jQuery.token[g+1]);o=jQuery.trim(o.replace(n,""));j=true}}if(!j){if(!o.indexOf(",")||!o.indexOf("|")){if(k[0]==b){k.shift()}f=jQuery.merge(f,k);a=k=[b];o=" "+o.substr(1,o.length)}else{var h=/^([#.]?)([a-z0-9\\*_-]*)/i;var e=h.exec(o);if(e[1]=="#"){var d=document.getElementById(e[2]);a=k=d?[d]:[];o=o.replace(h,"")}else{if(!e[2]||e[1]=="."){e[2]="*"}for(var g=0;g<k.length;g++){a=jQuery.merge(a,e[2]=="*"?jQuery.getAll(k[g]):k[g].getElementsByTagName(e[2]))}}}}if(o){var c=jQuery.filter(o,a);k=a=c.r;o=jQuery.trim(c.t)}}if(k&&k[0]==b){k.shift()}f=jQuery.merge(f,k);return f},getAll:function(d,c){c=c||[];var b=d.childNodes;for(var a=0;a<b.length;a++){if(b[a].nodeType==1){c.push(b[a]);jQuery.getAll(b[a],c)}}return c},attr:function(c,b,d){var a={"for":"htmlFor","class":"className","float":"cssFloat",innerHTML:"innerHTML",className:"className",value:"value",disabled:"disabled"};if(a[b]){if(d!=undefined){c[a[b]]=d}return c[a[b]]}else{if(c.getAttribute){if(d!=undefined){c.setAttribute(b,d)}return c.getAttribute(b,2)}else{b=b.replace(/-([a-z])/ig,function(f,e){return e.toUpperCase()});if(d!=undefined){c[b]=d}return c[b]}}},parse:[["\\[ *(@)S *([!*$^=]*) *Q\\]",1],["(\\[)Q\\]",0],["(:)S\\(Q\\)",0],["([:.#]*)S",0]],filter:function(t,r,not){var g=not!==false?jQuery.grep:function(a,f){return jQuery.grep(a,f,true)};while(t&&/^[a-z[({<*:.#]/i.test(t)){var p=jQuery.parse;for(var i=0;i<p.length;i++){var re=new RegExp("^"+p[i][0].replace("S","([a-z*_-][a-z0-9_-]*)").replace("Q"," *'?\"?([^'\"]*?)'?\"? *"),"i");var m=re.exec(t);if(m){if(p[i][1]){m=["",m[1],m[3],m[2],m[4]]}t=t.replace(re,"");break}}if(m[1]==":"&&m[2]=="not"){r=jQuery.filter(m[3],r,false).r}else{var f=jQuery.expr[m[1]];if(f.constructor!=String){f=jQuery.expr[m[1]][m[2]]}eval("f = function(a,i){"+(m[1]=="@"?"z=jQuery.attr(a,m[3]);":"")+"return "+f+"}");r=g(r,f)}}return{r:r,t:t}},trim:function(a){return a.replace(/^\s+|\s+$/g,"")},parents:function(b){var a=[];var c=b.parentNode;while(c&&c!=document){a.push(c);c=c.parentNode}return a},sibling:function(d,f,c){var a=[];var e=d.parentNode.childNodes;for(var b=0;b<e.length;b++){if(c===true&&e[b]==d){continue}if(e[b].nodeType==1){a.push(e[b])}if(e[b]==d){a.n=a.length-1}}return jQuery.extend(a,{last:a.n==a.length-1,cur:f=="even"&&a.n%2==0||f=="odd"&&a.n%2||a[f]==d,prev:a[a.n-1],next:a[a.n+1]})},merge:function(g,d){var a=[];for(var b=0;b<g.length;b++){a[b]=g[b]}for(var e=0;e<d.length;e++){var f=true;for(var c=0;c<g.length;c++){if(d[e]==g[c]){f=false}}if(f){a.push(d[e])}}return a},grep:function(c,e,b){if(e.constructor==String){e=new Function("a","i","return "+e)}var a=[];for(var d=0;d<c.length;d++){if(!b&&e(c[d],d)||b&&!e(c[d],d)){a.push(c[d])}}return a},map:function(b,d){if(d.constructor==String){d=new Function("a","return "+d)}var a=[];for(var c=0;c<b.length;c++){var e=d(b[c],c);if(e!==null&&e!=undefined){if(e.constructor!=Array){e=[e]}a=jQuery.merge(a,e)}}return a},event:{add:function(b,d,c){if(jQuery.browser.msie&&b.setInterval!=undefined){b=window}if(!c.guid){c.guid=this.guid++}if(!b.events){b.events={}}var a=b.events[d];if(!a){a=b.events[d]={};if(b["on"+d]){a[0]=b["on"+d]}}a[c.guid]=c;b["on"+d]=this.handle;if(!this.global[d]){this.global[d]=[]}this.global[d].push(b)},guid:1,global:{},remove:function(c,e,d){if(c.events){if(e&&c.events[e]){if(d){delete c.events[e][d.guid]}else{for(var b in c.events[e]){delete c.events[e][b]}}}else{for(var a in c.events){this.remove(c,a)}}}},trigger:function(c,e,b){e=e||[];if(!b){var d=this.global[c];if(d){for(var a=0;a<d.length;a++){this.trigger(c,e,d[a])}}}else{if(b["on"+c]){e.unshift(this.fix({type:c,target:b}));b["on"+c].apply(b,e)}}},handle:function(d){if(typeof jQuery=="undefined"){return}d=d||jQuery.event.fix(window.event);if(!d){return}var b=true;var e=this.events[d.type];for(var a in e){if(e[a].apply(this,[d])===false){d.preventDefault();d.stopPropagation();b=false}}return b},fix:function(a){if(a){a.preventDefault=function(){this.returnValue=false};a.stopPropagation=function(){this.cancelBubble=true}}return a}}});new function(){var a=navigator.userAgent.toLowerCase();jQuery.browser={safari:/webkit/.test(a),opera:/opera/.test(a),msie:/msie/.test(a)&&!/opera/.test(a),mozilla:/mozilla/.test(a)&&!/compatible/.test(a)};jQuery.boxModel=!jQuery.browser.msie||document.compatMode=="CSS1Compat"};jQuery.macros={to:{appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after"},css:"width,height,top,left,position,float,overflow,color,background".split(","),filter:["eq","lt","gt","contains"],attr:{val:"value",html:"innerHTML",id:null,title:null,name:null,href:null,src:null,rel:null},axis:{parent:"a.parentNode",ancestors:jQuery.parents,parents:jQuery.parents,next:"jQuery.sibling(a).next",prev:"jQuery.sibling(a).prev",siblings:jQuery.sibling,children:"jQuery.sibling(a.firstChild)"},each:{removeAttr:function(a){this.removeAttribute(a)},show:function(){this.style.display=this.oldblock?this.oldblock:"";if(jQuery.css(this,"display")=="none"){this.style.display="block"}},hide:function(){this.oldblock=this.oldblock||jQuery.css(this,"display");if(this.oldblock=="none"){this.oldblock="block"}this.style.display="none"},toggle:function(){$(this)[$(this).is(":hidden")?"show":"hide"].apply($(this),arguments)},addClass:function(a){jQuery.className.add(this,a)},removeClass:function(a){jQuery.className.remove(this,a)},toggleClass:function(a){jQuery.className[jQuery.className.has(this,a)?"remove":"add"](this,a)},remove:function(b){if(!b||jQuery.filter(b,[this]).r){this.parentNode.removeChild(this)}},empty:function(){while(this.firstChild){this.removeChild(this.firstChild)}},bind:function(b,a){if(a.constructor==String){a=new Function("e",(!a.indexOf(".")?"$(this)":"return ")+a)}jQuery.event.add(this,b,a)},unbind:function(b,a){jQuery.event.remove(this,b,a)},trigger:function(a,b){jQuery.event.trigger(a,b,this)}}};jQuery.init();
-// myQuery
-function $(value){
-  document.querySelector(value);
+// ECMA Script6
+// 封装ajax的通用工具函数
+// 请求方式不一样
+// 请求url不一样
+// 请求所需要传递的参数不一样
+// 数据处理逻辑不一样
+
+// type:请求方式
+// url:请求url
+// data:请求所需要传递的参数
+// success:数据请求成功之后的处理逻辑--回调函数
+// 下面这种函数声明有什么不足
+// 1.参数数量固定,不方便后期的扩展,如想添加新的功能,不是很方便
+// 2.参数顺序固定,不方便用户的调用
+// 3.这个函数一个全局函数,如果这种函数太多了,会造成内存泄露--全局污染(全局的成员不会释放)
+// function ajax(type,url,data,success){
+
+// }
+// function get(){}
+// function post(){}
+
+// 改造函数的声明方式,以对象做为参数,因为js对象是有动态特征
+// options.type:请求方式
+// options.url:请求url
+// options.data:请求所需要传递的参数
+// options.success:数据请求成功之后的处理逻辑--回调函数
+
+// 以对象做为参数,立马解决了参数数量固定和参数顺序固定的问题
+// 不足:还是会造成全局污染
+// function ajax(options){
+
+// }
+// function get(options){}
+// function post(options){}
+
+// 为了避免全局污染,可以将成员封装到对象中
+// $就是我当前的对象的名称,在js中,支持使用$做为变量名
+// 使用const原因只有一个,我这个$工具以后只希望别人使用,而不希望别人修改
+const $ = {
+    // options.type:请求方式
+    // options.url:请求url
+    // options.data:请求所需要传递的参数
+    // options.success:数据请求成功之后的处理逻辑--回调函数
+    // option.dataType:响应数据的目标类型,用户希望你给他"返回"什么类型的数据
+    ajax:function(options){
+        // 处理参数,为参数设置默认值(如果你传递了参数,就使用你传递的参数,如果没有传递参数,就给你默认值)
+        // 如果访问对象的不存在的属性,返回undefined
+        let type = options.type || 'get'
+        let url = options.url
+        let data = options.data || ''
+        let success = options.success
+        let dataType = options.dataType || "text/html"
+
+        // 创建异步对象
+        let xhr = new XMLHttpRequest()
+
+        // 发送请求
+        // 请求行
+        if(type == 'get'){
+            // 拼接参数  http://127.0.0.1:3002/getuserbyid?id=1
+            url = url + "?" + data
+            // 拼接之后,将data参数重置为null
+            data = null
+        }
+        xhr.open(type,url)
+        // 请求头
+        if(type == 'post'){
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+        }
+        // 请求体
+        xhr.send(data)
+
+        // 接收响应
+        xhr.onload = function(){
+            // 我也不知道你要做什么,我只是一个工具函数,那么你得告诉我你想做什么
+            // 调用回调函数,同时传入获取到的数据
+            // &&判断success是否传递了,如果传递了则调用,否则不调用
+            // 转换
+            let res = null
+            if(dataType == 'json'){ // 说明你想要js对象
+                res = JSON.parse(xhr.response)
+            }else if(dataType == 'xml'){ // 说明你要xml格式的数据
+                res = xhr.responseXML
+            }else { // 默认值
+                res = xhr.response
+            }
+            // let res = xhr.response
+            success && success(res)
+        }
+    }
 }
 
-ECMA Script6
+// var:没有作用域的概念,会造成变量提升
+// let:会产生块级作用域,且不会变量提升
+// const:定义常量,一旦定义好之后,只能使用,不能修改
+
