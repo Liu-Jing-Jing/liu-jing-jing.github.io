@@ -4,6 +4,37 @@ function my$(id) {
   return document.getElementById(id);
 }
 
+
+// basic
+// mozilla(firefox)
+// webkit or chrome
+function getObjectURL(file) {
+
+            var url = null;
+
+            if (window.createObjectURL != undefined) {
+
+
+
+                url = window.createObjectURL(file);
+
+            } else if (window.URL != undefined) {
+
+// mozilla(firefox)
+
+                url = window.URL.createObjectURL(file);
+
+            } else if (window.webkitURL != undefined) {
+
+// webkit or chrome
+
+                url = window.webkitURL.createObjectURL(file);
+
+            }
+
+            return url;
+
+        }
 // 处理浏览器兼容性
 // 获取第一个子元素
 function getFirstElementChild(element) {
