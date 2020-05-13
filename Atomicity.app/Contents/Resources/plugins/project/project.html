@@ -1,16 +1,48 @@
 <style>
-  ul {
+  #project {
+    min-width: 200px;
+    height: 100%;
+    background-color: #DDE3EA;
+    color: #000;
+    border-right: 1px solid #B4B4B4;
+    cursor: default;    
+    -webkit-user-select: none;
+  }
+  
+  #project .cwd {
+    padding-top: 5px;
+    padding-left: 5px;
+    font-weight: bold; 
+    color: #708193;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  #project ul {
     margin: 0;
-    padding: 0;
+    padding-top: 2px;
   }
 
-  li {
-    list-style-type: none;
+  #project li {
+    padding: 0 10px;    
+    height: 20px;
+    line-height: 20px;    
   }
 
-  li:hover {
-    background-color: grey;
+  #project li.file {
+    font-weight: normal;
   }
+
+  #project li.dir {
+    font-weight: bold;
+  }
+  
+  #project li.active {
+    background-image: -webkit-gradient(linear,0% 0,0% 100%,from(#BCCBEB),to(#8094BB));
+    border-top: 1px solid #A0AFCD;
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  }  
 </style>
 
 <div id='project'>

@@ -205,19 +205,8 @@
 
                 </section>
 
-                <section>
-                    <h1>2020-05-01 Release 0.0.0.57</h1>
-                    <h1>2020-05-03 Release 0.0.0.99</h1>
-                    <h1>0.0.0.100</h1>
-                    <h1>0.0.0.177</h1>
-                    <h1>0.0.0.199</h1>
-                    <h1>0.0.0.200</h1>
-                    <h1>0.0.0.277</h1>
-                    <h1>0.0.0.299</h1>
-                    <h1>0.0.0.300</h1>
-                    <h1>0.0.0.377</h1>
-                    <h1>0.0.0.399</h1>
-                    </ul>
+                <section id="versionSection">
+
                 </section>
 
                 <section><textarea name="textfield" id="tf3" cols="130" rows="100"></textarea></section>
@@ -228,11 +217,31 @@
 
 
     </main>
+    
+    
+    
+    <!--用来填充版本的一个 模版引擎-->
+    <script type="text/template" id="versionTemplate">
+        <ul>
+        <h1>2020-05-01 Release 0.0.0.57</h1>
+        <h1>2020-05-03 Release 0.0.0.99</h1>
+        <h1>2020-05-11 Release 0.0.0.100</h1>
+        <h1>2020-05-13 Release 0.0.0.177</h1>
+        <h1>0.0.0.199</h1>
+        <h1>0.0.0.200</h1>
+        <h1>0.0.0.277</h1>
+        <h1>0.0.0.299</h1>
+        <h1>0.0.0.300</h1>
+        <h1>0.0.0.377</h1>
+        <h1>0.0.0.399</h1>
+        </ul>
+    </script>
     <script type="text/javascript">
         require('underscore');
         require('jquery');
         require('coffee-script');
     </script>
+    <script src="../vendor/template-web.js" type="text/javascript" charset="utf-8"></script>
     <script src="../vendor/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="../vendor/ace/ace.js" type="text/javascript" charset="utf-8"></script>
     <script src="../vendor/ace/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
@@ -242,8 +251,10 @@
     <script src="../src/atomicity.js" type="text/javascript" charset="utf-8"></script>
     <!-- <script src="js/tab.js"></script> -->
     <script type="text/javascript">
-        // 点击切换，点击添加
-            // 点击li给当前li添加类名，同时给对应的section也添加类名
+        var dateString = '2020-05-13';
+        var code1 = template('versionTemplate', null);
+        $('#versionSection').html(code1);
+            // 点击切换，点击添加 点击li给当前li添加类名，同时给对应的section也添加类名
             // 点击添加，添加li，并且也要添加个section
             var that;
             function Tab(id) {
