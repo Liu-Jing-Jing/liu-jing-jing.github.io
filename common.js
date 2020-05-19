@@ -1,8 +1,10 @@
 // 自己封装的函数工具包MKTools
 // 封装代码的目的就是为了节省写代码的时间 快捷获取元素的方法
 function my$(id) {
-  return document.getElementById(id);
+  //return document.getElementById(id);
+  return document.querySelector(id);
 }
+
 
 
 // basic
