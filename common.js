@@ -8,7 +8,19 @@ function my$(id) {
 
 // addClass
 // removeClass
+function removeClass(elem, str) {
+    var cName = elem.className;
+    var arrClassName = cName.split(" ");
+    var newArr = [];
 
+    for(var i=0; i<arrClassName.length;i++)
+    {
+	if(arrClassName[i] != str) newArr.push(arrClassName[i]);
+    }
+
+    var str = newArr.join(" ");
+    elem.className = str;
+}
 
 // basic
 // mozilla(firefox)
