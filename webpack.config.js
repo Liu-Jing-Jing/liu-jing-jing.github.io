@@ -23,3 +23,8 @@ module.exports = {
         ],
       },
 }
+
+
+// 了解webpack的插件
+// 使用html-webpack-plugin 
+//插件 在module.exports = {} 里面配置plugin数组
