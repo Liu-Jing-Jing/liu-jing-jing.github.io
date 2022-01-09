@@ -1,158 +1,28 @@
-<!doctype html>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+}
+#editor {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+</style>
 
-<html lang="zh">
+<div id="editor">function say(something) {
+  alert(something)
+}</div>
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=1024" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<title>关于我 | 刘竞的技术博客</title>
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+<script src="mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 
-	<meta name="description"
-		content="I am @bestswifter, a iOS programmer from China and working hard to be fullstack." />
-	<meta name="author" content="Bestswifter" />
-
-	<!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" /> -->
-
-	<link href="css/aboutme.css" rel="stylesheet" />
-
-	<link rel="shortcut icon" href="favicon.png" />
-	<link rel="apple-touch-icon" href="apple-touch-icon.png" />
-	<base target="_blank">
-	<link href="css/style.css" rel="stylesheet" />
-</head>
-
-<body class="impress-not-supported">
-
-	<div class="fallback-message">
-		<p>您的浏览器 <b>不支持</b> impress.js的展示要求, 将为您呈现简化版的展示</p>
-		<p>为了获取最佳效果，请使用最新版的<b>Chrome</b>, <b>Safari</b> 或 <b>Firefox</b> 浏览器</p>
-		<p>珍爱生命，保护地球，远离IE。</p>
-	</div>
-
-	<div id="impress">
-
-		<div id="title" class="step">
-			<h1>
-				<span class="short">您好， 王卓文小朋友</span>
-				<span class="css">Welcome</span>
-				<span class="short">很庆幸 2021年7月8日 与你相识</span>
-			</h1>
-
-
-		</div>
-
-		<div id="welcome" class="step" data-x="-640" data-y="0" data-rotate="30" data-scale="0.1">
-			<p><span class="title"><b>我是千千万万程序员中最普通的一员</b></span></p>
-		</div>
-
-		<div id="me" class="step" data-x="0" data-y="-2500" data-scale="2">
-			<b class="now_me">现在的我：</b>
-			<p>爱"写程序"的 iOS开发者</p>
-			<p>试图入门 机器学习 小白</p>
-
-		</div>
-
-		<div id="whereiam" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="3">
-			<p>出生于<span class="zhenjiang">黄石</span></p>
-			<p><span class="born">湖北</span></p>
-			<p>求学在<span class="dongbei">武汉</span></p>
-			<p><span class="study">美丽的江城</span></p>
-		</div>
-
-		<div id="japan" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="4">
-			<p>认识你的<b class="trans"> 1年</b>
-			<p>
-			<p>你是一个可爱的女孩子</p>
-			<p>未来的道路上请勇敢<sup>**</sup></p>
-			<p>期待你成为自己最想成为的人
-			<p>
-			<p><span class="footnote">* </span></p>
-		</div>
-
-		<div id="world" class="step" data-x="-100" data-y="2900" data-z="900" data-rotate="-90" data-scale="5">
-			<p>To 王卓文老师:</p>
-			<p>进一寸有一寸的欢喜！</p>
-			<p>喜欢一个人的感觉就像: 我喜欢🍓, 但🍓蛋糕不行，🍓汁不行。不是🍓也不行;</p>
-			<p>大概喜欢一个人就是，像你不行，性格像你也不行。不是你就是不行😄</p>
-
-		</div>
-
-		<div id="meet" class="step" data-x="1300" data-y="6000" data-z="2400" data-scale="6">
-			<p>你好</p>
-			<p>很高兴认识你</p>
-		</div>
-
-		<div id="tiny" class="step" data-x="1300" data-y="6000" data-z="-3000" data-rotate="300" data-scale="1">
-			<p>中意你</p>
-		</div>
-
-		<div id="tech" class="step" data-x="0" data-y="7000" data-z="-3000" data-rotate="300">
-			<p>用 <span class="PHP">PHP</span> 写过后台，连接到 MySQL</p>
-			<p>用 <span class="Python">Python</span> 为 Walle 写过 打包重签名工具</p>
-			<p>正在学习 <span class="Nodejs">Nodejs</span> 机器学习相关知识</p>
-		</div>
-
-		<div id="mywords" class="step" data-x="4500" data-y="3500" data-z="3000" data-rotate="160">
-			<p>我是千千万万程序员中最普通的一员</p>
-			<p>没有过人的天赋，没有早早的入行</p>
-			<p>热爱 coding，坚持记录自己的成长</p>
-		</div>
-
-		<div id="grow" class="step" data-x="3500" data-y="-850" data-z="3000" data-rotate="270" data-scale="6">
-			<p>生活明朗</p>
-			<p><b>万物可爱</b></p>
-		</div>
-
-		<div id="knowme" class="step" data-x="-6000" data-y="-800" data-z="0" data-rotate="0" data-scale="1">
-			<p><span class="title"><b>进一寸有一寸的欢喜！</b></span></p>
-		</div>
-
-		<div id="prizeme" class="step" data-x="-6000" data-y="-500" data-z="-500" data-rotate-x="-40" data-rotate-y="10"
-			data-scale="2">
-			<p><span class="horse">良驹美景，</span> <span class="moutain">高山流水，</span> <span class="hope">我真心希望</span> <span
-					class="youare">您就是</span> <span class="my">我的伯乐，我的子期</span> <b></p>
-		</div>
-
-		<div id="findme" class="step" data-x="-6000" data-y="1000" data-scale="4">
-			<p>您可以在<a href="http://weibo.com">新浪微博</a>，<a href="http://www.jianshu.com/">简书</a>或者<a
-					href="https://github.com/">Github</a>上找到我。</p>
-		</div>
-
-		<div id="one-more-thing" class="step" data-x="-1500" data-y="-1100" data-z="0" data-scale="2">
-			<p>One More Thing</p>
-			<p>其实是一句话，想分享给所有辛苦工作的程序员</p>
-		</div>
-
-		<div id="motto" class="step" data-x="0" data-y="1500" data-z="6000" data-scale="5">
-			<p>得想个办法追到你</p>
-			<p>这个网站会一直写下去的</p>
-			<p><b>待我想到一个很有仪式感的表白方式吧！未来可期～～～</b></p>
-		</div>
-
-		<div id="back" class="step" data-x="-6000" data-y="5200" data-scale="2">
-			<p>谢谢您来访</p>
-			<p>点击<a href="">这里</a>返回 刘竞's Site</p>
-			<p>或者<a href="mailto:1515352281@qq.com">通过邮件联系我</a></p>
-		</div>
-
-		<div id="overview" class="step" data-x="0" data-y="2500" data-scale="16">
-		</div>
-
-	</div>
-
-	<div class="hint">
-		<p>使用空格或方向键继续</p>
-	</div>
-	<script>
-		if ("ontouchstart" in document.documentElement) {
-			document.querySelector(".hint").innerHTML = "<p>在左侧或右侧点击继续</p>";
-		}
-	</script>
-
-	<script src="js/impress.js"></script>
-	<script>impress().init();</script>
-
-</body>
-
-</html>
+<script type="text/javascript" charset="utf-8">
+window.onload = function() {
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/twilight");
+  var JavaScriptMode = require("ace/mode/javascript").Mode;
+  editor.getSession().setMode(new JavaScriptMode());
+};
+</script>
