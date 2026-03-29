@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link current">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+<div class="content">
+    <h1></h1>
+    <h1 id="Transition_Hooks">Transition Hooks</h1>
+<p>A <code>&lt;router-view&gt;</code> component involved in a transition can control / react to the transition by implementing appropriate transition pipeline hooks. These hooks include:</p>
+<ul>
+<li><code>data</code></li>
+<li><code>activate</code></li>
+<li><code>deactivate</code></li>
+<li><code>canActivate</code></li>
+<li><code>canDeactivate</code></li>
+<li><code>canReuse</code></li>
+</ul>
+<p>You can implement these hooks under your component’s <code>route</code> option:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>Vue.component(<span class="string">'hook-example'</span>, {
+  <span class="comment">// ... other options</span>
+  route: {
+    activate: <span class="function"><span class="keyword">function</span> <span class="params">(transition)</span> {</span>
+      console.log(<span class="string">'hook-example activated!'</span>)
+      transition.next()
+    },
+    deactivate: <span class="function"><span class="keyword">function</span> <span class="params">(transition)</span> {</span>
+      console.log(<span class="string">'hook-example deactivated!'</span>)
+      transition.next()
+    }
+  }
+})
+</pre></td></tr></table></figure>
+
+<h3 id="The_Transition_Object">The Transition Object</h3>
+<p>Each transition hook will receive a <code>transition</code> object as the only argument. The transition object exposes the following properties &amp; methods:</p>
+<ul>
+<li><p><strong>transition.from</strong></p>
+<p>A <a href="../route.html">route object</a> representing the route we are transitioning from.</p>
+</li>
+<li><p><strong>transition.to</strong></p>
+<p>A route object representing the target path.</p>
+</li>
+<li><p><strong>transition.next()</strong></p>
+<p>Call this method to progress to the next step of the transition.</p>
+</li>
+<li><p><strong>transition.abort([reason])</strong></p>
+<p>Call this method to cancel / reject the transition.</p>
+</li>
+<li><p><strong>transition.redirect(path)</strong></p>
+<p>Cancel current transition and redirect to a different target route instead.</p>
+</li>
+</ul>
+<p>All transition hooks are considered asynchronous by default. In order to signal the transition to progress, you have three options:</p>
+<ol>
+<li><p>Explicitly call one of <code>next</code>, <code>abort</code> or <code>redirect</code>.</p>
+</li>
+<li><p>Return a Promise. Details below.</p>
+</li>
+<li><p>For validation hooks (<code>canActivate</code> and <code>canDeactivate</code>), you can synchronously return a Boolean value.</p>
+</li>
+</ol>
+<h3 id="Returning_Promise_in_Hooks">Returning Promise in Hooks</h3>
+<p>When you return a Promise in a transition hook, <code>transition.next</code> will be called for you when the Primise resolves. If the Promise is rejected during validation phase, it will call <code>transition.abort</code>; if it is rejected during activation phase, it will call <code>transition.next</code>.</p>
+<p>For validation hooks (<code>canActivate</code> and <code>canDeactivate</code>), if the Promise’s resolved value is falsy, it will also abort the transition.</p>
+<p>If a rejected promise has an uncaught error, it will be thrown unless you suppress it with the <code>suppressTransitionError</code> option when creating the router.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre><span class="comment">// inside component definition</span>
+route: {
+  canActivate: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    <span class="comment">// assuming the service returns a Promise that</span>
+    <span class="comment">// resolve to either `true` or `false`.</span>
+    <span class="keyword">return</span> authenticationService.isLoggedIn()
+  },
+  activate: <span class="function"><span class="keyword">function</span> <span class="params">(transition)</span> {</span>
+    <span class="keyword">return</span> messageService
+      .fetch(transition.to.params.messageId)
+      .then((message) =&gt; {
+        <span class="comment">// set the data once it arrives.</span>
+        <span class="comment">// the component will not display until this</span>
+        <span class="comment">// is done.</span>
+        <span class="keyword">this</span>.message = message
+      })
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>We are asynchronously fetching data in the <code>activate</code> hook here just for the sake of an example; Note that we also have the <a href="data.html"><code>data</code> hook</a> which is in general more appropriate for this purpose.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Instruments - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link current">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Install</h2>
+    <ul>
+    
+        <li><a href="/install/index.html" class="sidebar-link">Installation</a></li>
+    
+        <li><a href="/install/instruments.html" class="sidebar-link current">Instruments</a></li>
+    
+        <li><a href="/install/data.html" class="sidebar-link">Data structure</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>Instruments</h1>
+    <h1 id="Basic_Usage">Basic Usage</h1>
+<p>Creating a Single-page Application with Vue.js + vue-router is dead simple. With Vue.js, we are already breaking our application into components. When adding vue-router to the mix, all we need to do is map our components to the routes and let vue-router know where to render them. Here’s a basic example:</p>
+<h3 id="HTML">HTML</h3>
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"app"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Hello App!<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>
+    <span class="comment">&lt;!-- v-link directive --&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-link</span>=<span class="value">"/foo"</span>&gt;</span>GoFoo<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">v-link</span>=<span class="value">"/bar"</span>&gt;</span>GoBar<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="comment">&lt;!-- route outlet --&gt;</span>
+  <span class="tag">&lt;<span class="title">router-view</span>&gt;</span><span class="tag">&lt;/<span class="title">router-view</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="JavaScript">JavaScript</h3>
+<p>The router needs a root component to render, Because we are using the HTML as the app template. for demo purposes, we will just use an empty one. You can pass in additional options here, but let’s keep it simple for now.Each route should map to a component, we’ll talk about nested routes later.router.start will create an instance of App and mount to the element matching the selector #app.</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+</pre></td><td class="code"><pre><span class="comment">// Define some components</span>
+<span class="keyword">var</span> Foo = Vue.extend({
+  template: <span class="string">"&lt;p&gt;is foo!&lt;/p&gt;"</span>,
+});
+
+<span class="keyword">var</span> Bar = Vue.extend({
+  template: <span class="string">"&lt;p&gt;is bar!&lt;/p&gt;"</span>,
+});
+
+<span class="keyword">var</span> App = Vue.extend({});
+
+<span class="comment">// create a router instance.</span>
+<span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter();
+
+<span class="comment">// Define some routes.</span>
+router.map({
+  <span class="string">"/foo"</span>: {
+    component: Foo,
+  },
+  <span class="string">"/bar"</span>: {
+    component: Bar,
+  },
+});
+
+<span class="comment">// now we can start the app!</span>
+router.start(App, <span class="string">"#app"</span>);
+</pre></td></tr></table></figure>
+
+<p>You can also checkout this example <a href="http://jsfiddle.net/yyx990803/xyu276sa/" target="_blank">live</a>.</p>
+<h1 id="Nested_Routes">Nested Routes</h1>
+<p>Mapping nested routes to nested components is a common need, and it is also very simple with vue-router.</p>
+<p>Suppose we have the following app:</p>
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"app"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">router-view</span>&gt;</span><span class="tag">&lt;/<span class="title">router-view</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>&lt;router-view&gt;</code> here is a top-level outlet. It renders the component matched by a top level route:<br><em>Foo is rendered when /foo is matched</em></p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>router.map({
+  <span class="string">"/foo"</span>: {
+    component: Foo,
+  },
+});
+</pre></td></tr></table></figure>
+
+<p>Similarly, a rendered component can also contain its own, nested <code>&lt;router-view&gt;</code>. For example, if we add one inside the <code>Foo</code> component’s template:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="comment">// router-view is nest outlet</span>
+<span class="keyword">var</span> Foo = Vue.extend({
+  template:
+    <span class="string">'&lt;div class="foo"&gt;'</span>+
+    <span class="string">"&lt;h2&gt;This is Foo!&lt;/h2&gt;"</span>+
+    <span class="string">"&lt;router-view&gt;"</span>+
+    <span class="string">"&lt;/router-view&gt;"</span>+
+    <span class="string">"&lt;/div&gt;"</span>,
+});
+</pre></td></tr></table></figure>
+
+<p>To render components into this nested outlet, we need to update our route config:<br>Now, with the above configuration, when you visit <code>/foo</code>, nothing will be rendered inside <code>Foo</code>‘s outlet, because no sub route is matched. Maybe you do want to render something there. In such case you can provide a <code>/</code> subroute in this case: Bar will be rendered inside Foo’s <code>&lt;router-view&gt;</code>。 </p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="comment">// subRoutes map under /foo </span>
+router.map({
+  <span class="string">"/foo"</span>: {
+    component: Foo,
+    subRoutes: {
+      <span class="string">"/bar"</span>: {
+        <span class="comment">// /foo/bar is show</span>
+        component: Bar,
+      },
+      <span class="string">"/baz"</span>: {
+        component: Baz,
+      },
+    },
+  },
+});
+</pre></td></tr></table></figure>
+
+<p>This component will be rendered into Foo’s <router-view>, when /foo is matched. Using an inline component definition here for convenience.</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="comment">// HTML String</span>
+<span class="keyword">var</span> html = <span class="string">"&lt;p&gt;sub view&lt;/p&gt;"</span>
+router.map({
+  <span class="string">"/foo"</span>: {
+    component: Foo,
+    subRoutes: {
+      <span class="string">"/"</span>: {
+        component: {
+          template: html,
+        },
+      },
+      <span class="comment">// other sub routes...</span>
+    },
+  },
+});
+</pre></td></tr></table></figure>
+
+<p>A working demo of this example can be found <a href="http://jsfiddle.net/yyx990803/naeg67da/" target="_blank">here</a>.</p>
+<h1 id="Route_Object_-26-amp-3b-_Route_Matching">Route Object &amp; Route Matching</h1>
+<p>Vue-router supports matching paths that contain dynamic segments, star segments and query strings. All these information of a parsed route will be accessible on the exposed <strong>Route Context Objects</strong> (we will just call them “route” objects from now on). The route object will be injected into every component in a vue-router-enabled app as <code>this.$route</code>, and will be updated whenever a route transition is performed.</p>
+<p>A route object exposes the following properties:</p>
+<ul>
+<li><p><strong>$route.path</strong></p>
+<p>A string that equals the path of the current route, always resolved as an absolute path. e.g. <code>&quot;/foo/bar&quot;</code>.</p>
+</li>
+<li><p><strong>$route.params</strong></p>
+<p>An object that contains key/value pairs of dynamic segments and star segments. More details below.</p>
+</li>
+<li><p><strong>$route.query</strong></p>
+<p>An object that contains key/value pairs of the query string. For example, for a path <code>/foo?user=1</code>, we get <code>$route.query.user == 1</code>.</p>
+</li>
+</ul>
+<h3 id="Using_in_Templates">Using in Templates</h3>
+<p>You can directly bind to the <code>$route</code> object inside your component templates. For example:</p>
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>Current route: <span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">p</span>&gt;</span>Current params: ""<span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="Dynamic_Segments">Dynamic Segments</h3>
+<p>Dynamic segments can be defined in the form of path segments with a leading colon, e.g. in <code>user/:username</code>, <code>:username</code> is the dynamic segment. It will match paths like <code>/user/foo</code> or <code>/user/bar</code>. When a path containing a dynamic segment is matched, the dynamic segments will be available inside <code>$route.params</code>.</p>
+<p>Example Usage:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="keyword">var</span> string = <span class="string">''</span>
+router.map({
+  <span class="string">'/user/:username'</span>: {
+    component: {
+      template: <span class="string">'&lt;p&gt;user is '</span>+
+      code +
+      <span class="string">'&lt;/p&gt;'</span>
+    }
+  }
+})
+</pre></td></tr></table></figure>
+
+<p>A path can contain multiple dynamic segments, and each of them will be stored as a key/value pair in <code>$route.params</code>.</p>
+<h1 id="Route_Options">Route Options</h1>
+<p>There are a number of options you can use to customize the router behavior when creating a router instance.</p>
+<h4 id="hashbang">hashbang</h4>
+<ul>
+<li>default: true</li>
+<li><p>only used in hash mode</p>
+<p>When the hashbang option is true, all hash paths will be formated to start with <code>#!</code>. For example <code>router.go(&#39;/foo/bar&#39;)</code> will set the browser URL to <code>example.com/#!/foo/bar</code>.</p>
+</li>
+</ul>
+<h4 id="history">history</h4>
+<ul>
+<li><p>default: false</p>
+<p>Enables HTML5 history mode. Leverages <code>history.pushState()</code> and <code>history.replaceState()</code> for history management.</p>
+<p><strong>Note</strong>: when using the history mode, the server needs to be <a href="http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/" target="_blank">properly configured</a> so that a user directly visiting a deep link on your site doesn’t get a 404.</p>
+</li>
+</ul>
+<h4 id="abstract">abstract</h4>
+<ul>
+<li><p>default: false</p>
+<p>Use an abstract history backend that doesn’t rely on the browser. The abstract mode is useful in testing or in environments where actual URLs doesn’t matter, for example in Electron or Cordova apps. The router will also fallback into abstract mode if loaded in a non-browser environment.</p>
+</li>
+</ul>
+<h4 id="root">root</h4>
+<ul>
+<li>default: null</li>
+<li><p>only used in HTML5 history mode</p>
+<p>Define a root path for all router navigations. All paths used in route configurations, <code>router.go()</code>, <code>v-link</code> and exposed on route objects will be resolved relative to this root path, and the root path will always be included in the actual browser URL.</p>
+<p>For example, with <code>root: &#39;/foo&#39;</code>, <code>v-link=&quot;/bar&quot;</code> will set the browser URL to <code>/foo/bar</code>. Directly visiting <code>/foo/bar</code> will match against <code>/bar</code> in your route config.</p>
+<p>In most cases, <code>root</code> is set-and-forget: you don’t have to worry about it in your application code.</p>
+</li>
+</ul>
+<h4 id="linkActiveClass">linkActiveClass</h4>
+<ul>
+<li><p>default: <code>&quot;v-link-active&quot;</code></p>
+<p>Configures the class to be applied to <code>v-link</code> elements when the current path matches its URL. The base class is applied as long as the current path starts with the <code>v-link</code> URL; when the current path matches the <code>v-link</code> URL exactly, an additional class with the <code>-exact</code> postfix will also be applied,the default being <code>v-link-active-exact</code>. So if you configure the class to be <code>my-custom-active</code>, the exact match class will be <code>my-custom-active-exact</code>.</p>
+</li>
+</ul>
+<h4 id="saveScrollPosition">saveScrollPosition</h4>
+<ul>
+<li>default: false</li>
+<li><p>only used in HTML5 history mode</p>
+<p>This option leverages the state associated with an HTML5 history <code>popstate</code> event to restore the scroll position when the user hits the back button. Note this might not work as expected if your <code>&lt;router-view&gt;</code> has transition effects.</p>
+</li>
+</ul>
+<h4 id="transitionOnLoad">transitionOnLoad</h4>
+<ul>
+<li><p>default: false</p>
+<p>Whether to apply transition effect for <code>&lt;router-view&gt;</code>s on initial load. By default the components matched on initial load are rendered instantly.</p>
+</li>
+</ul>
+<h4 id="suppressTransitionError">suppressTransitionError</h4>
+<ul>
+<li><p>default: false</p>
+<p>If set to <code>true</code>, uncaught errors inside transition hooks will be suppressed.</p>
+</li>
+</ul>
+<h1 id="router-view">router-view</h1>
+<p>The <code>&lt;router-view&gt;</code> element is used as outlets for rendering matched components. It is based upon Vue’s dynamic component system, and therefore inherits many features from a normal dyanmic component:</p>
+<ul>
+<li>You can pass props to it.</li>
+<li>HTML content inside the <code>&lt;router-view&gt;</code> will be used for content insertion in the rendered component.</li>
+<li><code>v-transition</code> and <code>transition-mode</code> are fully supported. Note: for transition effects to work, your route component must not be a <a href="http://vuejs.org/guide/best-practices.html#Fragment_Instance" target="_blank">fragment instance</a>.</li>
+<li><code>v-ref</code> is also supported; The rendered component will be registered in the parent component’s <code>this.$</code> object.</li>
+</ul>
+<p>However, there are also a few limitations:</p>
+<ul>
+<li><code>keep-alive</code> is not supported as of now.</li>
+<li><code>wait-for</code> is not supported. You should be using the <a href="pipeline/activate.html"><code>activate</code> transition hook</a> to control the timing of the transition.</li>
+</ul>
+<h1 id="v-link">v-link</h1>
+<p>You should use the <code>v-link</code> directive for handling navigations inside a vue-router-enabled app for the following reasons:</p>
+<ul>
+<li><p>It works the same way in both HTML5 history mode and hash mode, so if you ever decide to switch mode, or when the router falls back to hash mode in IE9, nothing needs to be changed.</p>
+</li>
+<li><p>In HTML5 history mode, <code>v-link</code> will intercept the click event so that the browser doesn’t try to reload the page.</p>
+</li>
+<li><p>When you are using the <code>root</code> option in HTML5 history mode, you don’t need to include it in <code>v-link</code> URLs.</p>
+</li>
+</ul>
+<h4 id="Active_Link_Class">Active Link Class</h4>
+<p>Elements with <code>v-link</code> will automatically get corresponding class names when the current path matches its <code>v-link</code> URL:</p>
+<ul>
+<li><p>The <code>.v-link-active</code> class is applied to the element when the current path starts with the <code>v-link</code> URL. For example, an element with <code>v-link=&quot;/a&quot;</code> will get this class as long as the current path starts with <code>/a</code>.</p>
+</li>
+<li><p>The <code>.v-link-active-exact</code> class is applied when the current path is an exact match of the <code>v-link</code> URL.</p>
+</li>
+</ul>
+<p>The active link class name can be configured with the <code>activeLinkClass</code> option when creating the router instance. The exact match class simply appends <code>-exact</code> postfix to the provided class name.</p>
+<h4 id="Additional_Notes">Additional Notes</h4>
+<ul>
+<li><p><code>v-link</code> automatically sets the <code>href</code> attribute when used on an <code>&lt;a&gt;</code> element.</p>
+</li>
+<li><p>Because <code>v-link</code> is a <a href="http://vuejs.org/guide/directives.html#Literal_Directives" target="_blank">literal directive</a>, it can contain mustache tags, e.g. <code>v-link=&quot;/user/{{user.name}}&quot;</code>.</p>
+<h1 id="Transition_Pipeline">Transition Pipeline</h1>
+</li>
+</ul>
+<p>To better understand the pipeline of a route transition, let’s imagine we have a router-enabled app, already rendered with three nested <code>&lt;router-view&gt;</code> with the path <code>/a/b/c</code>:</p>
+<p><img src="pipeline/01.png" alt=""></p>
+<p>And then, the user navigates to a new path, <code>/a/d/e</code>, which requires us to update our rendered component tree to a new one:</p>
+<p><img src="pipeline/02.png" alt=""></p>
+<p>How would we go about that? There are a few things we need to do here:</p>
+<ol>
+<li><p>We can potentially reuse component A, because it remains the same in the post-transition component tree.</p>
+</li>
+<li><p>We need to deactivate and remove component B and C.</p>
+</li>
+<li><p>We need to create and activate component D and E.</p>
+</li>
+<li><p>Before we actually perform step 2 &amp; 3, we also want to make sure this transition is valid - that is, to make sure that all components involved in this transition <strong>can</strong> be deactivated/activated as desired.</p>
+</li>
+</ol>
+<h3 id="Transition_Phases">Transition Phases</h3>
+<p>With these in mind, we can divide a route transition pipeline into three phases:</p>
+<ol>
+<li><p><strong>Reusability phase:</strong></p>
+<p>Check if any component in the current view hierarchy can be reused in the new one. This is done by comparing the two component trees, find out common components, and then check their reusability. By default, every component is reusable unless configured otherwise.</p>
+<p><img src="pipeline/03.png" alt="reusability phase"></p>
+</li>
+<li><p><strong>Validation phase:</strong></p>
+<p>Check if all current components can be deactivated, and if all new components can be activated. This is by checking and calling their <code>canDeactivate</code> and <code>canActivate</code> route config hooks.</p>
+<p><img src="pipeline/04.png" alt="validation phase"></p>
+<p>Note the <code>canDeactivate</code> check bubbles bottom-up, while the <code>canActivate</code> check is top-down.</p>
+<p>Any of these hooks can potentially abort the transition. If a transition is aborted during the validation phase, the router preserve current app state and restore the previous path.</p>
+</li>
+<li><p><strong>Activation phase:</strong></p>
+<p>Once all validation hooks have been called and none of them aborts the transition, the transition is now said to be valid. The router will now deactivate current components and activate new components.</p>
+<p><img src="pipeline/05.png" alt="activation phase"></p>
+<p>These hooks are called in the same order of the validation hooks, but their purpose is to give you the chance to do cleanup / preparation work before the visible component switching is executed. The interface will not update until all of the affected components’ <code>deactivate</code> and <code>activate</code> hooks have resolved.</p>
+</li>
+</ol>
+<p>We will talk about transition hooks in detail next.</p>
+<h1 id="Transition_Hooks">Transition Hooks</h1>
+<p>A <code>&lt;router-view&gt;</code> component involved in a transition can control / react to the transition by implementing appropriate transition pipeline hooks. These hooks include:</p>
+<ul>
+<li><code>data</code></li>
+<li><code>activate</code></li>
+<li><code>deactivate</code></li>
+<li><code>canActivate</code></li>
+<li><code>canDeactivate</code></li>
+<li><code>canReuse</code></li>
+</ul>
+<p>You can implement these hooks under your component’s <code>route</code> option:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>Vue.component(<span class="string">'hook-demo'</span>, {
+  <span class="comment">//... other options</span>
+  route: {
+    activate:<span class="function"><span class="keyword">function</span><span class="params">(tr)</span> {</span>
+      <span class="comment">//hook-demo activated!</span>
+      tr.next()
+    },
+    deactivate:<span class="function"><span class="keyword">function</span><span class="params">(tr)</span> {</span>
+      <span class="comment">//hook-demo deactivated!</span>
+      tr.next()
+    }
+  }
+})
+</pre></td></tr></table></figure>
+
+<h3 id="The_Transition_Object">The Transition Object</h3>
+<p>Each transition hook will receive a <code>transition</code> object as the only argument. The transition object exposes the following properties &amp; methods:</p>
+<ul>
+<li><p><strong>transition.from</strong></p>
+<p>A route object representing the route we are transitioning from.</p>
+</li>
+<li><p><strong>transition.to</strong></p>
+<p>A route object representing the target path.</p>
+</li>
+<li><p><strong>transition.next()</strong></p>
+<p>Call this method to progress to the next step of the transition.</p>
+</li>
+<li><p><strong>transition.abort([reason])</strong></p>
+<p>Call this method to cancel / reject the transition.</p>
+</li>
+<li><p><strong>transition.redirect(path)</strong></p>
+<p>Cancel current transition and redirect to a different target route instead.</p>
+</li>
+</ul>
+<p>All transition hooks are considered asynchronous by default. In order to signal the transition to progress, you have three options:</p>
+<ol>
+<li><p>Explicitly call one of <code>next</code>, <code>abort</code> or <code>redirect</code>.</p>
+</li>
+<li><p>Return a Promise. Details below.</p>
+</li>
+<li><p>For validation hooks (<code>canActivate</code> and <code>canDeactivate</code>), you can synchronously return a Boolean value.</p>
+</li>
+</ol>
+<h3 id="Returning_Promise_in_Hooks">Returning Promise in Hooks</h3>
+<p>When you return a Promise in a transition hook, <code>transition.next</code> will be called for you when the Primise resolves. If the Promise is rejected during validation phase, it will call <code>transition.abort</code>; if it is rejected during activation phase, it will call <code>transition.next</code>.</p>
+<p>For validation hooks (<code>canActivate</code> and <code>canDeactivate</code>), if the Promise’s resolved value is falsy, it will also abort the transition.</p>
+<p>If a rejected promise has an uncaught error, it will be thrown unless you suppress it with the <code>suppressTransitionError</code> option when creating the router.Assuming the service returns a Promise that, set the data once it arrives.The component will not display until this is done.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="comment">// inside component definition</span>
+
+<span class="keyword">var</span> fun = authenticationService
+<span class="keyword">var</span> api = fun.isLoggedIn
+route: {
+  canActivate:<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="comment">// resolve `true`or`false`</span>
+    <span class="keyword">return</span> api()
+  },
+  activate:<span class="function"><span class="keyword">function</span><span class="params">(tr)</span> {</span>
+    <span class="keyword">var</span> obj = tr.to
+    <span class="keyword">var</span> params = obj?.params
+    <span class="keyword">var</span> id = params.messageId
+    <span class="keyword">return</span> messageService
+      .fetch(id)
+      .then((message) =&gt; {
+        <span class="keyword">this</span>.message = message
+      })
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>We are asynchronously fetching data in the <code>activate</code> hook here just for the sake of an example; Note that we also have the <a href="data.html"><code>data</code> hook</a> which is in general more appropriate for this purpose.<br><strong>TIP:</strong> if you are using ES6 you can use argument destructuring to make your hooks cleaner:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>route: {
+  acitvate ({ next }) {
+    <span class="comment">// when done:</span>
+    next()
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>Check out the <a href="https://github.com/vuejs/vue-router/tree/dev/example/advanced" target="_blank">advanced example</a> in the vue-router repo.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

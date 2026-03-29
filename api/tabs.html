@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>el-tabs - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link current">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Api</h2>
+    <ul>
+    
+        <li><a href="/api/index.html" class="sidebar-link">Guidelines</a></li>
+    
+        <li><a href="/api/alert.html" class="sidebar-link">el-alert</a></li>
+    
+        <li><a href="/api/autocomplete.html" class="sidebar-link">el-autocomplete</a></li>
+    
+        <li><a href="/api/breadcrumb.html" class="sidebar-link">el-breadcrumb</a></li>
+    
+        <li><a href="/api/button.html" class="sidebar-link">el-button</a></li>
+    
+        <li><a href="/api/checkbox.html" class="sidebar-link">el-checkbox</a></li>
+    
+        <li><a href="/api/date-picker.html" class="sidebar-link">el-date-picker</a></li>
+    
+        <li><a href="/api/datetime-picker.html" class="sidebar-link">el-date-tiem-picker</a></li>
+    
+        <li><a href="/api/dialog.html" class="sidebar-link">el-dialog</a></li>
+    
+        <li><a href="/api/dropdown.html" class="sidebar-link">el-dropdown</a></li>
+    
+        <li><a href="/api/form.html" class="sidebar-link">el-form</a></li>
+    
+        <li><a href="/api/icon.html" class="sidebar-link">el-icon</a></li>
+    
+        <li><a href="/api/input-number.html" class="sidebar-link">el-input-number</a></li>
+    
+        <li><a href="/api/input.html" class="sidebar-link">el-input</a></li>
+    
+        <li><a href="/api/loading.html" class="sidebar-link">el-loading</a></li>
+    
+        <li><a href="/api/menu.html" class="sidebar-link">el-menu</a></li>
+    
+        <li><a href="/api/message-box.html" class="sidebar-link">el-message-box</a></li>
+    
+        <li><a href="/api/notification.html" class="sidebar-link">el-notification</a></li>
+    
+        <li><a href="/api/pagination.html" class="sidebar-link">el-pagination</a></li>
+    
+        <li><a href="/api/popover.html" class="sidebar-link">el-popover</a></li>
+    
+        <li><a href="/api/progress.html" class="sidebar-link">el-progress</a></li>
+    
+        <li><a href="/api/radio.html" class="sidebar-link">el-radio</a></li>
+    
+        <li><a href="/api/select.html" class="sidebar-link">el-select</a></li>
+    
+        <li><a href="/api/slider.html" class="sidebar-link">el-slider</a></li>
+    
+        <li><a href="/api/switch.html" class="sidebar-link">el-switch</a></li>
+    
+        <li><a href="/api/table.html" class="sidebar-link">el-table</a></li>
+    
+        <li><a href="/api/tabs.html" class="sidebar-link current">el-tabs</a></li>
+    
+        <li><a href="/api/tag.html" class="sidebar-link">el-tag</a></li>
+    
+        <li><a href="/api/time-picker.html" class="sidebar-link">el-time-picker</a></li>
+    
+        <li><a href="/api/tooltip.html" class="sidebar-link">el-tooltip</a></li>
+    
+        <li><a href="/api/tree.html" class="sidebar-link">el-tree</a></li>
+    
+        <li><a href="/api/upload.html" class="sidebar-link">el-upload</a></li>
+    
+        <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
+    
+        <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+    
+        <li><a href="/api/global-methods.html" class="sidebar-link">Global Methods</a></li>
+    
+        <li><a href="/api/instantiation-options.html" class="sidebar-link">Cocoa App</a></li>
+    
+        <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+    
+        <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>el-tabs</h1>
+    <p><script><br>  export default {<br>    data() {<br>      return {<br>        tabs: [{<br>          title: ‘选项卡一’,<br>          content: ‘选项卡一内容’<br>        },{<br>          title: ‘选项卡二’,<br>          content: ‘选项卡二内容’<br>        },{<br>          title: ‘选项卡三’,<br>          content: ‘选项卡三内容’<br>        },{<br>          title: ‘选项卡四’,<br>          content: ‘选项卡四内容’<br>        }],<br>        activeKey: ‘3’,<br>        activeKey2: ‘’<br>      }<br>    }<br>  }<br></script></p>
+<style>
+  .el-tabs {
+    margin-bottom: 30px;
+  }
+</style>
+
+<h2 id="-57fa-7840-4f7f-7528-">基础使用</h2>
+<div><br>  <el-tabs :active-key="activeKey"><br>    <el-tab-pane label="选项卡一">选项卡一内容</el-tab-pane><br>    <el-tab-pane label="选项卡二">选项卡二内容</el-tab-pane><br>    <el-tab-pane label="选项卡三">选项卡三内容</el-tab-pane><br>    <el-tab-pane label="选项卡四">选项卡四内容</el-tab-pane><br>  </el-tabs><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-tabs</span> <span class="attribute">:active-key</span>=<span class="value">"activeKey"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡一"</span>&gt;</span>选项卡一内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡二"</span>&gt;</span>选项卡二内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡三"</span>&gt;</span>选项卡三内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡四"</span>&gt;</span>选项卡四内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-tabs</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-6807-7b7e-98ce-683c-">标签风格</h2>
+<div><br>  <el-tabs type="card"><br>    <el-tab-pane label="选项卡一">选项卡一内容</el-tab-pane><br>    <el-tab-pane label="选项卡二">选项卡二内容</el-tab-pane><br>    <el-tab-pane label="选项卡三">选项卡三内容</el-tab-pane><br>    <el-tab-pane label="选项卡四">选项卡四内容</el-tab-pane><br>  </el-tabs><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-tabs</span> <span class="attribute">type</span>=<span class="value">"card"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡一"</span>&gt;</span>选项卡一内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡二"</span>&gt;</span>选项卡二内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡三"</span>&gt;</span>选项卡三内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡四"</span>&gt;</span>选项卡四内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-tabs</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-53ef-5173-95ed-7684-6807-7b7e-">可关闭的标签</h2>
+<div><br>  <el-tabs type="card" :closable="true"><br>    <el-tab-pane label="选项卡一">选项卡一内容</el-tab-pane><br>    <el-tab-pane label="选项卡二">选项卡二内容</el-tab-pane><br>    <el-tab-pane label="选项卡三">选项卡三内容</el-tab-pane><br>    <el-tab-pane label="选项卡四">选项卡四内容</el-tab-pane><br>  </el-tabs><br></div>
+
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-tabs</span> <span class="attribute">type</span>=<span class="value">"card"</span> <span class="attribute">:closable</span>=<span class="value">"true"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡一"</span>&gt;</span>选项卡一内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡二"</span>&gt;</span>选项卡二内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡三"</span>&gt;</span>选项卡三内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡四"</span>&gt;</span>选项卡四内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-tabs</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-5361-7247-98ce-683c-">卡片风格</h2>
+<div><br>  <el-tabs type="border-card"><br>    <el-tab-pane label="选项卡一">选项卡一内容</el-tab-pane><br>    <el-tab-pane label="选项卡二">选项卡二内容</el-tab-pane><br>    <el-tab-pane label="选项卡三">选项卡三内容</el-tab-pane><br>    <el-tab-pane label="选项卡四">选项卡四内容</el-tab-pane><br>  </el-tabs><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-tabs</span> <span class="attribute">type</span>=<span class="value">"border-card"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡一"</span>&gt;</span>选项卡一内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡二"</span>&gt;</span>选项卡二内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡三"</span>&gt;</span>选项卡三内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-tab-pane</span> <span class="attribute">label</span>=<span class="value">"选项卡四"</span>&gt;</span>选项卡四内容<span class="tag">&lt;/<span class="title">el-tab-pane</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-tabs</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="TABS_API">TABS API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>风格类型</td>
+<td>string</td>
+<td>card, border-card</td>
+<td></td>
+</tr>
+<tr>
+<td>closable</td>
+<td>真实值</td>
+<td>boolean</td>
+<td>true, false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>defaultActiveKey</td>
+<td>如果没有设置 activeKey, 则使用该值</td>
+<td>string</td>
+<td></td>
+<td>第一个面板</td>
+</tr>
+<tr>
+<td>activeKey</td>
+<td>当前选中面板的key</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tab.click</td>
+<td>tab 被点击的回调</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tab.remove</td>
+<td>tab 被删除的回调</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="TAB-PANE_API">TAB-PANE API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>label</td>
+<td>选项卡标题</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>key</td>
+<td>与选项卡activeKey对应的标识符</td>
+<td>string</td>
+<td></td>
+<td>该选项卡在选项卡中的index值，如第一个选项卡则为’1’</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

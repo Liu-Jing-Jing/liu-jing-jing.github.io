@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>el-time-picker - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link current">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Api</h2>
+    <ul>
+    
+        <li><a href="/api/index.html" class="sidebar-link">Guidelines</a></li>
+    
+        <li><a href="/api/alert.html" class="sidebar-link">el-alert</a></li>
+    
+        <li><a href="/api/autocomplete.html" class="sidebar-link">el-autocomplete</a></li>
+    
+        <li><a href="/api/breadcrumb.html" class="sidebar-link">el-breadcrumb</a></li>
+    
+        <li><a href="/api/button.html" class="sidebar-link">el-button</a></li>
+    
+        <li><a href="/api/checkbox.html" class="sidebar-link">el-checkbox</a></li>
+    
+        <li><a href="/api/date-picker.html" class="sidebar-link">el-date-picker</a></li>
+    
+        <li><a href="/api/datetime-picker.html" class="sidebar-link">el-date-tiem-picker</a></li>
+    
+        <li><a href="/api/dialog.html" class="sidebar-link">el-dialog</a></li>
+    
+        <li><a href="/api/dropdown.html" class="sidebar-link">el-dropdown</a></li>
+    
+        <li><a href="/api/form.html" class="sidebar-link">el-form</a></li>
+    
+        <li><a href="/api/icon.html" class="sidebar-link">el-icon</a></li>
+    
+        <li><a href="/api/input-number.html" class="sidebar-link">el-input-number</a></li>
+    
+        <li><a href="/api/input.html" class="sidebar-link">el-input</a></li>
+    
+        <li><a href="/api/loading.html" class="sidebar-link">el-loading</a></li>
+    
+        <li><a href="/api/menu.html" class="sidebar-link">el-menu</a></li>
+    
+        <li><a href="/api/message-box.html" class="sidebar-link">el-message-box</a></li>
+    
+        <li><a href="/api/notification.html" class="sidebar-link">el-notification</a></li>
+    
+        <li><a href="/api/pagination.html" class="sidebar-link">el-pagination</a></li>
+    
+        <li><a href="/api/popover.html" class="sidebar-link">el-popover</a></li>
+    
+        <li><a href="/api/progress.html" class="sidebar-link">el-progress</a></li>
+    
+        <li><a href="/api/radio.html" class="sidebar-link">el-radio</a></li>
+    
+        <li><a href="/api/select.html" class="sidebar-link">el-select</a></li>
+    
+        <li><a href="/api/slider.html" class="sidebar-link">el-slider</a></li>
+    
+        <li><a href="/api/switch.html" class="sidebar-link">el-switch</a></li>
+    
+        <li><a href="/api/table.html" class="sidebar-link">el-table</a></li>
+    
+        <li><a href="/api/tabs.html" class="sidebar-link">el-tabs</a></li>
+    
+        <li><a href="/api/tag.html" class="sidebar-link">el-tag</a></li>
+    
+        <li><a href="/api/time-picker.html" class="sidebar-link current">el-time-picker</a></li>
+    
+        <li><a href="/api/tooltip.html" class="sidebar-link">el-tooltip</a></li>
+    
+        <li><a href="/api/tree.html" class="sidebar-link">el-tree</a></li>
+    
+        <li><a href="/api/upload.html" class="sidebar-link">el-upload</a></li>
+    
+        <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
+    
+        <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+    
+        <li><a href="/api/global-methods.html" class="sidebar-link">Global Methods</a></li>
+    
+        <li><a href="/api/instantiation-options.html" class="sidebar-link">Cocoa App</a></li>
+    
+        <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+    
+        <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>el-time-picker</h1>
+    <style>
+  .demo-box {
+    .el-date-editor + .el-date-editor {
+      margin-left: 10px;
+    }
+  }
+</style>
+
+<h2 id="-56fa-5b9a-65f6-95f4-70b9-">固定时间点</h2>
+<p>提供几个固定的时间点供用户选择。</p>
+<div class="demo-box"><br>  <el-time-select
+    :picker-options="{
+      start: '08:30',
+      step: '00:15',
+      end: '18:30'
+    }"
+    placeholder="选择时间"><br>  </el-time-select><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-select
+</span>  <span class="attribute">:value.sync</span>=<span class="value">"value"</span>
+  <span class="attribute">:picker-options</span>=<span class="value">"{
+    start: '08:30',
+    step: '00:15',
+    end: '18:30'
+  }"</span>
+  <span class="attribute">placeholder</span>=<span class="value">"选择时间"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-select</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-4efb-610f-65f6-95f4-70b9-">任意时间点</h2>
+<p>可以选择任意时间。</p>
+<div class="demo-box"><br>  <el-time-picker
+    placeholder="任意时间点"><br>  </el-time-picker><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-picker
+</span>  <span class="attribute">:value.sync</span>=<span class="value">"value"</span>
+  <span class="attribute">placeholder</span>=<span class="value">"任意时间点"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-picker</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="-901a-7528-_-_-624b-52a8-8f93-5165-89c4-5219-">通用 - 手动输入规则</h3>
+<div class="demo-box"><br>  <el-time-picker
+    placeholder="任意时间点"><br>  </el-time-picker><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-picker
+</span>  <span class="attribute">:value.sync</span>=<span class="value">"value"</span>
+  <span class="attribute">placeholder</span>=<span class="value">"任意时间点"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-picker</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="-901a-7528-_-_-9650-5236-65f6-95f4-8303-56f4-">通用 - 限制时间范围</h3>
+<div class="demo-box"><br>  <el-time-picker
+    :picker-options="{
+      selectableRange: '18:30:00 - 20:30:00'
+    }"
+    placeholder="任意时间点"><br>  </el-time-picker><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-picker
+</span>  <span class="attribute">:value.sync</span>=<span class="value">"value"</span>
+  <span class="attribute">:picker-options</span>=<span class="value">"{
+    selectableRange: '18:30:00 - 20:30:00'
+  }"</span>
+  <span class="attribute">placeholder</span>=<span class="value">"任意时间点"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-picker</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-56fa-5b9a-65f6-95f4-8303-56f4-">固定时间范围</h2>
+<h3 id="-5148-9009-62e9-5f00-59cb-65f6-95f4-">先选择开始时间</h3>
+<p>先选择开始时间,结束时间内备选项的状态会随之改变。</p>
+<div class="demo-box"><br>  <el-time-select
+    placeholder="起始时间"
+    :value.sync="startTime"
+    :picker-options="{
+      start: '08:30',
+      step: '00:15',
+      end: '18:30'
+    }"><br>  </el-time-select><br>  <el-time-select
+    placeholder="结束时间"
+    :value.sync="endTime"
+    :picker-options="{
+      start: '08:30',
+      step: '00:15',
+      end: '18:30',
+      minTime: startTime
+    }"><br>  </el-time-select><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-select
+</span>  <span class="attribute">placeholder</span>=<span class="value">"起始时间"</span>
+  <span class="attribute">:value.sync</span>=<span class="value">"startTime"</span>
+  <span class="attribute">:picker-options</span>=<span class="value">"{
+    start: '08:30',
+    step: '00:15',
+    end: '18:30'
+  }"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-select</span>&gt;</span>
+<span class="tag">&lt;<span class="title">el-time-select
+</span>  <span class="attribute">placeholder</span>=<span class="value">"结束时间"</span>
+  <span class="attribute">:value.sync</span>=<span class="value">"endTime"</span>
+  <span class="attribute">:picker-options</span>=<span class="value">"{
+    start: '08:30',
+    step: '00:15',
+    end: '18:30',
+    minTime: startTime
+  }"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-select</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h3 id="-5148-9009-62e9-7ed3-675f-65f6-95f4-">先选择结束时间</h3>
+<p>开始时间的备选项不随结束时间的选择改变。</p>
+<div class="demo-box"><br>  <el-time-select
+    placeholder="起始时间"
+    :value.sync="startTime2"
+    :picker-options="{
+      start: '08:30',
+      step: '00:15',
+      end: '18:30'
+    }"><br>  </el-time-select><br>  <el-time-select
+    placeholder="结束时间"
+    :value.sync="endTime2"
+    :picker-options="{
+      start: '08:30',
+      step: '00:15',
+      end: '18:30',
+      minTime: startTime2
+    }"><br>  </el-time-select><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-select
+</span>  <span class="attribute">placeholder</span>=<span class="value">"起始时间"</span>
+  <span class="attribute">:value.sync</span>=<span class="value">"startTime2"</span>
+  <span class="attribute">:picker-options</span>=<span class="value">"{
+    start: '08:30',
+    step: '00:15',
+    end: '18:30'
+  }"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-select</span>&gt;</span>
+<span class="tag">&lt;<span class="title">el-time-select
+</span>  <span class="attribute">placeholder</span>=<span class="value">"结束时间"</span>
+  <span class="attribute">:value.sync</span>=<span class="value">"endTime2"</span>
+  <span class="attribute">:picker-options</span>=<span class="value">"{
+    start: '08:30',
+    step: '00:15',
+    end: '18:30',
+    minTime: startTime2
+  }"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-select</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-4efb-610f-65f6-95f4-8303-56f4-">任意时间范围</h2>
+<p>可选择任意的时间范围。</p>
+<div class="demo-box"><br>  <el-time-picker
+    is-range
+    placeholder="选择时间范围"><br>  </el-time-picker><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-time-picker
+</span>  <span class="attribute">is-range</span>
+  <span class="attribute">placeholder</span>=<span class="value">"选择时间范围"</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-time-picker</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<script>
+  export default {
+    data() {
+      return {
+        startTime: '',
+        endTime: '',
+        startTime2: '',
+        endTime2: ''
+      };
+    }
+  }
+</script>
+
+<h2 id="API">API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>绑定值，需双向绑定</td>
+<td>String</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>只读</td>
+<td>Boolean</td>
+<td></td>
+<td>false</td>
+</tr>
+<tr>
+<td>placeholder</td>
+<td>占位内容</td>
+<td>String</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>format</td>
+<td>时间格式化</td>
+<td>String</td>
+<td>小时: <code>HH</code>, 分<code>mm</code>, 秒<code>ss</code></td>
+<td>‘HH:mm:ss’</td>
+</tr>
+<tr>
+<td>picker-options</td>
+<td>当前时间日期选择器特有的选项，参考下表</td>
+<td>Object</td>
+<td></td>
+<td>{}</td>
+</tr>
+</tbody>
+</table>
+<h3 id="time-select_Options">time-select Options</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start</td>
+<td>开始时间</td>
+<td>String</td>
+<td></td>
+<td>09:00</td>
+</tr>
+<tr>
+<td>end</td>
+<td>结束时间</td>
+<td>String</td>
+<td></td>
+<td>18:00</td>
+</tr>
+<tr>
+<td>step</td>
+<td>间隔时间</td>
+<td>String</td>
+<td></td>
+<td>00:30</td>
+</tr>
+<tr>
+<td>minTime</td>
+<td>最小时间，小于该时间的时间段将被禁用</td>
+<td>String</td>
+<td></td>
+<td>00:00</td>
+</tr>
+</tbody>
+</table>
+<h3 id="time-picker_Options">time-picker Options</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>selectableRange</td>
+<td>可选时间段，例如 <code>18:30:00 - 20:30:00</code>，或者传入数组 <code>[&#39;09:30:00 - 12:00:00&#39;, &#39;14:30:00 - 18:30:00&#39;]</code></td>
+<td>String, Array</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

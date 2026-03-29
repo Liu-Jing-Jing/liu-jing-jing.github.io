@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>el-menu - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link current">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Api</h2>
+    <ul>
+    
+        <li><a href="/api/index.html" class="sidebar-link">Guidelines</a></li>
+    
+        <li><a href="/api/alert.html" class="sidebar-link">el-alert</a></li>
+    
+        <li><a href="/api/autocomplete.html" class="sidebar-link">el-autocomplete</a></li>
+    
+        <li><a href="/api/breadcrumb.html" class="sidebar-link">el-breadcrumb</a></li>
+    
+        <li><a href="/api/button.html" class="sidebar-link">el-button</a></li>
+    
+        <li><a href="/api/checkbox.html" class="sidebar-link">el-checkbox</a></li>
+    
+        <li><a href="/api/date-picker.html" class="sidebar-link">el-date-picker</a></li>
+    
+        <li><a href="/api/datetime-picker.html" class="sidebar-link">el-date-tiem-picker</a></li>
+    
+        <li><a href="/api/dialog.html" class="sidebar-link">el-dialog</a></li>
+    
+        <li><a href="/api/dropdown.html" class="sidebar-link">el-dropdown</a></li>
+    
+        <li><a href="/api/form.html" class="sidebar-link">el-form</a></li>
+    
+        <li><a href="/api/icon.html" class="sidebar-link">el-icon</a></li>
+    
+        <li><a href="/api/input-number.html" class="sidebar-link">el-input-number</a></li>
+    
+        <li><a href="/api/input.html" class="sidebar-link">el-input</a></li>
+    
+        <li><a href="/api/loading.html" class="sidebar-link">el-loading</a></li>
+    
+        <li><a href="/api/menu.html" class="sidebar-link current">el-menu</a></li>
+    
+        <li><a href="/api/message-box.html" class="sidebar-link">el-message-box</a></li>
+    
+        <li><a href="/api/notification.html" class="sidebar-link">el-notification</a></li>
+    
+        <li><a href="/api/pagination.html" class="sidebar-link">el-pagination</a></li>
+    
+        <li><a href="/api/popover.html" class="sidebar-link">el-popover</a></li>
+    
+        <li><a href="/api/progress.html" class="sidebar-link">el-progress</a></li>
+    
+        <li><a href="/api/radio.html" class="sidebar-link">el-radio</a></li>
+    
+        <li><a href="/api/select.html" class="sidebar-link">el-select</a></li>
+    
+        <li><a href="/api/slider.html" class="sidebar-link">el-slider</a></li>
+    
+        <li><a href="/api/switch.html" class="sidebar-link">el-switch</a></li>
+    
+        <li><a href="/api/table.html" class="sidebar-link">el-table</a></li>
+    
+        <li><a href="/api/tabs.html" class="sidebar-link">el-tabs</a></li>
+    
+        <li><a href="/api/tag.html" class="sidebar-link">el-tag</a></li>
+    
+        <li><a href="/api/time-picker.html" class="sidebar-link">el-time-picker</a></li>
+    
+        <li><a href="/api/tooltip.html" class="sidebar-link">el-tooltip</a></li>
+    
+        <li><a href="/api/tree.html" class="sidebar-link">el-tree</a></li>
+    
+        <li><a href="/api/upload.html" class="sidebar-link">el-upload</a></li>
+    
+        <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
+    
+        <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+    
+        <li><a href="/api/global-methods.html" class="sidebar-link">Global Methods</a></li>
+    
+        <li><a href="/api/instantiation-options.html" class="sidebar-link">Cocoa App</a></li>
+    
+        <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+    
+        <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>el-menu</h1>
+    <style>
+  .demo-box .nav {
+    background-color: #eff2f7;
+    line-height: 60px;
+    @utils-clearfix;
+
+    h1 {
+      font-size: 20px;
+      color: #1f2f3d;
+      float: left;
+      margin: 0 25px 0 20px;
+    }
+    > .el-menu {
+      float: left;
+    }
+    &-right {
+      float: right;
+      padding-right: 20px;
+    }
+    .nav__button {
+      font-size: 24px;
+      vertical-align: middle;
+      margin-left: 20px;
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      color: #8492a6;
+
+      i {
+        vertical-align: middle;
+        display: block;
+      }
+
+      &.is-unread:after {
+        content: '';
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        position: absolute;
+        top: -2px;
+        right: -4px;
+        border-radius: 50%;
+        background-color: #ff4949;
+      }
+    }
+    .el-input {
+      display: inline-block;
+    }
+    .el-input__inner {
+      background-color: #e5e9f2;
+      border-color: #d3dce6;
+
+      &:focus {
+        border-color: #20a0ff;
+      }
+    }
+
+    &.nav-dark {
+      background-color: #324057;
+
+      h1 {
+        color: #fff;
+      }
+
+      .nav__button {
+        color: #fff;
+      }
+      .el-input__inner {
+        background-color: #1f2d3d;
+        border-color: #1f2d3d;
+        color: #fff;
+
+        &:focus {
+          border-color: #1f2d3d;
+        }
+      }
+    }
+  }
+  .demo-box .nav-vertical {
+    h1 {
+      float: none;
+    }
+    .el-menu--vertical {
+      float: none;
+    }
+  }
+</style>
+
+<script>
+  export default {
+    data() {
+      return {
+        search: '',
+        search2: ''
+      };
+    },
+    methods: {
+      handleopen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleclose(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleselect(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  }
+</script>
+
+<h2 id="-57fa-7840-7528-6cd5-">基础用法</h2>
+<div class="demo-box"><br>  <div class="nav"><br>    <h1>Element</h1><br>    <el-menu active-key="2"><br>      <el-menu-item key="1">处理中心</el-menu-item><br>      <el-menu-item key="2">我的工作台</el-menu-item><br>      <el-menu-item key="3">订单管理</el-menu-item><br>    </el-menu><br>    <div class="nav-right"><br>      <el-input placeholder="搜索用户手机号" icon="search" :value="search"></el-input><br>      <span class="nav__button is-unread"><br>        <i class="el-icon-message"></i><br>      </span><br>      <span class="nav__button"><br>        <i class="el-icon-setting"></i><br>      </span><br>    </div><br>  </div><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"nav"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Element<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-menu</span> <span class="attribute">active-key</span>=<span class="value">"1"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"1"</span>&gt;</span>处理中心<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2"</span>&gt;</span>我的工作台<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3"</span>&gt;</span>订单管理<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-menu</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"nav-right"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">placeholder</span>=<span class="value">"搜索用户手机号"</span> <span class="attribute">icon</span>=<span class="value">"search"</span> <span class="attribute">:value</span>=<span class="value">"search"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"nav__button is-unread"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-message"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"nav__button"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-setting"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<div class="demo-box"><br>  <div class="nav nav-dark"><br>    <h1>Element</h1><br>    <el-menu theme="dark" active-key="1"><br>      <el-menu-item key="1">处理中心</el-menu-item><br>      <el-menu-item key="2">我的工作台</el-menu-item><br>      <el-menu-item key="3">订单管理</el-menu-item><br>    </el-menu><br>    <div class="nav-right"><br>      <el-input placeholder="搜索用户手机号" icon="search" :value="search2"></el-input><br>      <span class="nav__button is-unread"><br>        <i class="el-icon-message"></i><br>      </span><br>      <span class="nav__button"><br>        <i class="el-icon-setting"></i><br>      </span><br>    </div><br>  </div><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"nav nav-dark"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Element<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-menu</span> <span class="attribute">theme</span>=<span class="value">"dark"</span> <span class="attribute">active-key</span>=<span class="value">"1"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"1"</span>&gt;</span>处理中心<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2"</span>&gt;</span>我的工作台<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3"</span>&gt;</span>订单管理<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-menu</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"nav-right"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">placeholder</span>=<span class="value">"搜索用户手机号"</span> <span class="attribute">icon</span>=<span class="value">"search"</span> <span class="attribute">:value</span>=<span class="value">"search2"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"nav__button is-unread"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-message"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"nav__button"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-setting"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-4fa7-8fb9-680f-5bfc-822a-">侧边栏导航</h2>
+<div class="demo-box" style="width: 200px;"><br>  <div class="nav nav-vertical"><br>    <h1>Element</h1><br>    <el-menu mode="vertical" active-key="2-1"><br>      <el-menu-item key="1"><i class="el-icon-message"></i>导航一</el-menu-item><br>      <el-submenu key="sub1"><br>        <template slot="title"><i class="el-icon-menu"></i>导航二</template><br>        <el-menu-item key="2-1">选项1</el-menu-item><br>        <el-menu-item key="2-2">选项2</el-menu-item><br>        <el-menu-item key="2-3">选项3</el-menu-item><br>      </el-submenu><br>      <el-submenu key="sub2"><br>        <template slot="title"><i class="el-icon-setting"></i>导航三</template><br>        <el-menu-item key="3-1">选项1</el-menu-item><br>        <el-menu-item key="3-2">选项2</el-menu-item><br>        <el-menu-item key="3-3">选项3</el-menu-item><br>      </el-submenu><br>    </el-menu><br>  </div><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"nav nav-vertical"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Element<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-menu</span> <span class="attribute">mode</span>=<span class="value">"vertical"</span> <span class="attribute">active-key</span>=<span class="value">"2-1"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-message"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>导航一<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-submenu</span> <span class="attribute">key</span>=<span class="value">"sub1"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">template</span> <span class="attribute">slot</span>=<span class="value">"title"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-menu"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>导航二<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2-1"</span>&gt;</span>选项1<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2-2"</span>&gt;</span>选项2<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2-3"</span>&gt;</span>选项3<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-submenu</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-submenu</span> <span class="attribute">key</span>=<span class="value">"sub2"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">template</span> <span class="attribute">slot</span>=<span class="value">"title"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-setting"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>导航三<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3-1"</span>&gt;</span>选项1<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3-2"</span>&gt;</span>选项2<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3-3"</span>&gt;</span>选项3<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-submenu</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-menu</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<div class="demo-box" style="width: 200px;"><br>  <div class="nav nav-vertical nav-dark"><br>    <h1>Element</h1><br>    <el-menu mode="vertical" theme="dark" :opened-keys="['sub3']" active-key="3-1" :unique-opend="true" @open="handleopen" @close="handleclose" @select="handleselect"><br>      <el-menu-item key="1"><i class="el-icon-message"></i>导航一</el-menu-item><br>      <el-submenu key="sub2"><br>        <template slot="title"><i class="el-icon-menu"></i>导航二</template><br>        <el-menu-item key="2-1">选项1</el-menu-item><br>        <el-menu-item key="2-2">选项2</el-menu-item><br>        <el-menu-item key="2-3">选项3</el-menu-item><br>      </el-submenu><br>      <el-submenu key="sub3"><br>        <template slot="title"><i class="el-icon-setting"></i>导航三</template><br>        <el-menu-item key="3-1">选项1</el-menu-item><br>        <el-menu-item key="3-2">选项2</el-menu-item><br>        <el-menu-item key="3-3">选项3</el-menu-item><br>      </el-submenu><br>      <el-submenu key="sub4"><br>        <template slot="title"><i class="el-icon-setting"></i>导航四</template><br>        <el-menu-item key="4-1">选项1</el-menu-item><br>        <el-menu-item key="4-2">选项2</el-menu-item><br>        <el-menu-item key="4-3">选项3</el-menu-item><br>      </el-submenu><br>      <el-submenu key="sub5"><br>        <template slot="title"><i class="el-icon-setting"></i>导航五</template><br>        <el-menu-item key="5-1">选项1</el-menu-item><br>        <el-menu-item key="5-2">选项2</el-menu-item><br>        <el-menu-item key="5-3">选项3</el-menu-item><br>      </el-submenu><br>    </el-menu><br>  </div><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"nav nav-vertical nav-dark"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Element<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-menu</span> <span class="attribute">mode</span>=<span class="value">"vertical"</span> <span class="attribute">theme</span>=<span class="value">"dark"</span> <span class="attribute">active-key</span>=<span class="value">"3-1"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"1"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-message"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>导航一<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-submenu</span> <span class="attribute">key</span>=<span class="value">"sub1"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">template</span> <span class="attribute">slot</span>=<span class="value">"title"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-menu"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>导航二<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2-1"</span>&gt;</span>选项1<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2-2"</span>&gt;</span>选项2<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"2-3"</span>&gt;</span>选项3<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-submenu</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-submenu</span> <span class="attribute">key</span>=<span class="value">"sub2"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">template</span> <span class="attribute">slot</span>=<span class="value">"title"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-setting"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>导航三<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3-1"</span>&gt;</span>选项1<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3-2"</span>&gt;</span>选项2<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-menu-item</span> <span class="attribute">key</span>=<span class="value">"3-3"</span>&gt;</span>选项3<span class="tag">&lt;/<span class="title">el-menu-item</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-submenu</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-menu</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="menu_API">menu API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mode</td>
+<td>模式</td>
+<td>string</td>
+<td>horizontal,vertical</td>
+<td>horizontal</td>
+</tr>
+<tr>
+<td>theme</td>
+<td>主题色</td>
+<td>string</td>
+<td>light,dark</td>
+<td>light</td>
+</tr>
+<tr>
+<td>activeKey</td>
+<td>当前激活菜单的 key</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>openedKeys</td>
+<td>当前打开的submenu的 key 数组</td>
+<td>Array</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>uniqueOpend</td>
+<td>是否只保持一个子菜单的展开</td>
+<td>boolean</td>
+<td>true, false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>router</td>
+<td>是否使用 vue-router 的模式，启用该模式会在 select 事件触发时执行 this.$route.$router.go(key) 进行路由跳转</td>
+<td>boolean</td>
+<td>true, false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>select</td>
+<td>菜单激活回调</td>
+<td>function(key, keyPath)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>open</td>
+<td>SubMenu 展开的回调</td>
+<td>function(key, keyPath)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>close</td>
+<td>SubMenu 收起的回调</td>
+<td>function(key, keyPath)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="submenu_API">submenu API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>唯一标志</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="menu-item_API">menu-item API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>key</td>
+<td>唯一标志</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>
