@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Power by Electron</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/element-ui/0.1.3/theme-default/index.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/style.css">
+    <link rel="stylesheet" href="dist/weui.min.css">
+  </head>
+  <body>
+    <div id="app"></dib>
+    <script src="dist/build.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      if (/Atom/.test(window.navigator.userAgent)) {
+        console.log('Welcome to Electron')
+        document.title = 'Power by Electron 2013.8'
+        var ipc = require('ipc');
+        window.addEventListener('contextmenu', function (e) {
+          e.preventDefault();
+          ipc.send('menu');
+        }, false);
+      }
+    </script>
+  </body>
+</html>
