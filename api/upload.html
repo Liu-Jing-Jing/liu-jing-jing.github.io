@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>el-upload - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link current">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Api</h2>
+    <ul>
+    
+        <li><a href="/api/index.html" class="sidebar-link">Guidelines</a></li>
+    
+        <li><a href="/api/alert.html" class="sidebar-link">el-alert</a></li>
+    
+        <li><a href="/api/autocomplete.html" class="sidebar-link">el-autocomplete</a></li>
+    
+        <li><a href="/api/breadcrumb.html" class="sidebar-link">el-breadcrumb</a></li>
+    
+        <li><a href="/api/button.html" class="sidebar-link">el-button</a></li>
+    
+        <li><a href="/api/checkbox.html" class="sidebar-link">el-checkbox</a></li>
+    
+        <li><a href="/api/date-picker.html" class="sidebar-link">el-date-picker</a></li>
+    
+        <li><a href="/api/datetime-picker.html" class="sidebar-link">el-date-tiem-picker</a></li>
+    
+        <li><a href="/api/dialog.html" class="sidebar-link">el-dialog</a></li>
+    
+        <li><a href="/api/dropdown.html" class="sidebar-link">el-dropdown</a></li>
+    
+        <li><a href="/api/form.html" class="sidebar-link">el-form</a></li>
+    
+        <li><a href="/api/icon.html" class="sidebar-link">el-icon</a></li>
+    
+        <li><a href="/api/input-number.html" class="sidebar-link">el-input-number</a></li>
+    
+        <li><a href="/api/input.html" class="sidebar-link">el-input</a></li>
+    
+        <li><a href="/api/loading.html" class="sidebar-link">el-loading</a></li>
+    
+        <li><a href="/api/menu.html" class="sidebar-link">el-menu</a></li>
+    
+        <li><a href="/api/message-box.html" class="sidebar-link">el-message-box</a></li>
+    
+        <li><a href="/api/notification.html" class="sidebar-link">el-notification</a></li>
+    
+        <li><a href="/api/pagination.html" class="sidebar-link">el-pagination</a></li>
+    
+        <li><a href="/api/popover.html" class="sidebar-link">el-popover</a></li>
+    
+        <li><a href="/api/progress.html" class="sidebar-link">el-progress</a></li>
+    
+        <li><a href="/api/radio.html" class="sidebar-link">el-radio</a></li>
+    
+        <li><a href="/api/select.html" class="sidebar-link">el-select</a></li>
+    
+        <li><a href="/api/slider.html" class="sidebar-link">el-slider</a></li>
+    
+        <li><a href="/api/switch.html" class="sidebar-link">el-switch</a></li>
+    
+        <li><a href="/api/table.html" class="sidebar-link">el-table</a></li>
+    
+        <li><a href="/api/tabs.html" class="sidebar-link">el-tabs</a></li>
+    
+        <li><a href="/api/tag.html" class="sidebar-link">el-tag</a></li>
+    
+        <li><a href="/api/time-picker.html" class="sidebar-link">el-time-picker</a></li>
+    
+        <li><a href="/api/tooltip.html" class="sidebar-link">el-tooltip</a></li>
+    
+        <li><a href="/api/tree.html" class="sidebar-link">el-tree</a></li>
+    
+        <li><a href="/api/upload.html" class="sidebar-link current">el-upload</a></li>
+    
+        <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
+    
+        <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+    
+        <li><a href="/api/global-methods.html" class="sidebar-link">Global Methods</a></li>
+    
+        <li><a href="/api/instantiation-options.html" class="sidebar-link">Cocoa App</a></li>
+    
+        <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+    
+        <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>el-upload</h1>
+    <p><style><br>  .upload-tip {<br>    color: #8492a6;<br>    font-size: 12px;<br>    margin-top: 7px;<br>  }<br>  .demo-box {<br>    margin-bottom: 24px;<br>  }<br>  .el-draggeer<strong>uploaded-image</strong>btns {<br>    margin-top: 45px;<br>    color: #fff;<br>    font-size: 14px;</p>
+<pre><code>&amp; <span class="class">.btn</span> {
+  <span class="attribute">display</span><span class="value">: inline-block;</span>
+
+  &amp; <span class="tag">span</span> {
+    <span class="attribute">opacity</span><span class="value">: <span class="number">0</span>;</span>
+    <span class="attribute">transition</span><span class="value">: opacity .<span class="number">15</span>s linear;</span>
+  }
+
+  &amp;<span class="pseudo">:not</span>(<span class="pseudo">:first-child</span>) {
+    <span class="attribute">margin-left</span><span class="value">: <span class="number">35</span>px;</span>
+  }
+
+  &amp;<span class="pseudo">:hover</span> <span class="tag">span</span> {
+    <span class="attribute">opacity</span><span class="value">: <span class="number">1</span>;</span>
+  }
+}
+&amp; <span class="tag">i</span> {
+  <span class="attribute">display</span><span class="value">: block;</span>
+  <span class="attribute">font-size</span><span class="value">: <span class="number">26</span>px;</span>
+  <span class="attribute">margin-bottom</span><span class="value">: <span class="number">5</span>px;</span>
+}
+</code></pre><p>  }<br></style></p>
+<script>
+  export default {
+    methods: {
+      handleChange(file, fileList, event) {
+        console.log(file, fileList, event);
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      }
+    }
+  }
+</script>
+
+<h2 id="-57fa-7840-4f7f-7528-">基础使用</h2>
+<div class="demo-box"><br>  <el-upload action="http://127.0.0.1:9000/upload" @filechange="handleChange" @fileremove="handleRemove"><br>    <el-button size="small" type="primary">点击上传</el-button><br>    <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div><br>  </el-upload><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-upload</span> <span class="attribute">action</span>=<span class="value">"http://127.0.0.1:9000/upload"</span> @<span class="attribute">filechange</span>=<span class="value">"handleChange"</span> @<span class="attribute">fileremove</span>=<span class="value">"handleRemove"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">size</span>=<span class="value">"small"</span> <span class="attribute">type</span>=<span class="value">"primary"</span>&gt;</span>点击上传<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"el-upload__tip"</span> <span class="attribute">slot</span>=<span class="value">"tip"</span>&gt;</span>只能上传jpg/png文件，且不超过500kb<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-upload</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-62d6-62fd-6587-4ef6-4e0a-4f20-">拖拽文件上传</h2>
+<div class="demo-box"><br>  <el-upload action="http://127.0.0.1:9000/upload" type="drag" :multiple="true"><br>    <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div><br>  </el-upload><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-upload</span> <span class="attribute">action</span>=<span class="value">"http://127.0.0.1:9000/upload"</span> <span class="attribute">type</span>=<span class="value">"drag"</span> <span class="attribute">:multiple</span>=<span class="value">"true"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"el-upload__tip"</span> <span class="attribute">slot</span>=<span class="value">"tip"</span>&gt;</span>只能上传jpg/png文件，且不超过500kb<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-upload</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-56fe-7247-7f29-7565-56fe-6a21-5f0f-">图片缩略图模式</h2>
+<p>上传文件类型限制为只能上传图片，并可展示本地缩略图，该模式暂不支持多选</p>
+<div class="demo-box"><br>  <el-upload action="http://127.0.0.1:9000/upload" type="drag" mode="image"><br>    <div class="el-draggeer__uploaded-image__btns" slot="interact"><br>      <span class="btn"><i class="el-icon-share"></i><span>分享图片</span></span><br>      <span class="btn"><i class="el-icon-delete"></i><span>删除</span></span><br>    </div><br>    <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div><br>  </el-upload><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">el-upload</span> <span class="attribute">action</span>=<span class="value">"http://127.0.0.1:9000/upload"</span> <span class="attribute">type</span>=<span class="value">"drag"</span> <span class="attribute">mode</span>=<span class="value">"image"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"el-draggeer__uploaded-image__btns"</span> <span class="attribute">slot</span>=<span class="value">"interact"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"btn"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-share"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span>分享图片<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"btn"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"el-icon-delete"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span>删除<span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"el-upload__tip"</span> <span class="attribute">slot</span>=<span class="value">"tip"</span>&gt;</span>只能上传jpg/png文件，且不超过500kb<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">el-upload</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="API">API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>action</td>
+<td>必选参数, 上传的地址</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>headers</td>
+<td>可选参数, 设置上传的请求头部</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>可选参数, 是否支持多选文件</td>
+<td>boolean</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>file</td>
+<td>可选参数, 上传的文件字段名</td>
+<td>string</td>
+<td></td>
+<td>file</td>
+</tr>
+<tr>
+<td>withCredentials</td>
+<td>支持发送 cooking 凭证信息</td>
+<td>boolean</td>
+<td></td>
+<td>false</td>
+</tr>
+<tr>
+<td>showUploadList</td>
+<td>是否显示已上传文件列表</td>
+<td>boolean</td>
+<td></td>
+<td>true</td>
+</tr>
+<tr>
+<td>type</td>
+<td>上传控件类型</td>
+<td>string</td>
+<td>select,drag</td>
+<td>select</td>
+</tr>
+<tr>
+<td>accept</td>
+<td>可选参数, 接受上传的<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept" target="_blank">文件类型</a>, 拖拽文件上传时不受此参数影响</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>filechange</td>
+<td>可选参数, 上传文件改变时的回调</td>
+<td>function(file, fileList, event)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fileremove</td>
+<td>可选参数, 文件列表移除文件时的回调</td>
+<td>function(file, fileList)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>上传控件类型</td>
+<td>string</td>
+<td>select,drag</td>
+<td>select</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

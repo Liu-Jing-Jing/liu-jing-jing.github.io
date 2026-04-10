@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>el-form - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/guide/" class="nav-link">Guide</a></li>
+        <li><a href="/api/" class="nav-link current">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Api</h2>
+    <ul>
+    
+        <li><a href="/api/index.html" class="sidebar-link">Guidelines</a></li>
+    
+        <li><a href="/api/alert.html" class="sidebar-link">el-alert</a></li>
+    
+        <li><a href="/api/autocomplete.html" class="sidebar-link">el-autocomplete</a></li>
+    
+        <li><a href="/api/breadcrumb.html" class="sidebar-link">el-breadcrumb</a></li>
+    
+        <li><a href="/api/button.html" class="sidebar-link">el-button</a></li>
+    
+        <li><a href="/api/checkbox.html" class="sidebar-link">el-checkbox</a></li>
+    
+        <li><a href="/api/date-picker.html" class="sidebar-link">el-date-picker</a></li>
+    
+        <li><a href="/api/datetime-picker.html" class="sidebar-link">el-date-tiem-picker</a></li>
+    
+        <li><a href="/api/dialog.html" class="sidebar-link">el-dialog</a></li>
+    
+        <li><a href="/api/dropdown.html" class="sidebar-link">el-dropdown</a></li>
+    
+        <li><a href="/api/form.html" class="sidebar-link current">el-form</a></li>
+    
+        <li><a href="/api/icon.html" class="sidebar-link">el-icon</a></li>
+    
+        <li><a href="/api/input-number.html" class="sidebar-link">el-input-number</a></li>
+    
+        <li><a href="/api/input.html" class="sidebar-link">el-input</a></li>
+    
+        <li><a href="/api/loading.html" class="sidebar-link">el-loading</a></li>
+    
+        <li><a href="/api/menu.html" class="sidebar-link">el-menu</a></li>
+    
+        <li><a href="/api/message-box.html" class="sidebar-link">el-message-box</a></li>
+    
+        <li><a href="/api/notification.html" class="sidebar-link">el-notification</a></li>
+    
+        <li><a href="/api/pagination.html" class="sidebar-link">el-pagination</a></li>
+    
+        <li><a href="/api/popover.html" class="sidebar-link">el-popover</a></li>
+    
+        <li><a href="/api/progress.html" class="sidebar-link">el-progress</a></li>
+    
+        <li><a href="/api/radio.html" class="sidebar-link">el-radio</a></li>
+    
+        <li><a href="/api/select.html" class="sidebar-link">el-select</a></li>
+    
+        <li><a href="/api/slider.html" class="sidebar-link">el-slider</a></li>
+    
+        <li><a href="/api/switch.html" class="sidebar-link">el-switch</a></li>
+    
+        <li><a href="/api/table.html" class="sidebar-link">el-table</a></li>
+    
+        <li><a href="/api/tabs.html" class="sidebar-link">el-tabs</a></li>
+    
+        <li><a href="/api/tag.html" class="sidebar-link">el-tag</a></li>
+    
+        <li><a href="/api/time-picker.html" class="sidebar-link">el-time-picker</a></li>
+    
+        <li><a href="/api/tooltip.html" class="sidebar-link">el-tooltip</a></li>
+    
+        <li><a href="/api/tree.html" class="sidebar-link">el-tree</a></li>
+    
+        <li><a href="/api/upload.html" class="sidebar-link">el-upload</a></li>
+    
+        <li><a href="/api/directives.html" class="sidebar-link">Directives</a></li>
+    
+        <li><a href="/api/filters.html" class="sidebar-link">Filters</a></li>
+    
+        <li><a href="/api/global-methods.html" class="sidebar-link">Global Methods</a></li>
+    
+        <li><a href="/api/instantiation-options.html" class="sidebar-link">Cocoa App</a></li>
+    
+        <li><a href="/api/instance-methods.html" class="sidebar-link">Instance Methods</a></li>
+    
+        <li><a href="/api/instance-properties.html" class="sidebar-link">Instance Properties</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>el-form</h1>
+    <script>
+  export default {
+    data() {
+      return {
+        form: {
+          name: '',
+          region: '',
+          date1: '',
+          date2: '',
+          delivery: false,
+          type: [],
+          resource: '',
+          desc: ''
+        },
+        formInline: {
+          user: '',
+          region: ''
+        },
+        formStacked: {
+          name: '',
+          region: '',
+          type: '',
+          remark: ''
+        },
+        formAlignLeft: {
+          name: '',
+          region: '',
+          type: '',
+          remark: ''
+        },
+        ruleForm: {
+          sex: '',
+          user1: '',
+          user2: '',
+          age: '',
+          region: [],
+          desc: '',
+          mail: ''
+        },
+        formNoLabel: {
+          username: '',
+          pass: '',
+          rememberPss: false
+        },
+        ruleForm2: {
+          pass: '',
+          checkPass: '',
+          age: ''
+        },
+        formLabelWidth: '80px',
+        options: [
+        ],
+        rules: {
+          user1: [
+            { required: true, min: 5, message: '用户名至少为 5 个字符', trigger: 'blur' }
+          ],
+          user2: [
+            { required: true, min: 3, message: '用户名至少为 3 个字符', trigger: 'blur' }
+          ],
+          age: [
+            { type: 'number', required: true, message: '请输入年龄', trigger: 'blur' },
+            { type: 'number', min: 18, message: '输入必须为大于18的整数', trigger: 'blur' }
+          ],
+          mail: [
+            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+            { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
+          ],
+          sex: [
+            { required: true, message: '请选择性别' }
+          ],
+          region: [
+            { type: 'array', required: true, message: '请至少选择一个地区', trigger: 'change' }
+          ],
+          desc: [
+            { required: true, message: '请填写个人简介', trigger: 'blur' }
+          ]
+        },
+        rules2: {
+          pass: [
+            { required: true, message: '请输入密码', trigger: 'blur' },
+            { validator: this.validaePass }
+          ],
+          checkPass: [
+            { required: true, message: '请再次输入密码', trigger: 'blur' },
+            { validator: this.validaePass2 }
+          ],
+          age: [
+            { required: true, message: '请填写年龄', trigger: 'blur' },
+            { validator: this.checkAge, trigger: 'change' }
+          ]
+        },
+        dynamicForm: {
+          domains: [''],
+          email: ''
+        },
+        dynamicRule: {
+          domains: {
+            type: '域名不能',
+            required: true
+          },
+          email: [
+            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+            { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
+          ]
+        }
+      };
+    },
+    methods: {
+      handleSubmit(ev) {
+        this.$refs.ruleForm.validate((valid) => {
+          if (valid) {
+            alert('submit!');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      handleSubmit2(ev) {
+        this.$refs.ruleForm2.validate(valid => {
+          if (valid) {
+            alert('申请已提交');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      handleSubmit3(ev) {
+        this.$refs.dynamicForm.validate(valid => {
+          if (valid) {
+            alert('申请已提交');
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      handleReset() {
+        this.$refs.ruleForm.resetForm();
+      },
+      handleReset2() {
+        this.$refs.ruleForm2.resetForm();
+      },
+      checkAge(rule, value, callback) {
+        var age = parseInt(value, 10);
+        // debugger;
+        setTimeout(() => {
+          if (!Number.isInteger(age)) {
+            callback(new Error('请输入数字值'));
+          } else{
+            if (age < 18) {
+              callback(new Error('必须年满18岁'));
+            } else {
+              callback();
+            }
+          } 
+        }, 1000);
+      },
+      validaePass(rule, value, callback) {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          if (this.ruleForm2.checkPass !== '') {
+            this.$refs.ruleForm2.validateField('checkPass');
+          }
+          callback();
+        }
+      },
+      validaePass2(rule, value, callback) {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.ruleForm2.pass) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      },
+      handleValidate(prop, errorMsg) {
+        console.log(prop, errorMsg);
+      },
+      onSubmit() {
+        console.log('submit!');
+      },
+      onRuleFormSubmit() {
+        console.log('onRuleFormSubmit');
+      }
+    }
+  }
+</script>
+
+<style>
+  .demo-form {
+    .el-input,
+    .el-textarea {
+      width: 360px;
+    }
+
+    .line {
+      text-align: center;
+    }
+
+    .el-checkbox-group {
+      width: 320px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      &:after,&:before {
+        content: ' ';
+        display: table;
+      }
+      &:after {
+        clear: both;
+        visibility: hidden;
+        font-size: 0;
+        height: 0;
+      }
+
+      .el-checkbox {
+        float: left;
+        width: 160px;
+        padding-right: 20px;
+        margin: 0;
+        padding: 0;
+
+        + .el-checkbox {
+          margin-left: 0;
+        }
+      }
+    }
+
+    .el-date-picker + .el-date-picker {
+      margin-left: 10px;
+    }
+  }
+  .demo-form-normal {
+    width: 440px;
+  }
+  .demo-form-inline {
+    .el-input {
+      width: 150px;
+    }
+    > * {
+      margin-right: 10px;
+    }
+  }
+  .demo-ruleForm {
+    width: 440px;
+
+    .el-input,
+    .el-textarea {
+      width: auto;
+    }
+  }
+  .demo-dynamic {
+    .el-input {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+  .fr {
+    float: right;
+  }
+</style>
+
+<h2 id="-57fa-7840-4f7f-7528-">基础使用</h2>
+<p>Form 组件是一个具有校验和提交功能的表单，包含复选框、单选框、输入框、下拉选择框等元素。</p>
+<div class="demo-box demo-form demo-form-normal"><br>  <el-form v-ref:form @submit.prevent="onSubmit" label-width="80px"><br>    <el-form-item label="活动名称"><br>      <el-input :value.sync="form.name"></el-input><br>    </el-form-item><br>    <el-form-item label="活动区域"><br>      <el-select :value.sync="form.region" :width="360" placeholder="请选择活动区域"><br>        <el-option label="区域一" value="shanghai"></el-option><br>        <el-option label="区域二" value="beijing"></el-option><br>      </el-select><br>    </el-form-item><br>    <el-form-item label="配送时间"><br>      <el-col :span="11"><br>        <el-date-picker type="date" placeholder="选择日期" style="width: 100%;"></el-date-picker><br>      </el-col><br>      <el-col class="line" :span="2">-</el-col><br>      <el-col :span="11"><br>        <el-time-picker type="fixed-time" placeholder="选择时间" style="width: 100%;"></el-time-picker><br>      </el-col><br>    </el-form-item><br>    <el-form-item label="蜂鸟配送"><br>      <el-switch on-text="" off-text="" :value="form.delivery"></el-switch><br>    </el-form-item><br>    <el-form-item label="活动性质"><br>      <el-checkbox-group :value.sync="form.type"><br>        <el-checkbox label="美食/餐厅线上活动" name="type"></el-checkbox><br>        <el-checkbox label="地推活动" name="type"></el-checkbox><br>        <el-checkbox label="线下主题活动" name="type"></el-checkbox><br>        <el-checkbox label="单纯品牌曝光" name="type"></el-checkbox><br>      </el-checkbox-group><br>    </el-form-item><br>    <el-form-item label="特殊资源"><br>      <el-radio :value.sync="form.resource" label="线上品牌商赞助"></el-radio><br>      <el-radio :value.sync="form.resource" label="线下场地免费"></el-radio><br>    </el-form-item><br>    <el-form-item label="活动形式"><br>      <el-input type="textarea" :value.sync="form.desc"></el-input><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary">立即创建</el-button><br>      <el-button @click.prevent>取消</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">v-ref:form</span> @<span class="attribute">submit.prevent</span>=<span class="value">"onSubmit"</span> <span class="attribute">label-width</span>=<span class="value">"80px"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动名称"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"form.name"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动区域"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-select</span> <span class="attribute">:value.sync</span>=<span class="value">"form.region"</span> <span class="attribute">:width</span>=<span class="value">"360"</span> <span class="attribute">placeholder</span>=<span class="value">"请选择活动区域"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域一"</span> <span class="attribute">value</span>=<span class="value">"shanghai"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域二"</span> <span class="attribute">value</span>=<span class="value">"beijing"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-select</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"配送时间"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-col</span> <span class="attribute">:span</span>=<span class="value">"11"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-date-picker</span> <span class="attribute">type</span>=<span class="value">"date"</span> <span class="attribute">placeholder</span>=<span class="value">"选择日期"</span> <span class="attribute">style</span>=<span class="value">"width: 100%;"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-date-picker</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-col</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-col</span> <span class="attribute">class</span>=<span class="value">"line"</span> <span class="attribute">:span</span>=<span class="value">"2"</span>&gt;</span>-<span class="tag">&lt;/<span class="title">el-col</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-col</span> <span class="attribute">:span</span>=<span class="value">"11"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-time-picker</span> <span class="attribute">type</span>=<span class="value">"fixed-time"</span> <span class="attribute">placeholder</span>=<span class="value">"选择时间"</span> <span class="attribute">style</span>=<span class="value">"width: 100%;"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-time-picker</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-col</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"蜂鸟配送"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-switch</span> <span class="attribute">on-text</span>=<span class="value">""</span> <span class="attribute">off-text</span>=<span class="value">""</span> <span class="attribute">:value</span>=<span class="value">"form.delivery"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-switch</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动性质"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-checkbox-group</span> <span class="attribute">:value.sync</span>=<span class="value">"form.type"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"美食/餐厅线上活动"</span> <span class="attribute">name</span>=<span class="value">"type"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"地推活动"</span> <span class="attribute">name</span>=<span class="value">"type"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"线下主题活动"</span> <span class="attribute">name</span>=<span class="value">"type"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"单纯品牌曝光"</span> <span class="attribute">name</span>=<span class="value">"type"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-checkbox-group</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"特殊资源"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-radio</span> <span class="attribute">:value.sync</span>=<span class="value">"form.resource"</span> <span class="attribute">label</span>=<span class="value">"线上品牌商赞助"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-radio</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-radio</span> <span class="attribute">:value.sync</span>=<span class="value">"form.resource"</span> <span class="attribute">label</span>=<span class="value">"线下场地免费"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-radio</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动形式"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">type</span>=<span class="value">"textarea"</span> <span class="attribute">:value.sync</span>=<span class="value">"form.desc"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span>&gt;</span>立即创建<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> @<span class="attribute">click.prevent</span>&gt;</span>取消<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        form: {
+          name: <span class="string">''</span>,
+          region: <span class="string">''</span>,
+          date1: <span class="string">''</span>,
+          date2: <span class="string">''</span>,
+          delivery: <span class="literal">false</span>,
+          type: [],
+          resource: <span class="string">''</span>,
+          desc: <span class="string">''</span>
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log(<span class="string">'submit!'</span>);
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="Inline_Form">Inline Form</h2>
+<div class="demo-box demo-form demo-form-inline"><br>  <el-form type="inline" :model="formInline" @submit.prevent="onSubmit"><br>    <el-form-item><br>      <el-input :value.sync="formInline.user" placeholder="审批人"></el-input><br>    </el-form-item><el-form-item><br>      <el-select :value.sync="formInline.region" :width="150" placeholder="请选择活动区域"><br>        <el-option label="区域一" value="shanghai"></el-option><br>        <el-option label="区域二" value="beijing"></el-option><br>      </el-select><br>    </el-form-item><el-form-item><br>      <el-button type="primary">查询</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">type</span>=<span class="value">"inline"</span> <span class="attribute">:model</span>=<span class="value">"formInline"</span> @<span class="attribute">submit.prevent</span>=<span class="value">"onSubmit"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formInline.user"</span> <span class="attribute">placeholder</span>=<span class="value">"审批人"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span><span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-select</span> <span class="attribute">:value.sync</span>=<span class="value">"formInline.region"</span> <span class="attribute">:width</span>=<span class="value">"150"</span> <span class="attribute">placeholder</span>=<span class="value">"请选择活动区域"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域一"</span> <span class="attribute">value</span>=<span class="value">"shanghai"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域二"</span> <span class="attribute">value</span>=<span class="value">"beijing"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-select</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span><span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span>&gt;</span>查询<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        formInline: {
+          user: <span class="string">''</span>,
+          region: <span class="string">''</span>
+        }
+      }
+    },
+    methods: {
+      onSubmit() {
+        console.log(<span class="string">'submit!'</span>);
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="Stacked_Form">Stacked Form</h2>
+<div class="demo-box demo-form demo-form-stacked"><br>  <el-form type="stacked" :model="formStacked" @submit.prevent="onSubmit"><br>    <el-form-item label="名称"><br>      <el-input :value.sync="formStacked.name"></el-input><br>    </el-form-item><br>    <el-form-item label="活动区域"><br>      <el-select :value.sync="formStacked.region" :width="360" placeholder="请选择活动区域"><br>        <el-option label="区域一" value="shanghai"></el-option><br>        <el-option label="区域二" value="beijing"></el-option><br>      </el-select><br>    </el-form-item><br>    <el-form-item label="活动展开形式"><br>      <el-input :value.sync="formStacked.type"></el-input><br>    </el-form-item><br>    <el-form-item label="备注"><br>      <el-input :value.sync="formStacked.remark"></el-input><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary">立即创建</el-button><br>      <el-button @click.prevent>取消</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">type</span>=<span class="value">"stacked"</span> <span class="attribute">:model</span>=<span class="value">"formStacked"</span> @<span class="attribute">submit.prevent</span>=<span class="value">"onSubmit"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"名称"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formStacked.name"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动区域"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-select</span> <span class="attribute">:value.sync</span>=<span class="value">"formStacked.region"</span> <span class="attribute">:width</span>=<span class="value">"360"</span> <span class="attribute">placeholder</span>=<span class="value">"请选择活动区域"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域一"</span> <span class="attribute">value</span>=<span class="value">"shanghai"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域二"</span> <span class="attribute">value</span>=<span class="value">"beijing"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-select</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动展开形式"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formStacked.type"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"备注"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formStacked.remark"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span>&gt;</span>立即创建<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> @<span class="attribute">click.prevent</span>&gt;</span>取消<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        formStacked: {
+          name: <span class="string">''</span>,
+          region: <span class="string">''</span>,
+          type: <span class="string">''</span>,
+          remark: <span class="string">''</span>
+        }
+      };
+    },
+    methods: {
+      onSubmit() {
+        console.log(<span class="string">'submit!'</span>);
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-6807-7b7e-5de6-5bf9-9f50-">标签左对齐</h2>
+<div class="demo-box demo-form"><br>  <el-form :model="formAlignLeft" label-align="left" @submit.prevent="onSubmit" label-width="80px"><br>    <el-form-item label="名称"><br>      <el-input :value.sync="formAlignLeft.name"></el-input><br>    </el-form-item><br>    <el-form-item label="推广地"><br>      <el-select :value.sync="formAlignLeft.region" :width="360" placeholder="请选择活动区域"><br>        <el-option label="区域一" value="shanghai"></el-option><br>        <el-option label="区域二" value="beijing"></el-option><br>      </el-select><br>    </el-form-item><br>    <el-form-item label="活动形式"><br>      <el-input :value.sync="formAlignLeft.type"></el-input><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary">查询</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">:model</span>=<span class="value">"formAlignLeft"</span> <span class="attribute">label-align</span>=<span class="value">"left"</span> @<span class="attribute">submit.prevent</span>=<span class="value">"onSubmit"</span> <span class="attribute">label-width</span>=<span class="value">"80px"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"名称"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formAlignLeft.name"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"推广地"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-select</span> <span class="attribute">:value.sync</span>=<span class="value">"formAlignLeft.region"</span> <span class="attribute">:width</span>=<span class="value">"360"</span> <span class="attribute">placeholder</span>=<span class="value">"请选择活动区域"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域一"</span> <span class="attribute">value</span>=<span class="value">"shanghai"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-option</span> <span class="attribute">label</span>=<span class="value">"区域二"</span> <span class="attribute">value</span>=<span class="value">"beijing"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-option</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-select</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"活动形式"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formAlignLeft.type"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span>&gt;</span>查询<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        formAlignLeft: {
+          name: <span class="string">''</span>,
+          region: <span class="string">''</span>,
+          type: <span class="string">''</span>
+        }
+      };
+    },
+    methods: {
+      onSubmit() {
+        console.log(<span class="string">'submit!'</span>);
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-65e0-6807-7b7e-">无标签</h2>
+<div class="demo-box demo-form"><br>  <el-form :model="formNoLabel" @submit.prevent="onSubmit" style="width: 360px;"><br>    <el-form-item><br>      <el-input :value.sync="formNoLabel.username" placeholder="手机号码/电子邮箱"></el-input><br>    </el-form-item><br>    <el-form-item><br>      <el-input :value.sync="formNoLabel.pass" placeholder="账户密码" auto-complete="off"></el-input><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary" class="fr">登录</el-button><br>      <el-checkbox :value.sync="formNoLabel.rememberPss" label="记住密码"></el-checkbox><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">:model</span>=<span class="value">"formNoLabel"</span> @<span class="attribute">submit.prevent</span>=<span class="value">"onSubmit"</span> <span class="attribute">style</span>=<span class="value">"width: 360px;"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formNoLabel.username"</span> <span class="attribute">placeholder</span>=<span class="value">"手机号码/电子邮箱"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"formNoLabel.pass"</span> <span class="attribute">placeholder</span>=<span class="value">"账户密码"</span> <span class="attribute">auto-complete</span>=<span class="value">"off"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span> <span class="attribute">class</span>=<span class="value">"fr"</span>&gt;</span>登录<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">:value.sync</span>=<span class="value">"formNoLabel.rememberPss"</span> <span class="attribute">label</span>=<span class="value">"记住密码"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        formNoLabel: {
+          username: <span class="string">''</span>,
+          pass: <span class="string">''</span>,
+          rememberPss: <span class="literal">false</span>
+        }
+      };
+    },
+    methods: {
+      onSubmit() {
+        console.log(<span class="string">'submit!'</span>);
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-8868-5355-9a8c-8bc1-">表单验证</h2>
+<div class="demo-box demo-form demo-ruleForm"><br>  <el-form :model="ruleForm" :rules="rules" v-ref:rule-form label-width="80px"><br>    <el-form-item label="用户名" :required="true"><br>      <el-col :span="11"><br>        <el-form-item prop="user1"><br>          <el-input :value.sync="ruleForm.user1" placeholder="First Name"></el-input><br>        </el-form-item><br>      </el-col><br>      <el-col :span="2"><div class="line">-</div></el-col><br>      <el-col :span="11"><br>        <el-form-item prop="user2"><br>          <el-input :value.sync="ruleForm.user2" placeholder="Last Name"></el-input><br>        </el-form-item><br>      </el-col><br>    </el-form-item><br>    <el-form-item label="年龄" prop="age"><br>      <el-input :value.sync="ruleForm.age" :number="true"></el-input><br>    </el-form-item><br>    <el-form-item label="邮箱" prop="mail"><br>      <el-input :value.sync="ruleForm.mail"></el-input><br>    </el-form-item><br>    <el-form-item label="性别" prop="sex"><br>      <el-radio-group :value.sync="ruleForm.sex"><br>        <el-radio label="男" name="sex"></el-radio><br>        <el-radio label="女" name="sex"></el-radio><br>      </el-radio-group><br>    </el-form-item><br>    <el-form-item label="简介" prop="desc"><br>      <el-input type="textarea" :value.sync="ruleForm.desc"></el-input><br>    </el-form-item><br>    <el-form-item label="地区" prop="region" placeholder="请选择地区"><br>      <el-checkbox-group :value.sync="ruleForm.region"><br>        <el-checkbox label="BeiJing" name="region"></el-checkbox><br>        <el-checkbox label="ShangHai" name="region"></el-checkbox><br>        <el-checkbox label="ShenZhen" name="region"></el-checkbox><br>        <el-checkbox label="GuangZhou" name="region"></el-checkbox><br>      </el-checkbox-group><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary" @click.prevent="handleSubmit">提交</el-button><br>      <el-button @click.prevent="handleReset">重置</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">:model</span>=<span class="value">"ruleForm"</span> <span class="attribute">:rules</span>=<span class="value">"rules"</span> <span class="attribute">v-ref:rule-form</span> <span class="attribute">label-width</span>=<span class="value">"80px"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"用户名"</span> <span class="attribute">:required</span>=<span class="value">"true"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-col</span> <span class="attribute">:span</span>=<span class="value">"11"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">prop</span>=<span class="value">"user1"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.user1"</span> <span class="attribute">placeholder</span>=<span class="value">"First Name"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-col</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-col</span> <span class="attribute">:span</span>=<span class="value">"2"</span>&gt;</span><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"line"</span>&gt;</span>-<span class="tag">&lt;/<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">el-col</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-col</span> <span class="attribute">:span</span>=<span class="value">"11"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">prop</span>=<span class="value">"user2"</span>&gt;</span>
+          <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.user2"</span> <span class="attribute">placeholder</span>=<span class="value">"Last Name"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+        <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-col</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"年龄"</span> <span class="attribute">prop</span>=<span class="value">"age"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.age"</span> <span class="attribute">:number</span>=<span class="value">"true"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"邮箱"</span> <span class="attribute">prop</span>=<span class="value">"mail"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.mail"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"性别"</span> <span class="attribute">prop</span>=<span class="value">"sex"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-radio-group</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.sex"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-radio</span> <span class="attribute">label</span>=<span class="value">"男"</span> <span class="attribute">name</span>=<span class="value">"sex"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-radio</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-radio</span> <span class="attribute">label</span>=<span class="value">"女"</span> <span class="attribute">name</span>=<span class="value">"sex"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-radio</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-radio-group</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"简介"</span> <span class="attribute">prop</span>=<span class="value">"desc"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">type</span>=<span class="value">"textarea"</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.desc"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"地区"</span> <span class="attribute">prop</span>=<span class="value">"region"</span> <span class="attribute">placeholder</span>=<span class="value">"请选择地区"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-checkbox-group</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm.region"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"BeiJing"</span> <span class="attribute">name</span>=<span class="value">"region"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"ShangHai"</span> <span class="attribute">name</span>=<span class="value">"region"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"ShenZhen"</span> <span class="attribute">name</span>=<span class="value">"region"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">el-checkbox</span> <span class="attribute">label</span>=<span class="value">"GuangZhou"</span> <span class="attribute">name</span>=<span class="value">"region"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-checkbox</span>&gt;</span>
+      <span class="tag">&lt;/<span class="title">el-checkbox-group</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span> @<span class="attribute">click.prevent</span>=<span class="value">"handleSubmit"</span>&gt;</span>提交<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> @<span class="attribute">click.prevent</span>=<span class="value">"handleReset"</span>&gt;</span>重置<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        ruleForm: {
+          sex: <span class="string">''</span>,
+          user1: <span class="string">''</span>,
+          user2: <span class="string">''</span>,
+          age: <span class="string">''</span>,
+          region: [],
+          desc: <span class="string">''</span>,
+          mail: <span class="string">''</span>
+        },
+        rules: {
+          user1: [
+            { required: <span class="literal">true</span>, min: <span class="number">5</span>, message: <span class="string">'用户名至少为 5 个字符'</span>, trigger: <span class="string">'blur'</span> }
+          ],
+          user2: [
+            { required: <span class="literal">true</span>, min: <span class="number">3</span>, message: <span class="string">'用户名至少为 3 个字符'</span>, trigger: <span class="string">'blur'</span> }
+          ],
+          mail: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请输入邮箱地址'</span>, trigger: <span class="string">'blur'</span> },
+            { type: <span class="string">'email'</span>, message: <span class="string">'请输入正确的邮箱地址'</span>, trigger: <span class="string">'blur,change'</span> }
+          ],
+          sex: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请选择性别'</span> }
+          ],
+          region: [
+            { type: <span class="string">'array'</span>, required: <span class="literal">true</span>, message: <span class="string">'请至少选择一个地区'</span>, trigger: <span class="string">'change'</span> }
+          ],
+          desc: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请填写个人简介'</span>, trigger: <span class="string">'blur'</span> }
+          ]
+        }
+      };
+    },
+    methods: {
+      handleSubmit(ev) {
+        <span class="keyword">this</span>.$refs.ruleForm.validate((valid) =&gt; {
+          <span class="keyword">if</span> (valid) {
+            alert(<span class="string">'submit!'</span>);
+          } <span class="keyword">else</span> {
+            console.log(<span class="string">'error submit!!'</span>);
+            <span class="keyword">return</span> <span class="literal">false</span>;
+          }
+        });
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-81ea-5b9a-4e49-6821-9a8c-89c4-5219-">自定义校验规则</h2>
+<div class="demo-box demo-form demo-ruleForm"><br>  <el-form :model="ruleForm2" :rules="rules2" v-ref:rule-form2 label-width="80px"><br>    <el-form-item label="密码" prop="pass"><br>      <el-input type="password" :value.sync="ruleForm2.pass" auto-complete="off"></el-input><br>    </el-form-item><br>    <el-form-item label="确认密码" prop="checkPass"><br>      <el-input type="password" :value.sync="ruleForm2.checkPass" auto-complete="off"></el-input><br>    </el-form-item><br>    <el-form-item label="年龄" prop="age"><br>      <el-input :value.sync="ruleForm2.age"></el-input><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary" @click.prevent="handleSubmit2">提交</el-button><br>      <el-button @click.prevent="handleReset2">重置</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">:model</span>=<span class="value">"ruleForm2"</span> <span class="attribute">:rules</span>=<span class="value">"rules2"</span> <span class="attribute">v-ref:rule-form2</span> <span class="attribute">label-width</span>=<span class="value">"80px"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"密码"</span> <span class="attribute">prop</span>=<span class="value">"pass"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">type</span>=<span class="value">"password"</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm2.pass"</span> <span class="attribute">auto-complete</span>=<span class="value">"off"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"确认密码"</span> <span class="attribute">prop</span>=<span class="value">"checkPass"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">type</span>=<span class="value">"password"</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm2.checkPass"</span> <span class="attribute">auto-complete</span>=<span class="value">"off"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">label</span>=<span class="value">"年龄"</span> <span class="attribute">prop</span>=<span class="value">"age"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"ruleForm2.age"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span> @<span class="attribute">click.prevent</span>=<span class="value">"handleSubmit2"</span>&gt;</span>提交<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> @<span class="attribute">click.prevent</span>=<span class="value">"handleReset2"</span>&gt;</span>重置<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        ruleForm2: {
+          pass: <span class="string">''</span>,
+          checkPass: <span class="string">''</span>,
+          age: <span class="string">''</span>
+        },
+        rules2: {
+          pass: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请输入密码'</span>, trigger: <span class="string">'blur'</span> },
+            { validator: <span class="keyword">this</span>.validaePass }
+          ],
+          checkPass: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请再次输入密码'</span>, trigger: <span class="string">'blur'</span> },
+            { validator: <span class="keyword">this</span>.validaePass2 }
+          ],
+          age: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请填写年龄'</span>, trigger: <span class="string">'blur'</span> },
+            { validator: <span class="keyword">this</span>.checkAge, trigger: <span class="string">'change'</span> }
+          ]
+        }
+      };
+    },
+    methods: {
+      handleSubmit(ev) {
+        <span class="keyword">this</span>.$refs.ruleForm.validate((valid) =&gt; {
+          <span class="keyword">if</span> (valid) {
+            alert(<span class="string">'submit!'</span>);
+          } <span class="keyword">else</span> {
+            console.log(<span class="string">'error submit!!'</span>);
+            <span class="keyword">return</span> <span class="literal">false</span>;
+          }
+        });
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="-52a8-6001-589e-51cf-8868-5355-9879-">动态增减表单项</h2>
+<div class="demo-box demo-form demo-dynamic"><br>  <el-form :model="dynamicForm" :rules="dynamicRule" v-ref:dynamic-form label-width="80px"><br>    <el-form-item prop="email" label="邮箱"><br>      <el-input :value.sync="dynamicForm.email"></el-input><br>    </el-form-item><br>    <el-form-item
+      v-for="domain in dynamicForm.domains"
+      :label="'域名' + $index"
+      track-by="$index"
+      :prop="'domains:' + $index"
+      :rules="{ required: true, message: '域名不能为空', trigger: 'blur' }"><br>      <el-input :value.sync="domain"></el-input><el-button @click="dynamicForm.domains.$remove(domain)">删除</el-button><br>    </el-form-item><br>    <el-form-item><br>      <el-button type="primary" @click.prevent="handleSubmit3">提交</el-button><br>      <el-button @click.prevent="dynamicForm.domains.push('')">新增域名</el-button><br>    </el-form-item><br>  </el-form><br></div>
+
+<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">template</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">el-form</span> <span class="attribute">:model</span>=<span class="value">"dynamicForm"</span> <span class="attribute">:rules</span>=<span class="value">"dynamicRule"</span> <span class="attribute">v-ref:dynamic-form</span> <span class="attribute">label-width</span>=<span class="value">"80px"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span> <span class="attribute">prop</span>=<span class="value">"email"</span> <span class="attribute">label</span>=<span class="value">"邮箱"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"dynamicForm.email"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item
+</span>      <span class="attribute">v-for</span>=<span class="value">"domain in dynamicForm.domains"</span>
+      <span class="attribute">:label</span>=<span class="value">"'域名' + $index"</span>
+      <span class="attribute">track-by</span>=<span class="value">"$index"</span>
+      <span class="attribute">:prop</span>=<span class="value">"'domains:' + $index"</span>
+      <span class="attribute">:rules</span>=<span class="value">"{ required: true, message: '域名不能为空', trigger: 'blur' }"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-input</span> <span class="attribute">:value.sync</span>=<span class="value">"domain"</span>&gt;</span><span class="tag">&lt;/<span class="title">el-input</span>&gt;</span><span class="tag">&lt;<span class="title">el-button</span> @<span class="attribute">click</span>=<span class="value">"dynamicForm.domains.$remove(domain)"</span>&gt;</span>删除<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">el-form-item</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> <span class="attribute">type</span>=<span class="value">"primary"</span> @<span class="attribute">click.prevent</span>=<span class="value">"handleSubmit3"</span>&gt;</span>提交<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">el-button</span> @<span class="attribute">click.prevent</span>=<span class="value">"dynamicForm.domains.push('')"</span>&gt;</span>新增域名<span class="tag">&lt;/<span class="title">el-button</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">el-form-item</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">el-form</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">template</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+  export <span class="keyword">default</span> {
+    data() {
+      <span class="keyword">return</span> {
+        dynamicForm: {
+          domains: [<span class="string">''</span>],
+          email: <span class="string">''</span>
+        },
+        dynamicRule: {
+          domains: {
+            type: <span class="string">'域名不能'</span>,
+            required: <span class="literal">true</span>
+          },
+          email: [
+            { required: <span class="literal">true</span>, message: <span class="string">'请输入邮箱地址'</span>, trigger: <span class="string">'blur'</span> },
+            { type: <span class="string">'email'</span>, message: <span class="string">'请输入正确的邮箱地址'</span>, trigger: <span class="string">'blur,change'</span> }
+          ]
+        }
+      };
+    },
+    methods: {
+      handleSubmit3(ev) {
+        <span class="keyword">this</span>.$refs.ruleForm.validate((valid) =&gt; {
+          <span class="keyword">if</span> (valid) {
+            alert(<span class="string">'submit!'</span>);
+          } <span class="keyword">else</span> {
+            console.log(<span class="string">'error submit!!'</span>);
+            <span class="keyword">return</span> <span class="literal">false</span>;
+          }
+        });
+      }
+    }
+  }
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</pre></td></tr></table></figure>
+
+<h2 id="el-form_API">el-form API</h2>
+<h3 id="-7ec4-4ef6-5c5e-6027-548c-4e8b-4ef6-">组件属性和事件</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>model</td>
+<td>表单数据对象</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>rules</td>
+<td>表单验证规则</td>
+<td>object</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>表单类型</td>
+<td>string</td>
+<td>stacked, inline, horizontal</td>
+<td>horizontal</td>
+</tr>
+<tr>
+<td>label-align</td>
+<td>表单域标签的水平对齐位置</td>
+<td>string</td>
+<td>right,left</td>
+<td>right</td>
+</tr>
+<tr>
+<td>label-width</td>
+<td>表单域标签的宽度，所有的 form-item 都会继承 form 组件的 labelWidth 的值</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>label-suffix</td>
+<td>表单域标签的后缀</td>
+<td>string</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="el-form_-5b9e-4f8b-5c5e-6027-548c-65b9-6cd5-">el-form 实例属性和方法</h3>
+<table>
+<thead>
+<tr>
+<th>方法名</th>
+<th>说明</th>
+<th>类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>validate(cb)</td>
+<td>对整个表单进行校验的方法, 校验结束后会调用传入的回调方法, cb(valid), valid 参数是校验 bool 值结果</td>
+<td>function</td>
+<td></td>
+</tr>
+<tr>
+<td>validateField(prop, cb)</td>
+<td>对部分表单字段进行校验的方法</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>resetForm</td>
+<td>对整个表单进行重置，将所有字段值重置为空并移除校验结果</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="el-form-item_API">el-form-item API</h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>类型</th>
+<th>可选值</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prop</td>
+<td>表单域model字段</td>
+<td>string</td>
+<td>传入父级 v-form 的 model 中的所有属性</td>
+<td></td>
+</tr>
+<tr>
+<td>label</td>
+<td>标签文本</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>label-width</td>
+<td>表单域标签的的宽度，例如 ‘50px’</td>
+<td>string</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>required</td>
+<td>是否必填，如不设置，则会根据校验规则自动生成</td>
+<td>bolean</td>
+<td></td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

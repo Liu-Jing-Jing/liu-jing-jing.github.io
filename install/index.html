@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Meng-zi.com</title>
+        <title>Installation - Meng-zi.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
         <link rel="icon" href="/images/logo.png" type="image/x-icon">
-        <link rel="stylesheet" href="/css/index.css" type="text/css">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
         <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -24,25 +24,55 @@
         <span>meng-zi</span>
     </a>
     <ul id="nav">
-        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/install/" class="nav-link current">Install</a></li>
         <li><a href="/guide/" class="nav-link">Guide</a></li>
         <li><a href="/api/" class="nav-link">API Reference</a></li>
         <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
         <div id="main">
-            <div id="hero">
-  <div class="main_product">
-    <img src="/images/APPL.png">
-    <span class="productName">MY.Note</span>
-  </div>
-  <p>Give people wonderful tools,and they will do wonderful things.</p>
+            
+    <div class="sidebar">
+    <h2>Install</h2>
+    <ul>
+    
+        <li><a href="/install/index.html" class="sidebar-link current">Installation</a></li>
+    
+        <li><a href="/install/instruments.html" class="sidebar-link">Instruments</a></li>
+    
+        <li><a href="/install/data.html" class="sidebar-link">Data structure</a></li>
+    
+    </ul>
 </div>
-<div id="features">
-  <div class="feat">
-      <h2>Futuristic Text Editing</h2>
-      <p>MY.Note is written using Xcode 3.2(1688)</p>
-  </div>
+
+<div class="content with-sidebar">
+    <h1>Installation</h1>
+    <h3 id="Direct_Download">Direct Download</h3>
+<p>See <a href="https://github.com/vuejs/vue-router/tree/dev/dist" target="_blank">dist folder</a>. Note the dist files are always the latest stable - it’s not update-to-date with the <code>dev</code> branch source.</p>
+<h3 id="NPM">NPM</h3>
+<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>npm install vue-router
+<span class="comment"># dev branch</span>
+npm install vuejs/vue-router
+</pre></td></tr></table></figure>
+
+<p>When used in CommonJS, you must explicitly install the router via <code>Vue.use()</code>:</p>
+<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">var</span> Vue = require(<span class="string">"vue"</span>);
+<span class="keyword">var</span> path = <span class="string">"vue-router"</span>;
+<span class="keyword">var</span> VueRouter = require(path);
+
+Vue.use(VueRouter);
+</pre></td></tr></table></figure>
+
+<p>You don’t need to do this when using the standalone build because it installs itself automatically.</p>
+
 </div>
         </div>
         <script>
