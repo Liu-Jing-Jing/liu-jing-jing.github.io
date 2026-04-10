@@ -40,9 +40,9 @@
     
         <li><a href="/guide/getting-started.html" class="sidebar-link current">Getting Started</a></li>
     
-        <li><a href="/guide/custom-directive.html" class="sidebar-link">Writing Custom Directives</a></li>
+        <li><a href="/guide/layout-guide.html" class="sidebar-link">Layout</a></li>
     
-        <li><a href="/guide/custom-filter.html" class="sidebar-link">Writing Custom Filters</a></li>
+        <li><a href="/guide/components.html" class="sidebar-link">Widget Gallery</a></li>
     
         <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
     
@@ -57,51 +57,34 @@
 
 <div class="content with-sidebar">
     <h1>Getting Started</h1>
-    <h2 id="Installation">Installation</h2>
-<h3 id="Component">Component</h3>
-<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ component install yyx990803/vue
-</pre></td></tr></table></figure>
-
-<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">var</span> Vue = require(<span class="string">'vue'</span>)
-</pre></td></tr></table></figure>
-
-<h3 id="Browserify">Browserify</h3>
-<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ npm install vue
-</pre></td></tr></table></figure>
-
-<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="keyword">var</span> Vue = require(<span class="string">'vue'</span>)
-</pre></td></tr></table></figure>
-
-<h3 id="Bower">Bower</h3>
-<figure class="highlight lang-bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ bower install vue
-</pre></td></tr></table></figure>
-
-<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"bower_components/vue/dist/vue.js"</span>&gt;</span><span class="javascript"></span>
-</pre></td></tr></table></figure>
-
-<p><code>Vue</code> will be registered as a global variable.</p>
-<h3 id="Module_Loaders">Module Loaders</h3>
-<p>e.g. RequireJS, SeaJS: Built versions in <code>/dist</code> or installed via Bower is wrapped with UMD so it can be used directly as a CommonJS or AMD module.</p>
-<h3 id="Standalone">Standalone</h3>
-<p>Simply include a built version in <code>/dist</code> with a <code>&lt;script&gt;</code> tag.</p>
-<h2 id="A_Quick_Example">A Quick Example</h2>
-<p><strong>HTML</strong></p>
-<figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
+    <h2 id="Getting_Started_with_Flutter">Getting Started with Flutter</h2>
+<p>Sky apps are written in Dart. To get started, we need to set up Dart SDK:</p>
+<ul>
+<li>Install the <a href="https://www.dartlang.org/downloads/" target="_blank">Dart SDK</a>:<ul>
+<li>Mac: <code>brew tap dart-lang/dart &amp;&amp; brew install dart --devel</code></li>
+<li>Linux: See <a href="https://www.dartlang.org/downloads/linux.html" target="_blank"><a href="https://www.dartlang.org/downloads/linux.html">https://www.dartlang.org/downloads/linux.html</a></a></li>
+</ul>
+</li>
+<li>Ensure that <code>$DART_SDK</code> is set to the path of your Dart SDK and that the<br><code>dart</code> and <code>pub</code> executables are on your <code>$PATH</code>.</li>
+</ul>
+<p>Once you have installed Dart SDK, create a new directory and add a<br><a href="https://www.dartlang.org/tools/pub/pubspec.html" target="_blank">pubspec.yaml</a>:</p>
+<figure class="highlight lang-yaml"><table><tr><td class="gutter"><pre>1
 2
 3
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"demo"</span> <span class="attribute">v-on</span>=<span class="value">"click:changeText"</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">p</span> <span class="attribute">v-text</span>=<span class="value">"hello"</span>&gt;</span><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+4
+</pre></td><td class="code"><pre><span class="method">name:</span> your_app_name
+<span class="method">dependencies:</span>
+  <span class="method">sky:</span> any
+  <span class="method">sky_tools:</span> any
 </pre></td></tr></table></figure>
 
-<p><strong>JavaScript</strong></p>
-<figure class="highlight lang-js"><table><tr><td class="gutter"><pre>1
+<p>Next, create a <code>lib</code> directory (which is where your Dart code will go) and use<br>the <code>pub</code> tool to fetch the Sky package and its dependencies:</p>
+<ul>
+<li><code>mkdir lib</code></li>
+<li><code>pub upgrade</code></li>
+</ul>
+<p>Sky assumes the entry point for your application is a <code>main</code> function in<br><code>lib/main.dart</code>:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -112,19 +95,58 @@
 9
 10
 11
-</pre></td><td class="code"><pre><span class="keyword">var</span> demo = <span class="keyword">new</span> Vue({
-    el: <span class="string">'#demo'</span>,
-    data: {
-        hello: <span class="string">'Hello World!'</span>,
-    },
-    methods: {
-        changeText: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-            <span class="keyword">this</span>.hello = <span class="string">'Hello VueJS!'</span>
-       }    
-    }
-})
+</pre></td><td class="code"><pre><span class="keyword">import</span> <span class="string">'package:sky/widgets.dart'</span>;
+
+<span class="class"><span class="keyword">class</span> <span class="title">HelloWorldApp</span> <span class="keyword">extends</span> <span class="title">App</span> </span>{
+  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Center(child: <span class="keyword">new</span> Text(<span class="string">'Hello, world!'</span>));
+  }
+}
+
+<span class="keyword">void</span> main() {
+  runApp(<span class="keyword">new</span> HelloWorldApp());
+}
 </pre></td></tr></table></figure>
 
+<p>Execution starts in <code>main</code>, which in this example runs a new instance of the<br><code>HelloWorldApp</code>. The <code>HelloWorldApp</code> builds a <code>Text</code> widget containing the<br>traditional <code>Hello, world!</code> string and centers it on the screen using a <code>Center</code><br>widget. To learn more about the widget system, please see the <a href="https://github.com/domokit/sky_engine/blob/master/sky/packages/sky/lib/src/widgets/README.md" target="_blank">widgets tutorial</a>.</p>
+<h2 id="Setting_up_your_Android_device">Setting up your Android device</h2>
+<p>Currently Sky requires an Android device running the Lollipop (or newer) version<br>of the Android operating system.</p>
+<ul>
+<li><p>Install the <code>adb</code> tool from the <a href="https://developer.android.com/sdk/installing/index.html?pkg=tools" target="_blank">Android SDK</a>:</p>
+<ul>
+<li>Mac: <code>brew install android-platform-tools</code></li>
+<li>Linux: <code>sudo apt-get install android-tools-adb</code><ul>
+<li>If the version of <code>adb</code> provided by your Linux distribution is too old,<br>you might need to <a href="https://developer.android.com/sdk/installing/index.html?pkg=tools]" target="_blank">install the Android SDK manually</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Enable developer mode on your device by visiting <code>Settings &gt; About phone</code> and<br>tapping the <code>Build number</code> field five times.</p>
+</li>
+<li><p>Enable <code>Android debugging</code> in <code>Settings &gt; Developer options</code>.</p>
+</li>
+<li><p>Using a USB cable, plug your phone into your computer. If prompted on your<br>device, authorize your computer to access your device.</p>
+</li>
+</ul>
+<h2 id="Running_a_Sky_application">Running a Sky application</h2>
+<p>The <code>sky</code> pub package includes a <code>sky_tool</code> script to assist in running Sky<br>applications inside the <code>SkyShell.apk</code> harness.  The <code>sky_tool</code> script expects<br>to be run from the root directory of your application’s package (i.e., the same<br>directory that contains the <code>pubspec.yaml</code> file).</p>
+<p>To run your app with logging, run this command:</p>
+<ul>
+<li><code>./packages/sky/sky_tool start --checked &amp;&amp; ./packages/sky/sky_tool logs</code></li>
+</ul>
+<p>The <code>sky_tool start</code> command starts the dev server and uploads your app to the<br>device, installing <code>SkyShell.apk</code> if needed. The <code>--checked</code> flag triggers<br>checked mode, in which types are checked, asserts are run, and various<br><a href="https://github.com/domokit/sky_engine/blob/master/sky/packages/sky/lib/base/debug.dart" target="_blank">debugging features</a><br>are enabled. The <code>sky_tool logs</code> command logs errors and Dart <code>print()</code> output<br>from the app, automatically limiting the output to just output from Sky Dart<br>code and the Sky Engine C++ code (which for historical reasons currently uses<br>the tag <code>chromium</code>.)</p>
+<p>To avoid confusion from old log messages, you may wish to call<br><code>sky_tool logs --clear</code> before calling <code>sky_tool start</code>, to clear the log<br>between runs.</p>
+<h2 id="Rapid_Iteration">Rapid Iteration</h2>
+<p>As an alternative to running <code>./packages/sky/sky_tool start</code> every time you make<br>a change, you might prefer to have the SkyShell reload your app automatically<br>for you as you edit.  To do this, run the following command:</p>
+<ul>
+<li><code>./packages/sky/sky_tool listen</code></li>
+</ul>
+<p>This is a long-running command — just press <code>ctrl-c</code> when you want to stop<br>listening for changes to the file system and automatically reloading your app.</p>
+<p>Currently <code>sky_tool listen</code> only works for Android, but iOS device and iOS<br>simulator support are coming soon.</p>
+<h2 id="Debugging">Debugging</h2>
+<p>Sky uses <a href="https://www.dartlang.org/tools/observatory/" target="_blank">Observatory</a> for<br>debugging and profiling. While running your Sky app using <code>sky_tool</code>, you can<br>access Observatory by navigating your web browser to <a href="http://localhost:8181/" target="_blank"><a href="http://localhost:8181/">http://localhost:8181/</a></a>.</p>
+<h2 id="Building_a_standalone_APK">Building a standalone APK</h2>
+<p>Although it is possible to build a standalone APK containing your application,<br>doing so right now is difficult. If you’re feeling brave, you can see how we<br>build the <code>Stocks.apk</code> in<br><a href="https://github.com/domokit/sky_engine/tree/master/examples/stocks" target="_blank">examples/stocks</a>.<br>Eventually we plan to make this much easier and support platforms other than<br>Android, but that work still in progress.</p>
 
 </div>
         </div>

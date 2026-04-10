@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Widget Gallery - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <li><a href="/guide/" class="nav-link current">Guide</a></li>
+        <li><a href="/api/" class="nav-link">API Reference</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Guide</h2>
+    <ul>
+    
+        <li><a href="/guide/index.html" class="sidebar-link">Overview</a></li>
+    
+        <li><a href="/guide/getting-started.html" class="sidebar-link">Getting Started</a></li>
+    
+        <li><a href="/guide/layout-guide.html" class="sidebar-link">Layout</a></li>
+    
+        <li><a href="/guide/components.html" class="sidebar-link current">Widget Gallery</a></li>
+    
+        <li><a href="/guide/composition.html" class="sidebar-link">Composing ViewModels</a></li>
+    
+        <li><a href="/guide/transitions.html" class="sidebar-link">Using Transition Effects</a></li>
+    
+        <li><a href="/guide/form-validation.html" class="sidebar-link">Form Validation</a></li>
+    
+        <li><a href="/guide/routing.html" class="sidebar-link">Routing</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1>Widget Gallery</h1>
+    <p>This page describes the widgets available in Sky. These widgets are<br>general-purpose and don’t offer an opinion about the visual style of your app.</p>
+<h2 id="Container">Container</h2>
+<p><code>Container</code> is a general-purpose widget that combines several basic widgets in<br>order to make them easier to use.</p>
+<ul>
+<li><code>BoxDecoration decoration</code> Draw the given decoration around this container.</li>
+<li><code>double width</code> Forces the container to have the given width.</li>
+<li><code>double height</code> Force the container to have the given height.</li>
+<li><code>EdgeDims margin</code> Surrounds the container (i.e., outside the container’s<br> decoration) on the top, right, bottom, and left with the given amount of<br> space.</li>
+<li><code>EdgeDims padding</code> Surrounds the container’s child (i.e., inside the<br> container’s decoration) on the top, right, bottom, and left with the given<br> amount of space.</li>
+<li><code>Matrix4 transform</code> Apply the given matrix before painting the container.</li>
+<li><code>BoxConstraints constraints</code> Force the width and height of the container to<br> respect the given constraints.</li>
+</ul>
+<h2 id="Layout_models">Layout models</h2>
+<p>There are two <em>flex</em> layout models:</p>
+<ul>
+<li><p><code>Row</code>: Layout a list of child widgets in the horizontal direction.</p>
+</li>
+<li><p><code>Column</code>: Layout a list of child widgets in the vertical direction.</p>
+</li>
+</ul>
+<p>The direction along which the widgets are laid out is called the<br><em>main</em> direction and the other axis is called the <em>cross</em> direction.<br>These flex widgets size themselves to the maximum size permitted by<br>its parent, unless that would be infinite size, in which case they<br>shrink-wrap their children. For details, see <a href="flex.md">flex.md</a>.</p>
+<p>Each child of a flex widget is either <em>flexible</em> or <em>inflexible</em>.<br>The flex first lays out its inflexible children and subtracts their<br>total length along the main direction to determine how much free space<br>is available. The flex then divides this free space among the flexible<br>children in a ratio determined by their <code>flex</code> properties.</p>
+<p>The <code>alignItems</code> property determines how children are positioned in<br>the cross direction. The <code>justifyContent</code> property determines how the<br>remaining free space (if any) in the main direction is allocated.</p>
+<ul>
+<li><code>Flexible</code>: Mark this child as being flexible with the given <code>flex</code> ratio.</li>
+</ul>
+<p>There is also a stacking layout model:</p>
+<ul>
+<li><p><code>Stack</code>: Layout a list of child widgets on top of each other from back to<br>front. Each child of a <code>Stack</code> widget is either <em>positioned</em> or<br><em>non-positioned</em>. The stack sizes itself to the contain all the<br>non-positioned children, which are located at the top-left corner of the<br>stack. The <em>positioned</em> children are then located relative to the stack<br>according to their <code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code> properties.</p>
+<ul>
+<li><code>Positioned</code>: Mark this child as <em>positioned</em>. If the <code>top</code> property is<br>non-null, the top edge of this child will be positioned <code>top</code> layout units<br>from the top of the stack widget. The <code>right</code>, <code>bottom</code>, and <code>right</code><br>properties work analogously. Note that if the both the <code>top</code> and <code>bottom</code><br>properties are non-null, then the child will be forced to have exactly the<br>height required to satisfy both constraints. Similarly, setting the<br><code>right</code> and <code>left</code> properties to non-null values will force the child to<br>have a particular width.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Positioning_and_sizing">Positioning and sizing</h2>
+<ul>
+<li><p><code>Padding</code> Surround the child with empty space on the top, right, bottom, and<br>left according to the given <code>EdgeDims</code>.</p>
+</li>
+<li><p><code>Center</code> Center the child widget within the space occupied by this widget.</p>
+</li>
+<li><p><code>SizedBox</code> Force the child widget to have a particular <code>width</code> or <code>height</code><br>(or both).</p>
+</li>
+<li><p><code>ConstrainedBox</code> Apply the given <code>BoxConstraints</code> to the child widget as<br>additional constraints during layout. This widget is a generalization of<br><code>SizedBox</code>.</p>
+</li>
+<li><p><code>AspectRatio</code> Force the child widget’s width and height to have the given<br><code>aspectRatio</code>, expressed as a ratio of width to height.</p>
+</li>
+<li><p><code>Transform</code> Apply the given matrix to the child before painting the child.<br>This widget is useful for adjusting the visual size and position of a widget<br>without affecting layout.</p>
+</li>
+<li><p><code>Viewport</code> Layout the child widget at a larger size than fits in this widget<br>and render only the portion of the child that is visually contained by this<br>widget. When rendering, add <code>offset</code> to the child’s vertical position to<br>control which part of the child is visible through the viewport.<br>TODO(abarth): Add support for horizontal viewporting.</p>
+</li>
+<li><p><code>SizeObserver</code> Whenever the child widget changes size, this widget calls the<br><code>callback</code>. Warning: If the callback changes state that affects the size of<br>the child widget, it is possible to create an infinite loop.</p>
+</li>
+<li><p><code>ShrinkWrapWidth</code> Force the child widget to have a width equal to its max<br>intrinsic width. TODO(abarth): Add a link to the definition of max intrinsic<br>width. Optionally, round up the child widget’s width or height (or both) to<br>a multiple of <code>stepWidth</code> or <code>stepHeight</code>, respectively. Note: The layout<br>performed by <code>ShrinkWrapWidth</code> is relatively expensive and should be used<br>sparingly.</p>
+</li>
+<li><p><code>Baseline</code> If the child widget has a <code>TextBaseline</code> of the given<br><code>baselineType</code>, position the child such that its baseline is at <code>baseline</code><br>layout units from the top of this widget.</p>
+</li>
+</ul>
+<h2 id="Painting_effects">Painting effects</h2>
+<ul>
+<li><p><code>Opacity</code> Adjusts the opacity of the child widget, making the child partially<br>transparent. The amount of transparency is controlled by <code>opacity</code>, with 0.0<br>0.0 is fully transparent and 1.0 is fully opaque.</p>
+</li>
+<li><p><code>ClipRect</code> Apply a rectangular clip to the child widget. The dimensions of<br>the clip match the dimensions of the child.</p>
+</li>
+<li><p><code>ClipRRect</code> Apply a rounded-rect clip the child widget. The bounds of the<br>clip match the bounds of the child widget with <code>xRadius</code> and <code>yRadius</code><br>controlling the x and y radius of the rounded corner, respectively.</p>
+</li>
+<li><p><code>ClipOval</code> Apply an oval clip to the child widget. The oval will be<br>axis-aligned, with its horizontal and vertical bounds matching the bounds of<br>the child widget.</p>
+</li>
+<li><p><code>DecoratedBox</code> Draw the given <code>BoxDecoration</code> surrounding the child widget.</p>
+</li>
+<li><p><code>ColorFilter</code> Applies a color filter to the child widget, for example to<br>tint the child a given color.</p>
+</li>
+<li><p><code>CustomPaint</code> Calls <code>callback</code> during the paint phase with the current<br><code>Canvas</code> and <code>Size</code>. The widget occupies the region of the canvas starting at<br>the origin (i.e., <code>x = 0.0</code> and <code>y = 0.0</code>) and of the given size (i.e.,<br><code>x = size.width</code> and <code>y = size.height</code>).</p>
+<p>Use the <code>token</code> to invalidate the painting. As long as the any new <code>token</code><br>is <code>operator==</code> the current <code>token</code>, the <code>CustomPaint</code> widget is permitted<br>to retain a recording of the painting produced by the previous <code>callback</code><br>call.</p>
+</li>
+</ul>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main')
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = document.body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

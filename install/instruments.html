@@ -47,7 +47,482 @@
 
 <div class="content with-sidebar">
     <h1>Instruments</h1>
-    <h1 id="Basic_Usage">Basic Usage</h1>
+    <h1 id="Flutter_2015">Flutter 2015</h1>
+<p>Sky widgets are built using a functional-reactive framework, which takes<br>inspiration from <a href="http://facebook.github.io/react/" target="_blank">React</a>. The central idea is<br>that you build your UI out of components. Components describe what their view<br>should look like given their current configuration and state. When a component’s<br>state changes, the component rebuilds its description, which the framework diffs<br>against the previous description in order to determine the minimal changes<br>needed in the underlying render tree to transition from one state to the next.</p>
+<h2 id="Hello_World">Hello World</h2>
+<p>To build an application, create a subclass of <code>App</code> and instantiate it:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="keyword">import</span> <span class="string">'package:sky/widgets.dart'</span>;
+
+<span class="class"><span class="keyword">class</span> <span class="title">HelloWorldApp</span> <span class="keyword">extends</span> <span class="title">App</span> </span>{
+  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Center(child: <span class="keyword">new</span> Text(<span class="string">'Hello, world!'</span>));
+  }
+}
+
+<span class="keyword">void</span> main() {
+  runApp(<span class="keyword">new</span> HelloWorldApp());
+}
+</pre></td></tr></table></figure>
+
+<p>An app is comprised of (and is, itself, a) widgets. The most commonly authored<br>widgets are, like <code>App</code>, subclasses of <code>Component</code>.  A component’s main job is<br>to implement <code>Widget build()</code> by returning newly-created instances of other<br>widgets. If a component builds other components, the framework will build those<br>components in turn until the process bottoms out in a collection of basic<br>widgets, such as those in <code>sky/widgets/basic.dart</code>. In the case of<br><code>HelloWorldApp</code>, the <code>build</code> function simply returns a new <code>Text</code> node, which is<br>a basic widget representing a string of text.</p>
+<h2 id="Basic_Widgets">Basic Widgets</h2>
+<p>Sky comes with a suite of powerful basic widgets, of which the following are<br>very commonly used:</p>
+<ul>
+<li><p><code>Text</code>: The <code>Text</code> widget lets you create a run of styled text within your<br>application.</p>
+</li>
+<li><p><code>Row</code>, <code>Column</code>: These flex widgets let you create flexible layouts in both<br>the horizontal (<code>Row</code>) and vertical (<code>Column</code>) directions. Its design is<br>based on the web’s flexbox layout model.</p>
+</li>
+<li><p><code>Container</code>: The <code>Container</code> widget lets you create rectangular visual<br>element. A container can be decorated with a <code>BoxDecoration</code>, such as a<br>background, a border, or a shadow. A <code>Container</code> can also have margins,<br>padding, and constraints applied to its size. In addition, a <code>Container</code> can<br>be transformed in three dimensional space using a matrix.</p>
+</li>
+<li><p><code>NetworkImage</code>: The <code>NetworkImage</code> widget lets you display an image,<br>referenced using a URL. The underlying image is cached, which means if<br>several <code>NetworkImage</code> widgets refer to the same URL, they’ll share the<br>underlying image resource.</p>
+</li>
+</ul>
+<p>Below is a simple toolbar example that shows how to combine these widgets:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:sky/widgets.dart';</span>
+
+<span class="class"><span class="keyword">class</span> <span class="type">MyToolBar</span> extends <span class="type">Component</span> {
+  <span class="type">Widget</span> build<span class="container">()</span> {
+    return new <span class="type">Container</span><span class="container">(
+      <span class="title">decoration</span>: <span class="title">const</span> <span class="type">BoxDecoration</span>(
+        <span class="title">backgroundColor</span>: <span class="title">const</span> <span class="type">Color(0xFF00FFFF)</span>
+      )</span>,
+      height: 56.0,
+      padding: const <span class="type">EdgeDims</span>.symmetric<span class="container">(<span class="title">horizontal</span>: 8.0)</span>,
+      child: new <span class="type">Row</span><span class="container">([
+        <span class="title">new</span> <span class="type">NetworkImage</span>(<span class="title">src</span>: '<span class="title">menu</span>.<span class="title">png'</span>, <span class="title">width</span>: 25.0, <span class="title">height</span>: 25.0)</span>,
+        new <span class="type">Flexible</span><span class="container">(<span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">My</span> <span class="title">awesome</span> <span class="title">toolbar'</span>)</span>),
+        new <span class="type">NetworkImage</span><span class="container">(<span class="title">src</span>: '<span class="title">search</span>.<span class="title">png'</span>, <span class="title">width</span>: 25.0, <span class="title">height</span>: 25.0)</span>,
+      ])
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>MyToolBar</code> component creates a cyan <code>Container</code> with a height of<br>56 device-independent pixels with an internal padding of 8 pixels,<br>both on the left and the right. Inside the container, <code>MyToolBar</code> uses<br>a <code>Row</code> layout. The middle child, the <code>Text</code> widget, is marked as<br><code>Flexible</code>, which means it expands to fill any remaining available<br>space that hasn’t been consumed by the inflexible children. You can<br>have multiple <code>Flexible</code> children and determine the ratio in which<br>they consume the available space using the <code>flex</code> argument to<br><code>Flexible</code>.</p>
+<p>To use this component, we simply create an instance of <code>MyToolBar</code> in a <code>build</code><br>function:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="keyword">import</span> <span class="string">'package:sky/widgets.dart'</span>;
+
+<span class="keyword">import</span> <span class="string">'my_tool_bar.dart'</span>;
+
+<span class="class"><span class="keyword">class</span> <span class="title">DemoApp</span> <span class="keyword">extends</span> <span class="title">App</span> </span>{
+  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Center(child: <span class="keyword">new</span> MyToolBar());
+  }
+}
+
+<span class="keyword">void</span> main() {
+  runApp(<span class="keyword">new</span> DemoApp());
+}
+</pre></td></tr></table></figure>
+
+<p>Here, we’ve used the <code>Center</code> widget to center the toolbar within the view, both<br>vertically and horizontally. If we didn’t center the toolbar, it would fill the<br>view, both vertically and horizontally, because the root widget is sized to fill<br>the view.</p>
+<h2 id="Listening_to_Events">Listening to Events</h2>
+<p>In addition to being stunningly beautiful, most applications react to user<br>input. The first step in building an interactive application is to listen for<br>input events. Let’s see how that works by creating a simple button:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td><td class="code"><pre><span class="reserved">import</span> <span class="string">'package:sky/widgets.dart'</span>;
+
+final BoxDecoration _decoration = <span class="keyword">new</span> BoxDecoration(
+  <span class="attribute">borderRadius</span>: <span class="number">5.0</span>,
+  <span class="attribute">gradient</span>: <span class="keyword">new</span> LinearGradient(
+    <span class="attribute">start</span>: Point.origin,
+    <span class="attribute">end</span>: <span class="reserved">const</span> Point(<span class="number">0.0</span>, <span class="number">36.0</span>),
+    <span class="attribute">colors</span>: [ <span class="reserved">const</span> Color(<span class="number">0xFFEEEEEE</span>), <span class="reserved">const</span> Color(<span class="number">0xFFCCCCCC</span>) ]
+  )
+);
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyButton</span> <span class="keyword">extends</span> <span class="title">Component</span> {</span>
+  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Listener(
+      <span class="attribute">onGestureTap</span>: (event) {
+        <span class="built_in">print</span>(<span class="string">'MyButton was tapped!'</span>);
+      },
+      <span class="attribute">child</span>: <span class="keyword">new</span> Container(
+        <span class="attribute">height</span>: <span class="number">36.0</span>,
+        <span class="attribute">padding</span>: <span class="reserved">const</span> EdgeDims.all(<span class="number">8.0</span>),
+        <span class="attribute">margin</span>: <span class="reserved">const</span> EdgeDims.symmetric(<span class="attribute">horizontal</span>: <span class="number">8.0</span>),
+        <span class="attribute">decoration</span>: _decoration,
+        <span class="attribute">child</span>: <span class="keyword">new</span> Center(
+          <span class="attribute">child</span>: <span class="keyword">new</span> Text(<span class="string">'Engage'</span>)
+        )
+      )
+    );
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>The <code>Listener</code> widget doesn’t have an visual representation but instead listens<br>for events bubbling through the application. When a tap gesture bubbles out from<br>the <code>Container</code>, the <code>Listener</code> will call its <code>onGestureTap</code> callback, in this<br>case printing a message to the console.</p>
+<p>You can use <code>Listener</code> to listen for a variety of input events, including<br>low-level pointer events and higher-level gesture events, such as taps, scrolls,<br>and flings.</p>
+<h2 id="Generic_Components">Generic Components</h2>
+<p>One of the most powerful features of components is the ability to pass around<br>references to already-built widgets and reuse them in your <code>build</code> function. For<br>example, we wouldn’t want to define a new button component every time we wanted<br>a button with a novel label:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">MyButton</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{
+  MyButton({ this.child, this.onPressed });
+
+  <span class="keyword">final</span> Widget child;
+  <span class="keyword">final</span> Function onPressed;
+
+  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Listener(
+      onGestureTap: (_) {
+        <span class="keyword">if</span> (onPressed != <span class="keyword">null</span>)
+          onPressed();
+      },
+      child: <span class="keyword">new</span> Container(
+        height: <span class="number">36.0</span>,
+        padding: <span class="keyword">const</span> EdgeDims.all(<span class="number">8.0</span>),
+        margin: <span class="keyword">const</span> EdgeDims.symmetric(horizontal: <span class="number">8.0</span>),
+        decoration: _decoration,
+        child: <span class="keyword">new</span> Center(child: child)
+      )
+    );
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>Rather than providing the button’s label as a <code>String</code>, we’ve let the code that<br>uses <code>MyButton</code> provide an arbitrary <code>Widget</code> to put inside the button. For<br>example, we can put an elaborate layout involving text and an image inside the<br>button:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> MyButton(
+      <span class="attribute">child</span>: <span class="keyword">new</span> ShrinkWrapWidth(
+        <span class="attribute">child</span>: <span class="keyword">new</span> Row([
+          <span class="keyword">new</span> NetworkImage(<span class="attribute">src</span>: <span class="string">'thumbs-up.png'</span>, <span class="attribute">width</span>: <span class="number">25.0</span>, <span class="attribute">height</span>: <span class="number">25.0</span>),
+          <span class="keyword">new</span> Container(
+            <span class="attribute">padding</span>: <span class="reserved">const</span> EdgeDims.only(<span class="attribute">left</span>: <span class="number">10.0</span>),
+            <span class="attribute">child</span>: <span class="keyword">new</span> Text(<span class="string">'Thumbs up'</span>)
+          )
+        ])
+      )
+    );
+  }
+</pre></td></tr></table></figure>
+
+<h2 id="State">State</h2>
+<p>By default, components are stateless. Components usually receive<br>arguments from their parent component in their constructor, which they typically<br>store in <code>final</code> member variables. When a component is asked to <code>build</code>, it uses<br>these stored values to derive new arguments for the subcomponents it creates.<br>For example, the generic version of <code>MyButton</code> above follows this pattern. In<br>this way, state naturally flows “down” the component hierachy.</p>
+<p>Some components, however, have mutable state that represents the transient state<br>of that part of the user interface. For example, consider a dialog widget with<br>a checkbox. While the dialog is open, the user might check and uncheck the<br>checkbox several times before closing the dialog and committing the final value<br>of the checkbox to the underlying application data model.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">MyCheckbox</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>{
+  MyCheckbox({ this.value, this.onChanged });
+
+  <span class="keyword">final</span> bool value;
+  <span class="keyword">final</span> Function onChanged;
+
+  Widget build() {
+    Color color = value ? <span class="keyword">const</span> Color(<span class="number">0xFF00FF00</span>) : <span class="keyword">const</span> Color(<span class="number">0xFF0000FF</span>);
+    <span class="keyword">return</span> <span class="keyword">new</span> Listener(
+      onGestureTap: (_) =&gt; onChanged(!value),
+      child: <span class="keyword">new</span> Container(
+        height: <span class="number">25.0</span>,
+        width: <span class="number">25.0</span>,
+        decoration: <span class="keyword">new</span> BoxDecoration(backgroundColor: color)
+      )
+    );
+  }
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyDialog</span> <span class="keyword">extends</span> <span class="title">StatefulComponent</span> </span>{
+  MyDialog({ this.onDismissed });
+
+  Function onDismissed;
+  bool _checkboxValue = <span class="keyword">false</span>;
+
+  <span class="keyword">void</span> _handleCheckboxValueChanged(bool value) {
+    setState(() {
+      _checkboxValue = value;
+    });
+  }
+
+  <span class="keyword">void</span> syncConstructorArguments(MyDialog source) {
+    onDismissed = source.onDismissed;
+  }
+
+  Widget build() {
+    <span class="keyword">return</span> <span class="keyword">new</span> Row([
+      <span class="keyword">new</span> MyCheckbox(
+        value: _checkboxValue,
+        onChanged: _handleCheckboxValueChanged
+      ),
+      <span class="keyword">new</span> MyButton(
+        onPressed: () =&gt; onDismissed(_checkboxValue),
+        child: <span class="keyword">new</span> Text(<span class="string">"Save"</span>)
+      ),
+    ],
+    justifyContent: FlexJustifyContent.center);
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>The <code>MyCheckbox</code> component follows the pattern for stateless components. It<br>stores the values it receives in its constructor in <code>final</code> member variables,<br>which it then uses during its <code>build</code> function. Notice that when the user taps<br>on the checkbox, the checkbox itself doesn’t use <code>value</code>. Instead, the checkbox<br>calls a function it received from its parent component. This pattern lets you<br>store state higher in the component hierarchy, which causes the state to persist<br>for longer periods of time. In the extreme, the state stored on the <code>App</code><br>component persists for the lifetime of the application.</p>
+<p>The <code>MyDialog</code> component is more complicated because it is a stateful component.<br>Let’s walk through the differences in <code>MyDialog</code> caused by its being stateful:</p>
+<ul>
+<li><p><code>MyDialog</code> extends StatefulComponent instead of Component.</p>
+</li>
+<li><p><code>MyDialog</code> has non-<code>final</code> member variables. Over the lifetime of the dialog,<br>we’ll need to modify the values of these member variables, which means we<br>cannot mark them <code>final</code>.</p>
+</li>
+<li><p><code>MyDialog</code> has private member variables. By convention, components store<br>values they receive from their parent in public member variables and store<br>their own internal, transient state in private member variables. There’s no<br>requirement to follow this convention, but we’ve found that it helps keep us<br>organized.</p>
+</li>
+<li><p>Whenever <code>MyDialog</code> modifies its transient state, the dialog does so inside<br>a <code>setState</code> callback. Using <code>setState</code> is important because it marks the<br>component as dirty and schedules it to be rebuilt. If a component modifies<br>its transient state outside of a <code>setState</code> callback, the framework won’t<br>know that the component has changed state and might not call the component’s<br><code>build</code> function, which means the user interface might not update to reflect<br>the changed state.</p>
+</li>
+<li><p><code>MyDialog</code> implements the <code>syncConstructorArguments</code> member function. To<br>understand <code>syncConstructorArguments</code>, we’ll need to dive a bit deeper into<br>how the <code>build</code> function is used by the framework.</p>
+<p>A component’s <code>build</code> function returns a tree of widgets that represent a<br>“virtual” description of its appearance. The first time the framework calls<br><code>build</code>, the framework walks this description and creates a “physical” tree<br>of <code>RenderObjects</code> that matches the description. When the framework calls<br><code>build</code> again, the component still returns a fresh description of its<br>appearence, but this time the framework compares the new description with the<br>previous description and makes the minimal modifications to the underlying<br><code>RenderObjects</code> to make them match the new description.</p>
+<p>In this process, old stateless components are discarded and the new stateless<br>components created by the parent component are retained in the widget<br>hierchy. Old <em>stateful</em> components, however, cannot simply be discarded<br>because they contain state that needs to be preserved. Instead, the old<br>stateful components are retained in the widget hierarchy and asked to<br><code>syncConstructorArguments</code> with the new instance of the component created by<br>the parent in its <code>build</code> function.</p>
+<p>Without <code>syncConstructorArguments</code>, the new values the parent component<br>passed to the <code>MyDialog</code> constructor in the parent’s <code>build</code> function would<br>be lost because they would be stored only as member variables on the new<br>instance of the component, which is not retained in the component hiearchy.<br>Therefore, the <code>syncConstructorArguments</code> function in a component should<br>update <code>this</code> to account for the new values the parent passed to <code>source</code><br>because <code>source</code> is the authorative source of those values.</p>
+<p>By convention, components typically store the values they receive from their<br>parents in public member variables and their own internal state in private<br>member variables. Therefore, a typical <code>syncConstructorArguments</code><br>implementation will copy the public, but not the private, member variables<br>from <code>source</code>. When following this convention, there is no need to copy over<br>the private member variables because those represent the internal state of<br>the object and <code>this</code> is the authoritative source of that state.</p>
+<p>When implementing a <code>StatefulComponent</code>, make sure to call<br><code>super.syncConstructorArguments(source)</code> from within your<br><code>syncConstructorArguments()</code> method, unless you are extending<br><code>StatefulComponent</code> directly.</p>
+</li>
+</ul>
+<p>Finally, when the user taps on the “Save” button, <code>MyDialog</code> follows the same<br>pattern as <code>MyCheckbox</code> and calls a function passed in by its parent component<br>to return the final value of the checkbox up the hierarchy.</p>
+<h2 id="didMount_and_didUnmount">didMount and didUnmount</h2>
+<p>When a component is inserted into the widget tree, the framework calls the<br><code>didMount</code> function on the component. When a component is removed from the<br>widget tree, the framework calls the <code>didUnmount</code> function on the component.<br>In some situations, a component that has been unmounted might again be mounted.<br>For example, a stateful component might receive a pre-built component from its<br>parent (similar to <code>child</code> from the <code>MyButton</code> example above) that the stateful<br>component might incorporate, then not incorporate, and then later incorporate<br>again in the widget tree it builds, according to its changing state.</p>
+<p>Typically, a stateful component will override <code>didMount</code> to initialize any<br>non-trivial internal state. Initializing internal state in <code>didMount</code> is more<br>efficient (and less error-prone) than initializing that state during the<br>component’s constructor because parent executes the component’s constructor each<br>time the parent rebuilds even though the framework mounts only the first<br>instance into the widget hierarchy. (Instead of mounting later instances, the<br>framework passes them to the original instance in <code>syncConstructorArguments</code> so<br>that the first instance of the component can incorporate the values passed by<br>the parent to the component’s constructor.)</p>
+<p>Components often override <code>didUnmount</code> to release resources or to cancel<br>subscriptions to event streams from outside the widget hierachy. When overriding<br>either <code>didMount</code> or <code>didUnmount</code>, a component should call its superclass’s<br><code>didMount</code> or <code>didUnmount</code> function.</p>
+<h2 id="initState">initState</h2>
+<p>The framework calls the <code>initState</code> function on stateful components before<br>building them. The default implementation of initState does nothing. If your<br>component requires non-trivial work to initialize its state, you should<br>override initState and do it there rather than doing it in the stateful<br>component’s constructor. If the component doesn’t need to be built (for<br>example, if it was constructed just to have its fields synchronized with<br>an existing stateful component) you’ll avoid unnecessary work. Also, some<br>operations that involve interacting with the widget hierarchy cannot be<br>done in a component’s constructor.</p>
+<p>When overriding <code>initState</code>, a component should call its superclass’s<br><code>initState</code> function.</p>
+<h2 id="Keys">Keys</h2>
+<p>If a component requires fine-grained control over which widgets sync with each<br>other, the component can assign keys to the widgets it builds. Without keys, the<br>framework matches widgets in the current and previous build according to their<br><code>runtimeType</code> and the order in which they appear. With keys, the framework<br>requires that the two widgets have the same <code>key</code> as well as the same<br><code>runtimeType</code>.</p>
+<p>Keys are most useful in components that build many instances of the same type of<br>widget. For example, consider an infinite list component that builds just enough<br>copies of a particular widget to fill its visible region:</p>
+<ul>
+<li><p>Without keys, the first entry in the current build would always sync with the<br>first entry in the previous build, even if, semantically, the first entry in<br>the list just scrolled off screen and is no longer visible in the viewport.</p>
+</li>
+<li><p>By assigning each entry in the list a “semantic” key, the infinite list can<br>be more efficient because the framework will sync entries with matching<br>semantic keys and therefore similiar (or identical) visual appearances.<br>Moreover, syncing the entries semantically means that state retained in<br>stateful subcomponents will remain attached to the same semantic entry rather<br>than the entry in the same numerical position in the viewport.</p>
+</li>
+</ul>
+<h2 id="Widgets_for_Applications">Widgets for Applications</h2>
+<p>There are some widgets that do not correspond to on-screen pixels but that are<br>nonetheless useful for building applications.</p>
+<ul>
+<li><code>Theme</code>: Takes a <a href="../theme/README.md">ThemeData</a> object in its <code>data</code> argument, to configure the Material Design theme of the rest of the application (as given in the <code>child</code> argument).</li>
+<li><code>TaskDescription</code>: Takes a <code>label</code> that names the application for the purpose of the Android task switcher. The colour of the application as used in the system UI is taken from the current <code>Theme</code>.</li>
+<li><code>Navigator</code>: Takes a single argument, which must be a long-lived instance of <code>NavigatorState</code>. This object choreographs how the application goes from screen to screen (e.g. from the main screen to a settings screen), as well as modal dialogs, drawer state, and anything else that responds to the system “back” button. By convention the <code>NavigatorState</code> object is a private member variable of the class that inherits from <code>App</code>, initialized in the <code>initState()</code> function. The <code>NavigatorState</code> constructor takes a list of <code>Route</code> objects, each of which takes a <code>name</code> argument giving a path to identify the window (e.g. “/“ for the home screen, “/settings” for the settings screen, etc), and a <code>builder</code> argument that takes a method which itself takes a <code>navigator</code> argument and a <code>route</code> argument and returns a <code>Widget</code> representing that screen.</li>
+</ul>
+<p>Putting this together, a basic application becomes:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:sky/widgets.dart';</span>
+
+<span class="class"><span class="keyword">class</span> <span class="type">DemoApp</span> extends <span class="type">App</span> {
+
+  <span class="type">NavigationState</span> _state;
+  void initState<span class="container">()</span> {
+    _state = new <span class="type">NavigationState</span><span class="container">([
+      <span class="title">new</span> <span class="type">Route</span>(
+        <span class="title">name</span>: '/',
+        <span class="title">builder</span>: (<span class="title">navigator</span>, <span class="title">route</span>)</span> {
+          return new <span class="type">Center</span><span class="container">(<span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">Hello</span> <span class="type">Slightly</span> <span class="type">More</span> <span class="type">Elaborate</span> <span class="type">World</span>')</span>);
+        }
+      )
+    ]);
+    super.initState<span class="container">()</span>;
+  }
+
+  <span class="type">Widget</span> build<span class="container">()</span> {
+    return new <span class="type">Theme</span><span class="container">(
+      <span class="title">data</span>: <span class="title">new</span> <span class="type">ThemeData</span>(
+        <span class="title">brightness</span>: <span class="type">ThemeBrightness</span>.<span class="title">light</span>
+      )</span>,
+      child: new <span class="type">TaskDescription</span><span class="container">(
+        <span class="title">label</span>: '<span class="type">Sky</span> <span class="type">Demo</span>',
+        <span class="title">child</span>: <span class="title">new</span> <span class="type">Navigator(_state)</span>
+      )</span>
+    );
+  }
+
+}
+
+void main<span class="container">()</span> {
+  runApp<span class="container">(<span class="title">new</span> <span class="type">DemoApp</span>()</span>);
+}</span>
+</pre></td></tr></table></figure>
+
+<h2 id="Useful_debugging_tools">Useful debugging tools</h2>
+<p>This is a quick way to dump the entire widget tree to the console.<br>This can be quite useful in figuring out exactly what is going on when<br>working with the widgets system. For this to work, you have to have<br>launched your app with <code>runApp()</code>.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="function"><span class="title">debugDumpApp</span><span class="params">()</span>;</span>
+</pre></td></tr></table></figure>
+
+<h1 id="Basic_Usage">Basic Usage</h1>
 <p>Creating a Single-page Application with Vue.js + vue-router is dead simple. With Vue.js, we are already breaking our application into components. When adding vue-router to the mix, all we need to do is map our components to the routes and let vue-router know where to render them. Here’s a basic example:</p>
 <h3 id="HTML">HTML</h3>
 <figure class="highlight lang-html"><table><tr><td class="gutter"><pre>1
