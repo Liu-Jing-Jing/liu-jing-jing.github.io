@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Widgets - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link current">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Widgets</h2>
+    <ul>
+    
+        <li><a href="/widgets/index.html" class="sidebar-link current">Widgets</a></li>
+    
+        <li><a href="/widgets/flex.html" class="sidebar-link">Flex Widget</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h2 id="Flutter_Widgets">Flutter Widgets</h2>
+<p>Widgets are the building blocks of a Flutter application. Everything in Flutter is a widget!</p>
+<h3 id="What_is_a_Widget-3f-">What is a Widget?</h3>
+<p>A widget is an immutable description of part of a user interface. Widgets are used to build the UI hierarchy, and they describe what their view should look like given their current configuration and state.</p>
+<h3 id="Types_of_Widgets">Types of Widgets</h3>
+<h4 id="StatelessWidget">StatelessWidget</h4>
+<p>A <code>StatelessWidget</code> is a widget that does not require mutable state. It describes part of the user interface that depends solely on the configuration information provided to it.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">MyStatelessWidget</span> <span class="keyword">extends</span> <span class="title">StatelessWidget</span> </span>{
+  <span class="annotation">@override</span>
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> Text(<span class="string">'Hello, World!'</span>);
+  }
+}
+</pre></td></tr></table></figure>
+
+<h4 id="StatefulWidget">StatefulWidget</h4>
+<p>A <code>StatefulWidget</code> is a widget that has mutable state. It is used when the widget needs to change dynamically based on user interaction or other factors.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">MyStatefulWidget</span> <span class="keyword">extends</span> <span class="title">StatefulWidget</span> </span>{
+  <span class="annotation">@override</span>
+  _MyStatefulWidgetState createState() =&gt; _MyStatefulWidgetState();
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">_MyStatefulWidgetState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyStatefulWidget</span>&gt; </span>{
+  <span class="keyword">int</span> _counter = <span class="number">0</span>;
+
+  <span class="keyword">void</span> _increment() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  <span class="annotation">@override</span>
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> Column(
+      children: &lt;Widget&gt;[
+        Text(<span class="string">'Counter: $_counter'</span>),
+        RaisedButton(
+          onPressed: _increment,
+          child: Text(<span class="string">'Increment'</span>),
+        ),
+      ],
+    );
+  }
+}
+</pre></td></tr></table></figure>
+
+<h3 id="Common_Widgets">Common Widgets</h3>
+<h4 id="Text">Text</h4>
+<p>The <code>Text</code> widget displays a string of text with a single style.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="class">Text</span>(<span class="string">'Hello, Flutter!'</span>, <span class="method">style:</span> <span class="class">TextStyle</span>(<span class="method">fontSize:</span> <span class="number">24</span>, <span class="method">color:</span> <span class="class">Colors</span>.blue))
+</pre></td></tr></table></figure>
+
+<h4 id="Container">Container</h4>
+<p>The <code>Container</code> widget combines common painting, positioning, and sizing of child widgets.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="class">Container</span>(
+  <span class="method">margin:</span> <span class="class">EdgeInsets</span>.all(<span class="number">16.0</span>),
+  <span class="method">padding:</span> <span class="class">EdgeInsets</span>.all(<span class="number">8.0</span>),
+  <span class="method">decoration:</span> <span class="class">BoxDecoration</span>(
+    <span class="method">color:</span> <span class="class">Colors</span>.white,
+    <span class="method">borderRadius:</span> <span class="class">BorderRadius</span>.circular(<span class="number">8.0</span>),
+    <span class="method">boxShadow:</span> [
+      <span class="class">BoxShadow</span>(<span class="method">color:</span> <span class="class">Colors</span>.black26, <span class="method">blurRadius:</span> <span class="number">4.0</span>),
+    ],
+  ),
+  <span class="method">child:</span> <span class="class">Text</span>(<span class="string">'Hello, World!'</span>),
+)
+</pre></td></tr></table></figure>
+
+<h4 id="Row_and_Column">Row and Column</h4>
+<p><code>Row</code> and <code>Column</code> are layout widgets that let you create horizontal and vertical arrays of widgets.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>Row(
+  mainAxisAlignment: MainAxisAlignment<span class="preprocessor">.spaceEvenly</span>,
+  children: &lt;Widget&gt;[
+    Icon(Icons<span class="preprocessor">.star</span>, color: Colors<span class="preprocessor">.yellow</span>),
+    Icon(Icons<span class="preprocessor">.star</span>, color: Colors<span class="preprocessor">.yellow</span>),
+    Icon(Icons<span class="preprocessor">.star</span>, color: Colors<span class="preprocessor">.yellow</span>),
+  ],
+)
+</pre></td></tr></table></figure>
+
+<h4 id="ListView">ListView</h4>
+<p><code>ListView</code> is a scrollable list of widgets arranged linearly.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="function">ListView(
+  children: &lt;Widget&gt;[
+    <span class="function">ListTile(title: <span class="function">Text(<span class="string">'Item 1'</span>)</span>)</span>,
+    <span class="function">ListTile(title: <span class="function">Text(<span class="string">'Item 2'</span>)</span>)</span>,
+    <span class="function">ListTile(title: <span class="function">Text(<span class="string">'Item 3'</span>)</span>)</span>,
+  ],
+)</span>
+</pre></td></tr></table></figure>
+
+<h3 id="Building_with_Widgets">Building with Widgets</h3>
+<p>Widgets are composed together to create complex UIs. Here’s an example of a simple profile card:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="type">ProfileCard</span> extends <span class="type">StatelessWidget</span> {
+  @override
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return <span class="type">Card</span><span class="container">(
+      <span class="title">child</span>: <span class="type">Column</span>(
+        <span class="title">children</span>: &lt;<span class="type">Widget</span>&gt;[
+          <span class="type">CircleAvatar</span>(
+            <span class="title">radius</span>: 40.0,
+            <span class="title">backgroundImage</span>: <span class="type">NetworkImage</span>('<span class="title">https</span>://<span class="title">example</span>.<span class="title">com</span>/<span class="title">avatar</span>.<span class="title">png'</span>)</span>,
+          ),
+          <span class="type">Text</span><span class="container">('<span class="type">John</span> <span class="type">Doe</span>', <span class="title">style</span>: <span class="type">TextStyle</span>(<span class="title">fontSize</span>: 20.0)</span>),
+          <span class="type">Text</span><span class="container">('<span class="type">Flutter</span> <span class="type">Developer</span>')</span>,
+        ],
+      ),
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<h3 id="Learn_More">Learn More</h3>
+<ul>
+<li>Check out the <a href="/guide/tutorial">Tutorial</a> for a step-by-step guide</li>
+<li>Visit the <a href="/api">API Reference</a> for detailed widget documentation</li>
+<li>See the <a href="/guide/getting-started">Getting Started</a> guide for setup instructions</li>
+</ul>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

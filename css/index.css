@@ -25,7 +25,7 @@ pre .tex .special {
   color: #f95555;
 }
 pre .class .title {
-  color: #fff;
+  color: #bf79db;
 }
 pre .attribute {
   color: #42b983;
@@ -121,9 +121,12 @@ code {
 em {
   color: #7f8c8d;
 }
+p {
+  word-spacing: 0.05em;
+}
 .highlight {
   margin: 0;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .highlight table,
 .highlight tr,
@@ -212,6 +215,105 @@ em {
   #main {
     padding: 0 1.4em;
   }
+  .highlight pre {
+    padding: 1.2em 1em;
+  }
+}
+#hero {
+  margin: 5em 2em;
+  text-align: center;
+}
+#hero a.button {
+  width: 180px;
+}
+h1 {
+  font-size: 3em;
+}
+a.button {
+  display: inline-block;
+  margin: 0.5em;
+  font-size: 1.5em;
+  color: #fff !important;
+  font-weight: 400 !important;
+  background-color: #42b983;
+  padding: 0.5em 1.5em;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  border-bottom: 1px solid #3aa373;
+  transition: background-color 0.2s ease-out;
+}
+a.button:hover {
+  background-color: #53c290;
+}
+#features {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+#features .feat {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  width: 200px;
+  margin: 15px 30px;
+}
+#features .feat p {
+  color: #7f8c8d;
+}
+#main {
+  max-width: 720px;
+  width: 80%;
+  margin: 5em auto 3em;
+}
+#features a,
+#main a {
+  color: #42b983;
+  font-weight: 600;
+}
+#learn-more {
+  text-align: center;
+  margin-top: 3em;
+}
+#learn-more a.button {
+  font-size: 1.2em;
+}
+.icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background: url("../images/icons.png");
+  background-size: 400px 80px;
+}
+.icon.fast {
+  background-position: -80px 0;
+}
+.icon.compact {
+  background-position: -160px 0;
+}
+.icon.powerful {
+  background-position: -240px 0;
+}
+.icon.composable {
+  background-position: -320px 0;
+}
+@media screen and (max-width: 420px) {
+  #hero {
+    margin: 3em 0 1em;
+  }
+  #hero h1 {
+    font-size: 2em;
+  }
+  #hero a.button {
+    font-size: 1.2em;
+    margin: 0.5em 0;
+  }
+}
+@media screen and (max-width: 860px) {
+  #features,
+  #hero {
+    font-size: 16px;
+  }
 }
 #main {
   text-align: center;
@@ -252,11 +354,6 @@ em {
 }
 .icon.composable {
   background-position: -320px 0;
-}
-@media screen and (max-width: 860px) {
-  #features {
-    width: auto;
-  }
 }
 /* 定义 */
 .flex-def {

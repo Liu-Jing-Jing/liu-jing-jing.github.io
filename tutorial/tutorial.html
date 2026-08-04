@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>New Tutorial - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link current">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Tutorial</h2>
+    <ul>
+    
+        <li><a href="/tutorial/index.html" class="sidebar-link">Tutorial</a></li>
+    
+        <li><a href="/tutorial/tutorial.html" class="sidebar-link current">New Tutorial</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <p>Flutter widgets are built using a functional-reactive framework, which takes<br>inspiration from <a href="http://facebook.github.io/react/" target="_blank">React</a>. The central idea is<br>that you build your UI out of components. Components describe what their view<br>should look like given their current configuration and state. When a component’s<br>state changes, the component rebuilds its description, which the framework diffs<br>against the previous description in order to determine the minimal changes<br>needed in the underlying render tree to transition from one state to the next.</p>
+<h2 id="Hello_World">Hello World</h2>
+<p>The minimal Flutter app simply calls <code>runApp</code> function with a widget:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="reserved">import</span> <span class="string">'package:flutter/material.dart'</span>;
+<span class="reserved">void</span> main<span class="function"><span class="params">()</span> =&gt;</span> runApp(<span class="keyword">new</span> Center(<span class="attribute">child</span>: <span class="keyword">new</span> Text(<span class="string">'Hello, world!'</span>)));
+</pre></td></tr></table></figure>
+
+<p>The <code>runApp</code> function takes the given <code>Widget</code> and makes it the root of the<br>widget tree. In this example, the widget tree consists of two widgets, the<br><code>Center</code> widget and its child, the <code>Text</code> widget. The framework forces the root<br>widget to cover the screen, which means the text “Hello, world” ends up centered<br>on screen.</p>
+<p>When writing an app, you’ll commonly author new widgets that are subclasses of<br>either <code>StatelessComponent</code> or <code>StatefulComponent</code>, depending on whether your<br>component manages any state. A component’s main job is to implement a <code>build</code><br>function, which describes the component in terms of other, lower-level widgets.<br>The framework will build those components in turn until the process bottoms out<br>in widgets that represent the underlying render object.</p>
+<h2 id="Basic_Widgets">Basic Widgets</h2>
+<p>Flutter comes with a suite of powerful basic widgets, of which the following are<br>very commonly used:</p>
+<ul>
+<li><p><code>Text</code>: The <code>Text</code> widget lets you create a run of styled text within your<br>application.</p>
+</li>
+<li><p><code>Row</code>, <code>Column</code>: These flex widgets let you create flexible layouts in both<br>the horizontal (<code>Row</code>) and vertical (<code>Column</code>) directions. Its design is<br>based on the web’s flexbox layout model.</p>
+</li>
+<li><p><code>Stack</code>: Instead of being linearly oriented (either horizontally or<br>vertically), a <code>Stack</code> widget lets you stack widgets on top of each other in<br>paint order. You can then use the <code>Positioned</code> widget on children of a<br><code>Stack</code> to position them relative to the top, right, bottom, or left edge of<br>the stack. Stacks are based on the web’s absolute positioning layout model.</p>
+</li>
+<li><p><code>Container</code>: The <code>Container</code> widget lets you create rectangular visual<br>element. A container can be decorated with a <code>BoxDecoration</code>, such as a<br>background, a border, or a shadow. A <code>Container</code> can also have margins,<br>padding, and constraints applied to its size. In addition, a <code>Container</code> can<br>be transformed in three dimensional space using a matrix.</p>
+</li>
+</ul>
+<p>Below are some simple components that combine these and other widgets:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:flutter/material.dart';</span>
+
+<span class="class"><span class="keyword">class</span> <span class="type">MyToolBar</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">MyToolBar</span><span class="container">({ <span class="title">this</span>.<span class="title">title</span> })</span>;
+
+  final <span class="type">Widget</span> title;
+
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">Container</span><span class="container">(
+      <span class="title">height</span>: 56.0,
+      <span class="title">padding</span>: <span class="title">const</span> <span class="type">EdgeDims</span>.<span class="title">symmetric</span>(<span class="title">horizontal</span>: 8.0)</span>,
+      decoration: new <span class="type">BoxDecoration</span><span class="container">(
+        <span class="title">backgroundColor</span>: <span class="type">Colors</span>.<span class="title">blue</span>[500]
+      )</span>,
+      child: new <span class="type">Row</span><span class="container">([
+        <span class="title">new</span> <span class="type">IconButton</span>(<span class="title">icon</span>: '<span class="title">navigation</span>/<span class="title">menu'</span>)</span>,
+        new <span class="type">Flexible</span><span class="container">(<span class="title">child</span>: <span class="title">title</span>)</span>,
+        new <span class="type">IconButton</span><span class="container">(<span class="title">icon</span>: '<span class="title">action</span>/<span class="title">search'</span>)</span>,
+      ])
+    );
+  }
+}
+
+<span class="keyword">class</span> <span class="type">MyScaffold</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">Material</span><span class="container">(
+      <span class="title">child</span>: <span class="title">new</span> <span class="type">Column</span>([
+        <span class="title">new</span> <span class="type">MyToolBar</span>(
+          <span class="title">title</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">Example</span> <span class="title">title'</span>, <span class="title">style</span>: <span class="type">Typography</span>.<span class="title">white</span>.<span class="title">title</span>)</span>
+        ),
+        new <span class="type">Flexible</span><span class="container">(
+          <span class="title">child</span>: <span class="title">new</span> <span class="type">Center</span>(
+            <span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">Hello</span>, <span class="title">world</span>!')</span>
+          )
+        )
+      ])
+    );
+  }
+}
+
+void main<span class="container">()</span> =&gt; runApp<span class="container">(<span class="title">new</span> <span class="type">MyScaffold</span>()</span>);</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>MyToolBar</code> component creates a <code>Container</code> with a height of 56<br>device-independent pixels with an internal padding of 8 pixels, both on the left<br>and the right. Inside the container, <code>MyToolBar</code> uses a <code>Row</code> layout to organize<br>its children. The middle child, the <code>title</code> widget, is marked as <code>Flexible</code>,<br>which means it expands to fill any remaining available space that hasn’t been<br>consumed by the inflexible children. You can have multiple <code>Flexible</code> children<br>and determine the ratio in which they consume the available space using the<br><code>flex</code> argument to <code>Flexible</code>.</p>
+<p>The <code>MyScaffold</code> component organizes its children in a vertical column. At the<br>top of the column it places an instance of <code>MyToolBar</code>, passing the tool bar a<br><code>Text</code> widget to use as its title. Passing widgets as arguments to other widgets<br>is a powerful technique that lets you create generic widgets that can be reused<br>in a wide variety of ways. Finally, <code>MyScaffold</code> uses a <code>Flexible</code> to fill the<br>remaining space with its body, which consists a centered message.</p>
+<h2 id="Material_Apps">Material Apps</h2>
+<p>Flutter provides a number of widgets that help you build apps that follow<br>Material Design. A Material Design app start with the <code>MaterialApp</code> widget,<br>which builds a number of useful widgets at the root of your app, including a<br><code>Navigator</code>, which manages a stack of widgets identified by strings, also know<br>as “routes”. The <code>Navigator</code> lets you transition smoothly between screens of<br>your application. Using the <code>MaterialApp</code> widget is entirely optional but a good<br>practice.</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:flutter/material.dart';</span>
+
+<span class="title">void</span> main() {
+  runApp(
+    new <span class="type">MaterialApp</span>(
+      title: '<span class="type">Flutter</span> <span class="type">Tutorial'</span>,
+      routes: {
+        '/': (<span class="type">RouteArguments</span> args) =&gt; new <span class="type">TutorialHome</span>()
+      }
+    )
+  );
+}
+
+<span class="class"><span class="keyword">class</span> <span class="type">TutorialHome</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span>  {
+    return new <span class="type">Scaffold</span><span class="container">(
+      <span class="title">toolBar</span>: <span class="title">new</span> <span class="type">ToolBar</span>(
+        <span class="title">left</span>: <span class="title">new</span> <span class="type">IconButton</span>(<span class="title">icon</span>: '<span class="title">navigation</span>/<span class="title">menu'</span>)</span>,
+        center: new <span class="type">Text</span><span class="container">('<span class="type">Example</span> <span class="title">title'</span>)</span>,
+        right: [ new <span class="type">IconButton</span><span class="container">(<span class="title">icon</span>: '<span class="title">action</span>/<span class="title">search'</span>)</span> ]
+      ),
+      body: new <span class="type">Center</span><span class="container">(
+        <span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">Hello</span>, <span class="title">world</span>!')</span>
+      ),
+      floatingActionButton: new <span class="type">FloatingActionButton</span><span class="container">(
+        <span class="title">child</span>: <span class="title">new</span> <span class="type">Icon</span>(<span class="title">icon</span>: '<span class="title">content</span>/<span class="title">add'</span>)</span>
+      )
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>Now that we’ve switched from <code>MyToolBar</code> and <code>MyScaffold</code> to the <code>ToolBar</code> and<br><code>Scaffold</code> widgets from <code>material.dart</code>, our app is starting to look at bit more<br>like Material Design. For example, the tool bar has a shadow and the title text<br>inherits the correct styling automatically. We’ve also added a floating action<br>button for good measure.</p>
+<p>Notice that we’re again passing widgets as arguments to other widgets. The<br><code>Scaffold</code> widget takes a number of different named widget arguments, each of<br>which is places in its layout in the appropriate place. Similarly, the <code>ToolBar</code><br>widget lets us pass in widgets for the <code>left</code> and the <code>right</code> of the <code>center</code><br>widget. This pattern recurs throughout the framework and is something you might<br>consider when designing your own components.</p>
+<h2 id="User_input">User input</h2>
+<p>In addition to being stunningly beautiful, most applications react to user<br>input. The first step in building an interactive application is to detect<br>input gestures. Let’s see how that works by creating a simple button:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="type">MyButton</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">GestureDetector</span><span class="container">(
+      <span class="title">onTap</span>: ()</span> {
+        print<span class="container">('<span class="type">MyButton</span> <span class="title">was</span> <span class="title">tapped</span>!')</span>;
+      },
+      child: new <span class="type">Container</span><span class="container">(
+        <span class="title">height</span>: 36.0,
+        <span class="title">padding</span>: <span class="title">const</span> <span class="type">EdgeDims</span>.<span class="title">all</span>(8.0)</span>,
+        margin: const <span class="type">EdgeDims</span>.symmetric<span class="container">(<span class="title">horizontal</span>: 8.0)</span>,
+        decoration: new <span class="type">BoxDecoration</span><span class="container">(
+          <span class="title">borderRadius</span>: 5.0,
+          <span class="title">backgroundColor</span>: <span class="type">Colors</span>.<span class="title">lightGreen</span>[500]
+        )</span>,
+        child: new <span class="type">Center</span><span class="container">(
+          <span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">Engage</span>')</span>
+        )
+      )
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>GestureDetector</code> widget doesn’t have an visual representation but instead<br>detects gestures made by the user. When the user taps the <code>Container</code>, the<br><code>GestureDetector</code> will call its <code>onTap</code> callback, in this case printing a<br>message to the console. You can use <code>GestureDetector</code> to detect a variety of<br>input gestures, including taps, drags, and scales.</p>
+<p>Many components use a <code>GestureDetector</code> to provide optional callbacks for other<br>components. For example, the <code>IconButton</code>, <code>RaisedButton</code>, and<br><code>FloatingActionButton</code> components have <code>onPressed</code> callbacks that are triggered<br>when the user taps the widget.</p>
+<h2 id="Managing_State">Managing State</h2>
+<p>Thus far, we’ve used only stateless components. Stateless components receive<br>arguments from their parent component, which they store in <code>final</code> member<br>variables. When a component is asked to <code>build</code>, it uses these stored values to<br>derive new arguments for the widgets it creates.</p>
+<p>In order to build more complex experiences, however - for example, to react<br>in more interesting ways to user input - applications will typically carry some<br>state. Flutter uses StatefulComponents to capture this idea. StatefulComponents<br>are special widgets that know how to generate State objects, which are then<br>used to hold state. Consider this basic example, using the <code>RaisedButton</code><br>mentioned earlier:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="keyword">extends</span> <span class="title">StatefulComponent</span> </span>{
+  Counter({ Key key }) : <span class="keyword">super</span>(key: key);
+  _CounterState createState() =&gt; <span class="keyword">new</span> _CounterState();
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">_CounterState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">Counter</span>&gt; </span>{
+  <span class="keyword">int</span> _count = <span class="number">0</span>;
+
+  <span class="keyword">void</span> _increment() {
+    setState(() { ++_count; });
+  }
+
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Row([
+      <span class="keyword">new</span> RaisedButton(
+        onPressed: _increment,
+        child: <span class="keyword">new</span> Text(<span class="string">'Increment'</span>)
+      ),
+      <span class="keyword">new</span> Text(<span class="string">'Count: $_count'</span>)
+    ]);
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>You might wonder why StatefulComponent and State are separate objects. In<br>Flutter, these two types of objects have different life cycles. Widgets are<br>temporary objects, used to construct a presentation of the application in its<br>current state. State objects on the other hand are persistent between calls to<br><code>build()</code>, allowing them to remember information.</p>
+<p>The example above accepts user input and directly uses the result in its<br>build method.  In more complex applications, different parts of the widget<br>hierarchy might be responsible for different concerns; for example, one<br>component might present a complex user interface with the goal of gathering<br>specific information, such as a date or location, while another component might<br>use that information to change the overall presentation.</p>
+<p>In Flutter, change notifications flow “up” the component heirarchy by way of<br>callbacks, while current state flows “down” to the stateless components that do<br>presentation. The common parent that redirects this flow is the State. Let’s<br>see how that works in practice, with this slightly more complex example:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">CounterDisplay</span> <span class="inheritance"><span class="keyword">extends</span> </span><span class="title">StatelessComponent</span> {</span>
+  CounterDisplay({ Key key, this.<span class="keyword">count</span> }) : <span class="keyword">super</span>(key: key);
+  <span class="keyword">final</span> <span class="keyword">int</span> <span class="keyword">count</span>;
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Text(<span class="string">'Count: $count'</span>);
+  }
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">CounterIncrementor</span> <span class="inheritance"><span class="keyword">extends</span> </span><span class="title">StatelessComponent</span> {</span>
+  CounterIncrementor({ Key key, this.onPressed }) : <span class="keyword">super</span>(key: key);
+  <span class="keyword">final</span> VoidCallback onPressed;
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> RaisedButton(
+      onPressed: onPressed,
+      child: <span class="keyword">new</span> Text(<span class="string">'Increment'</span>)
+    );
+  }
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">Counter</span> <span class="inheritance"><span class="keyword">extends</span> </span><span class="title">StatefulComponent</span> {</span>
+  Counter({ Key key }) : <span class="keyword">super</span>(key: key);
+  _CounterState createState() =&gt; <span class="keyword">new</span> _CounterState();
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">_CounterState</span> <span class="inheritance"><span class="keyword">extends</span> </span><span class="title">State</span>&lt;<span class="title">Counter</span>&gt; {</span>
+  <span class="keyword">int</span> _count = <span class="number">0</span>;
+
+  <span class="keyword">void</span> _increment() {
+    setState(() { ++_count; });
+  }
+
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Row([
+      <span class="keyword">new</span> CounterIncrementor(
+        onPressed: _increment
+      ),
+      <span class="keyword">new</span> CounterDisplay(<span class="keyword">count</span>: _count)
+    ]);
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>Notice how Counter now delegates responsibility for incrementing and displaying<br>the counter value down to CounterIncrementor and CounterDisplay, respectively.<br>Although the net result is the same as the previous example, the delegation of<br>responsibility allows greater complexity to be encapsulated in the delegated<br>components, while maintaining simplicity in the parent.</p>
+<h2 id="Bringing_it_All_Together">Bringing it All Together</h2>
+<p>Let’s consider a more complete example that brings together the concepts<br>introduced above. We’ll work with a hypothetical shopping application, which<br>displays various products offered for sale and maintains a shopping cart for<br>intended purchases. Let’s start by defining our presentation class,<br><code>ShoppingListItem</code>:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="type">Product</span> {
+  const <span class="type">Product</span><span class="container">({ <span class="title">this</span>.<span class="title">name</span> })</span>;
+  final <span class="type">String</span> name;
+}
+
+typedef void <span class="type">CartChangedCallback</span><span class="container">(<span class="type">Product</span> <span class="title">product</span>, <span class="title">bool</span> <span class="title">inCart</span>)</span>;
+
+<span class="keyword">class</span> <span class="type">ShoppingListItem</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">ShoppingListItem</span><span class="container">({ <span class="type">Product</span> <span class="title">product</span>, <span class="title">this</span>.<span class="title">inCart</span>, <span class="title">this</span>.<span class="title">onCartChanged</span> })</span>
+    : product = product, super<span class="container">(<span class="title">key</span>: <span class="title">new</span> <span class="type">ObjectKey(product)</span>)</span>;
+
+  final <span class="type">Product</span> product;
+  final bool inCart;
+  final <span class="type">CartChangedCallback</span> onCartChanged;
+
+  <span class="type">Color</span> _getColor<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return inCart ? <span class="type">Colors</span>.black54 : <span class="type">Theme</span>.of<span class="container">(<span class="title">context</span>)</span>.primaryColor;
+  }
+
+  <span class="type">TextStyle</span> _getTextStyle<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    if <span class="container">(<span class="title">inCart</span>)</span> {
+      return <span class="type">DefaultTextStyle</span>.of<span class="container">(<span class="title">context</span>)</span>.copyWith<span class="container">(
+          <span class="title">color</span>: <span class="type">Colors</span>.<span class="title">black54</span>, <span class="title">decoration</span>: <span class="title">lineThrough</span>)</span>;
+    }
+    return null;
+  }
+
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">ListItem</span><span class="container">(
+      <span class="title">onTap</span>: ()</span> =&gt; onCartChanged<span class="container">(<span class="title">product</span>, !<span class="title">inCart</span>)</span>,
+      left: new <span class="type">CircleAvatar</span><span class="container">(
+        <span class="title">backgroundColor</span>: <span class="title">_getColor</span>(<span class="title">context</span>)</span>,
+        label: product.name[0]
+      ),
+      center: new <span class="type">Text</span><span class="container">(<span class="title">product</span>.<span class="title">name</span>, <span class="title">style</span>: <span class="title">_getTextStyle</span>(<span class="title">context</span>)</span>)
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>ShoppingListItem</code> component follows a common pattern for stateless<br>components. It stores the values it receives in its constructor in <code>final</code><br>member variables, which it then uses during its <code>build</code> function. For example,<br>the <code>inCart</code> boolean to toggle between two visual appearances: one that uses the<br>primary color from the current theme and another that uses gray.</p>
+<p>When the user taps the list item, the component doesn’t modify its <code>inCart</code><br>value directly. Instead, the component calls the <code>onCartChanged</code> function it<br>received from its parent component. This pattern lets you store state higher in<br>the component hierarchy, which causes the state to persist for longer periods of<br>time. In the extreme, the state stored on the component passed to <code>runApp</code><br>persists for the lifetime of the application.</p>
+<p>When the parent receives the <code>onCartChanged</code> callback, the parent will update<br>its internal state, which will trigger the parent to rebuild and create a new<br>instance of <code>ShoppingListItem</code> with the new <code>inCart</code> value. Although the parent<br>creates a new instance of <code>ShoppingListItem</code> when it rebuilds, that operation is<br>cheap because the framework compares the newly built widgets with the previously<br>built widgets and applies only the differences to the underlying render objects.</p>
+<p>Let’s look at an example parent widget that stores mutable state:</p>
+<p>&lt;!—<br>class Product {<br>  const Product({ this.name });<br>  final String name;<br>}</p>
+<p>class ShoppingListItem extends StatelessComponent {<br>  ShoppingListItem({ Product product, bool inCart, Function onCartChanged });<br>  Widget build(BuildContext context) =&gt; null;<br>}<br>—&gt;</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="type">ShoppingList</span> extends <span class="type">StatefulComponent</span> {
+  <span class="type">ShoppingList</span><span class="container">({ <span class="type">Key</span> <span class="title">key</span>, <span class="title">this</span>.<span class="title">products</span> })</span> : super<span class="container">(<span class="title">key</span>: <span class="title">key</span>)</span>;
+
+  final <span class="type">List</span>&lt;<span class="type">Product</span>&gt; products;
+
+  _ShoppingListState createState<span class="container">()</span> =&gt; new _ShoppingListState<span class="container">()</span>;
+}
+
+<span class="keyword">class</span> _ShoppingListState extends <span class="type">State</span>&lt;<span class="type">ShoppingList</span>&gt; {
+  <span class="type">Set</span>&lt;<span class="type">Product</span>&gt; _shoppingCart = new <span class="type">Set</span>&lt;<span class="type">Product</span>&gt;<span class="container">()</span>;
+
+  void _handleCartChanged<span class="container">(<span class="type">Product</span> <span class="title">product</span>, <span class="title">bool</span> <span class="title">inCart</span>)</span> {
+    setState<span class="container">(()</span> {
+      if <span class="container">(<span class="title">inCart</span>)</span>
+        _shoppingCart.add<span class="container">(<span class="title">product</span>)</span>;
+      else
+        _shoppingCart.remove<span class="container">(<span class="title">product</span>)</span>;
+    });
+  }
+
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span>  {
+    return new <span class="type">Scaffold</span><span class="container">(
+      <span class="title">toolBar</span>: <span class="title">new</span> <span class="type">ToolBar</span>(
+        <span class="title">center</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">Shopping</span> <span class="type">List</span>')</span>
+      ),
+      body: new <span class="type">MaterialList</span>&lt;<span class="type">Product</span>&gt;<span class="container">(
+        <span class="title">type</span>: <span class="type">MaterialListType</span>.<span class="title">oneLineWithAvatar</span>,
+        <span class="title">items</span>: <span class="title">config</span>.<span class="title">products</span>,
+        <span class="title">itemBuilder</span>: (<span class="type">BuildContext</span> <span class="title">context</span>, <span class="type">Product</span> <span class="title">product</span>)</span> {
+          return new <span class="type">ShoppingListItem</span><span class="container">(
+            <span class="title">product</span>: <span class="title">product</span>,
+            <span class="title">inCart</span>: <span class="title">_shoppingCart</span>.<span class="title">contains</span>(<span class="title">product</span>)</span>,
+            onCartChanged: _handleCartChanged
+          );
+        }
+      )
+    );
+  }
+}
+
+void main<span class="container">()</span> {
+  runApp<span class="container">(<span class="title">new</span> <span class="type">MaterialApp</span>(
+    <span class="title">title</span>: '<span class="type">Shopping</span> <span class="type">List</span>',
+    <span class="title">routes</span>: {
+      '/': (<span class="type">RouteArguments</span> <span class="title">args</span>)</span> =&gt; new <span class="type">ShoppingList</span><span class="container">(
+        <span class="title">products</span>: [
+          <span class="title">new</span> <span class="type">Product</span>(<span class="title">name</span>: '<span class="type">Eggs</span>')</span>,
+          new <span class="type">Product</span><span class="container">(<span class="title">name</span>: '<span class="type">Flour</span>')</span>,
+          new <span class="type">Product</span><span class="container">(<span class="title">name</span>: '<span class="type">Chocolate</span> <span class="title">chips'</span>)</span>,
+        ]
+      )
+    }
+  ));
+}</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>ShoppingList</code> class extends <code>StatefulComponent</code>, which means this component<br>stores mutable state. When the <code>ShoppingList</code> component is first inserted into<br>the tree, the framework calls the <code>createState</code> function to create a fresh<br>instance of <code>_ShoppingListState</code> to associate with that location in the tree.<br>(Notice that we typically name subclasses of <code>State</code> with leading underscores to<br>indicate that they are private implementation details.) When this component’s<br>parent rebuilds, the parent will create a new instance of <code>ShoppingList</code>, but<br>the framework will reuse the <code>_ShoppingListState</code> instance that is already in<br>the tree rather than calling <code>createState</code> again.</p>
+<p>To access properties of the current <code>ShoppingList</code>, the <code>_ShoppingListState</code> can<br>use its <code>config</code> property. If the parent rebuilds and creates a new<br><code>ShoppingList</code>, the <code>_ShoppingListState</code> will also rebuild with the new <code>config</code><br>value. If you wish to be notified when the <code>config</code> property changes, you can<br>override the <code>didUpdateConfig</code> function, which is passed the <code>oldConfig</code> to let<br>you compare the old configuration with the current <code>config</code>.</p>
+<p>When handling the <code>onCartChanged</code> callback, the <code>_ShoppingListState</code> mutates its<br>internal state by either adding or removing a product from <code>_shoppingCart</code>. To<br>signal to the framework that it changes its internal state, it wraps those calls<br>in a <code>setState</code> call. Calling <code>setState</code> marks this component as dirty and<br>schedules it to be rebuilt the next time your app needs to update the screen. If<br>you forget to call <code>setState</code> when modifying the internal state of a component,<br>the framework won’t know your component is dirty and might not call the<br>component’s <code>build</code> function, which means the user interface might not update to<br>reflect the changed state.</p>
+<p>By managing state in this way, you don’t need to write separate code for<br>creating and updating subcomponents. Instead, you simply implement the build<br>function, which handles both situations.</p>
+<h2 id="initState_and_dispose">initState and dispose</h2>
+<p>After calling <code>createState</code> on the StatefulComponent, the framework inserts the<br>new state object into the tree and then calls <code>initState</code> on the state object.<br>A subclass of <code>State</code> can override <code>initState</code> to do work that needs to happen<br>just once. For example, you can override <code>initState</code> to configure animations or<br>to subscribe to platform services. Implementations of <code>initState</code> are required<br>to start by calling <code>super.initState</code>.</p>
+<p>When a state object is no longer needed, the framework calls <code>dispose</code> on the<br>state object. You can override the <code>dispose</code> function to do cleanup work. For<br>example, you can override <code>dispose</code> to cancel timers or to unsubscribe from<br>platform services. Implementations of <code>dispose</code> typically end by calling<br><code>super.dispose</code>.</p>
+<h2 id="Keys">Keys</h2>
+<p>You can use keys to control which widgets the framework with match up with which<br>other widgets when a component rebuilds. By default, the framework matches<br>widgets in the current and previous build according to their <code>runtimeType</code> and<br>the order in which they appear. With keys, the framework requires that the two<br>widgets have the same <code>key</code> as well as the same <code>runtimeType</code>.</p>
+<p>Keys are most useful in components that build many instances of the same type of<br>widget. For example, the <code>ShoppingList</code> component, which builds just enough<br><code>ShoppingListItem</code> instances to fill its visible region:</p>
+<ul>
+<li><p>Without keys, the first entry in the current build would always sync with the<br>first entry in the previous build, even if, semantically, the first entry in<br>the list just scrolled off screen and is no longer visible in the viewport.</p>
+</li>
+<li><p>By assigning each entry in the list a “semantic” key, the infinite list can<br>be more efficient because the framework will sync entries with matching<br>semantic keys and therefore similar (or identical) visual appearances.<br>Moreover, syncing the entries semantically means that state retained in<br>stateful subcomponents will remain attached to the same semantic entry rather<br>than the entry in the same numerical position in the viewport.</p>
+</li>
+</ul>
+<h2 id="Global_Keys">Global Keys</h2>
+<p>You can use global keys to uniquely identify child widgets. Global keys must be<br>globally unique across the entire widget hierarchy, unlike local keys which need<br>only be unique among siblings. Because they are globally unique, a global key<br>can be used to retrieve the state associated with a widget.</p>
+<p>Some widgets, such as <code>Input</code> require global keys because they can hold focus,<br>which means they receive any text the user enters into the app. The <code>Focus</code><br>widget keeps track of which <code>InputState</code> object is focused by remembering its<br><code>GlobalKey</code>. That way the same <code>Input</code> widget remains focused even if it moves<br>around in the widget tree.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

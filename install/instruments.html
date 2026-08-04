@@ -25,8 +25,11 @@
     </a>
     <ul id="nav">
         <li><a href="/install/" class="nav-link current">Install</a></li>
-        <li><a href="/guide/" class="nav-link">Guide</a></li>
-        <li><a href="/api/" class="nav-link">API Reference</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
         <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
@@ -46,9 +49,8 @@
 </div>
 
 <div class="content with-sidebar">
-    <h1>Instruments</h1>
     <h1 id="Flutter_2015">Flutter 2015</h1>
-<p>Sky widgets are built using a functional-reactive framework, which takes<br>inspiration from <a href="http://facebook.github.io/react/" target="_blank">React</a>. The central idea is<br>that you build your UI out of components. Components describe what their view<br>should look like given their current configuration and state. When a component’s<br>state changes, the component rebuilds its description, which the framework diffs<br>against the previous description in order to determine the minimal changes<br>needed in the underlying render tree to transition from one state to the next.</p>
+<p>Flutter widgets are built using a functional-reactive framework, which takes<br>inspiration from <a href="http://facebook.github.io/react/" target="_blank">React</a>. The central idea is<br>that you build your UI out of components. Components describe what their view<br>should look like given their current configuration and state. When a component’s<br>state changes, the component rebuilds its description, which the framework diffs<br>against the previous description in order to determine the minimal changes<br>needed in the underlying render tree to transition from one state to the next.</p>
 <h2 id="Hello_World">Hello World</h2>
 <p>To build an application, create a subclass of <code>App</code> and instantiate it:</p>
 <figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
@@ -77,7 +79,7 @@
 
 <p>An app is comprised of (and is, itself, a) widgets. The most commonly authored<br>widgets are, like <code>App</code>, subclasses of <code>Component</code>.  A component’s main job is<br>to implement <code>Widget build()</code> by returning newly-created instances of other<br>widgets. If a component builds other components, the framework will build those<br>components in turn until the process bottoms out in a collection of basic<br>widgets, such as those in <code>sky/widgets/basic.dart</code>. In the case of<br><code>HelloWorldApp</code>, the <code>build</code> function simply returns a new <code>Text</code> node, which is<br>a basic widget representing a string of text.</p>
 <h2 id="Basic_Widgets">Basic Widgets</h2>
-<p>Sky comes with a suite of powerful basic widgets, of which the following are<br>very commonly used:</p>
+<p>Flutter comes with a suite of powerful basic widgets, of which the following are<br>very commonly used:</p>
 <ul>
 <li><p><code>Text</code>: The <code>Text</code> widget lets you create a run of styled text within your<br>application.</p>
 </li>
@@ -441,9 +443,9 @@ final BoxDecoration _decoration = <span class="keyword">new</span> BoxDecoration
 <h2 id="Widgets_for_Applications">Widgets for Applications</h2>
 <p>There are some widgets that do not correspond to on-screen pixels but that are<br>nonetheless useful for building applications.</p>
 <ul>
-<li><code>Theme</code>: Takes a <a href="../theme/README.md">ThemeData</a> object in its <code>data</code> argument, to configure the Material Design theme of the rest of the application (as given in the <code>child</code> argument).</li>
-<li><code>TaskDescription</code>: Takes a <code>label</code> that names the application for the purpose of the Android task switcher. The colour of the application as used in the system UI is taken from the current <code>Theme</code>.</li>
-<li><code>Navigator</code>: Takes a single argument, which must be a long-lived instance of <code>NavigatorState</code>. This object choreographs how the application goes from screen to screen (e.g. from the main screen to a settings screen), as well as modal dialogs, drawer state, and anything else that responds to the system “back” button. By convention the <code>NavigatorState</code> object is a private member variable of the class that inherits from <code>App</code>, initialized in the <code>initState()</code> function. The <code>NavigatorState</code> constructor takes a list of <code>Route</code> objects, each of which takes a <code>name</code> argument giving a path to identify the window (e.g. “/“ for the home screen, “/settings” for the settings screen, etc), and a <code>builder</code> argument that takes a method which itself takes a <code>navigator</code> argument and a <code>route</code> argument and returns a <code>Widget</code> representing that screen.</li>
+<li><code>Theme</code>: Takes a <a href="http://domokit.github.io/docs/sky/theme_data/ThemeData/ThemeData.html" target="_blank">ThemeData</a><br>object in its <code>data</code> argument, to configure the Material Design theme of the<br>rest of the application (as given in the <code>child</code> argument).</li>
+<li><code>Title</code>: Takes a <code>title</code> that names the application for the purpose of the<br> Android task switcher. The color of the application as used in the system UI<br> is taken from the current <code>Theme</code>.</li>
+<li><code>Navigator</code>: Takes a single argument, which must be a long-lived instance of<br><code>NavigatorState</code>. This object choreographs how the application goes from<br>screen to screen (e.g. from the main screen to a settings screen), as well as<br>modal dialogs, drawer state, and anything else that responds to the system “back”<br>button. By convention the <code>NavigatorState</code> object is a private member variable<br>of the class that inherits from <code>App</code>, initialized in the <code>initState()</code> function.<br>The <code>NavigatorState</code> constructor takes a list of <code>Route</code> objects, each of which<br>takes a <code>name</code> argument giving a path to identify the window (e.g. “/“ for the<br>home screen, “/settings” for the settings screen, etc), and a <code>builder</code> argument<br>that takes a method which itself takes a <code>navigator</code> argument and a <code>route</code><br>argument and returns a <code>Widget</code> representing that screen.</li>
 </ul>
 <p>Putting this together, a basic application becomes:</p>
 <figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
@@ -502,8 +504,8 @@ final BoxDecoration _decoration = <span class="keyword">new</span> BoxDecoration
       <span class="title">data</span>: <span class="title">new</span> <span class="type">ThemeData</span>(
         <span class="title">brightness</span>: <span class="type">ThemeBrightness</span>.<span class="title">light</span>
       )</span>,
-      child: new <span class="type">TaskDescription</span><span class="container">(
-        <span class="title">label</span>: '<span class="type">Sky</span> <span class="type">Demo</span>',
+      child: new <span class="type">Title</span><span class="container">(
+        <span class="title">title</span>: '<span class="type">Tutorial</span>',
         <span class="title">child</span>: <span class="title">new</span> <span class="type">Navigator(_state)</span>
       )</span>
     );
@@ -1033,10 +1035,12 @@ route: {
 </div>
         </div>
         <script>
-            var main = document.getElementById('main')
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
             if (document.querySelector('.sidebar')) {
                 window.addEventListener('scroll', function () {
-                    var top = document.body.scrollTop
+                    var top = doc && doc.scrollTop || body.scrollTop
                     if (top > 94) {
                         main.className = 'fix-sidebar'
                     } else {

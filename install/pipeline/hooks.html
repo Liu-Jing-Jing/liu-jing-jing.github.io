@@ -25,15 +25,17 @@
     </a>
     <ul id="nav">
         <li><a href="/install/" class="nav-link current">Install</a></li>
-        <li><a href="/guide/" class="nav-link">Guide</a></li>
-        <li><a href="/api/" class="nav-link">API Reference</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
         <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
         <div id="main">
             
 <div class="content">
-    <h1></h1>
     <h1 id="Transition_Hooks">Transition Hooks</h1>
 <p>A <code>&lt;router-view&gt;</code> component involved in a transition can control / react to the transition by implementing appropriate transition pipeline hooks. These hooks include:</p>
 <ul>
@@ -149,10 +151,12 @@ route: {
 </div>
         </div>
         <script>
-            var main = document.getElementById('main')
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
             if (document.querySelector('.sidebar')) {
                 window.addEventListener('scroll', function () {
-                    var top = document.body.scrollTop
+                    var top = doc && doc.scrollTop || body.scrollTop
                     if (top > 94) {
                         main.className = 'fix-sidebar'
                     } else {

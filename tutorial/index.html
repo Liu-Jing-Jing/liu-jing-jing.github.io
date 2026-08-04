@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tutorial - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link current">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Tutorial</h2>
+    <ul>
+    
+        <li><a href="/tutorial/index.html" class="sidebar-link current">Tutorial</a></li>
+    
+        <li><a href="/tutorial/tutorial.html" class="sidebar-link">New Tutorial</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <p>Flutter widgets are built using a functional-reactive framework, which takes<br>inspiration from <a href="http://facebook.github.io/react/" target="_blank">React</a>. The central idea is<br>that you build your UI out of components. Components describe what their view<br>should look like given their current configuration and state. When a component’s<br>state changes, the component rebuilds its description, which the framework diffs<br>against the previous description in order to determine the minimal changes<br>needed in the underlying render tree to transition from one state to the next.</p>
+<h2 id="Hello_World">Hello World</h2>
+<p>To build an application, simply call the <code>runApp</code> function with a widget:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="reserved">import</span> <span class="string">'package:flutter/material.dart'</span>;
+<span class="reserved">void</span> main<span class="function"><span class="params">()</span> =&gt;</span> runApp(<span class="keyword">new</span> Center(<span class="attribute">child</span>: <span class="keyword">new</span> Text(<span class="string">'Hello, world!'</span>)));
+</pre></td></tr></table></figure>
+
+<p>An app is comprised of a tree of widgets. The most commonly authored<br>widgets are subclasses of either <code>StatelessComponent</code> or <code>StatefulComponent</code>,<br>depending on whether the component manages any state. A component’s main job is<br>to implement <code>Widget build(BuildContext context)</code> by returning instances of<br>other widgets. If a component builds other components, the framework will build<br>those components in turn until the process bottoms out in widgets that<br>represent the underlying render object. In the example above, we use the<br><code>Center</code> and <code>Text</code> widgets to display a string of text in the center of the<br>screen.</p>
+<h2 id="Basic_Widgets">Basic Widgets</h2>
+<p>Flutter comes with a suite of powerful basic widgets, of which the following are<br>very commonly used:</p>
+<ul>
+<li><p><code>Text</code>: The <code>Text</code> widget lets you create a run of styled text within your<br>application.</p>
+</li>
+<li><p><code>Row</code>, <code>Column</code>: These flex widgets let you create flexible layouts in both<br>the horizontal (<code>Row</code>) and vertical (<code>Column</code>) directions. Its design is<br>based on the web’s flexbox layout model.</p>
+</li>
+<li><p><code>Container</code>: The <code>Container</code> widget lets you create rectangular visual<br>element. A container can be decorated with a <code>BoxDecoration</code>, such as a<br>background, a border, or a shadow. A <code>Container</code> can also have margins,<br>padding, and constraints applied to its size. In addition, a <code>Container</code> can<br>be transformed in three dimensional space using a matrix.</p>
+</li>
+<li><p><code>NetworkImage</code>: The <code>NetworkImage</code> widget lets you display an image,<br>referenced using a URL. The underlying image is cached, which means if<br>several <code>NetworkImage</code> widgets refer to the same URL, they’ll share the<br>underlying image resource.</p>
+</li>
+</ul>
+<p>Below is a simple toolbar example that shows how to combine these widgets:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:flutter/material.dart';</span>
+
+<span class="class"><span class="keyword">class</span> <span class="type">MyToolBar</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">Container</span><span class="container">(
+      <span class="title">height</span>: 56.0,
+      <span class="title">padding</span>: <span class="title">const</span> <span class="type">EdgeDims</span>.<span class="title">symmetric</span>(<span class="title">horizontal</span>: 8.0)</span>,
+      child: new <span class="type">Material</span><span class="container">(
+        <span class="title">child</span>: <span class="title">new</span> <span class="type">Row</span>([
+          <span class="title">new</span> <span class="type">NetworkImage</span>(<span class="title">src</span>: '<span class="title">menu</span>.<span class="title">png'</span>, <span class="title">width</span>: 25.0, <span class="title">height</span>: 25.0)</span>,
+          new <span class="type">Flexible</span><span class="container">(<span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('<span class="type">My</span> <span class="title">awesome</span> <span class="title">toolbar'</span>)</span>),
+          new <span class="type">NetworkImage</span><span class="container">(<span class="title">src</span>: '<span class="title">search</span>.<span class="title">png'</span>, <span class="title">width</span>: 25.0, <span class="title">height</span>: 25.0)</span>,
+        ])
+      )
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>The <code>MyToolBar</code> component creates a <code>Container</code> with a height of 56<br>device-independent pixels with an internal padding of 8 pixels, both on the left<br>and the right. Inside the container, <code>MyToolBar</code> uses <code>Material</code> to paint a<br>Material Design themed background and a <code>Row</code> layout to organize its children.<br>The middle child, the <code>Text</code> widget, is marked as <code>Flexible</code>, which means it<br>expands to fill any remaining available space that hasn’t been consumed by the<br>inflexible children. You can have multiple <code>Flexible</code> children and determine the<br>ratio in which they consume the available space using the <code>flex</code> argument to<br><code>Flexible</code>.</p>
+<p>To use this component, we simply create an instance of <code>MyToolBar</code> in a <code>build</code><br>function:</p>
+<p><!--
+class MyToolBar extends ToolBar {
+}
+--></p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">TutorialHome</span> <span class="keyword">extends</span> <span class="title">StatelessComponent</span> </span>{
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Center(child: <span class="keyword">new</span> MyToolBar());
+  }
+}
+
+<span class="keyword">void</span> main() {
+  runApp(<span class="keyword">new</span> MaterialApp(
+    title: <span class="string">'Tutorial app'</span>,
+    routes: {
+      <span class="string">'/'</span>: (RouteArguments args) =&gt; <span class="keyword">new</span> TutorialHome()
+    }
+  ));
+}
+</pre></td></tr></table></figure>
+
+<p>Notice that we’ve passed an instance of the <code>MaterialApp</code> widget to <code>runApp</code>.<br>The <code>MaterialApp</code> widget builds a number of useful components at the root of<br>your application, including a <code>Navigator</code>, which manages a stack of widgets<br>identified by strings, also know as “routes”. The <code>Navigator</code> lets you<br>transition smoothly between screens of your application. Using the <code>MaterialApp</code><br>widget is entirely optional but a good practice.</p>
+<p>Here, we’ve used the <code>Center</code> widget to center the toolbar within the view, both<br>vertically and horizontally. If we didn’t center the toolbar, it would fill the<br>view, both vertically and horizontally, because the root widget is sized to fill<br>the view.</p>
+<h2 id="Detecting_user_input">Detecting user input</h2>
+<p>In addition to being stunningly beautiful, most applications react to user<br>input. The first step in building an interactive application is to detect<br>input gestures. Let’s see how that works by creating a simple button:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+</pre></td><td class="code"><pre><span class="reserved">import</span> <span class="string">'package:flutter/material.dart'</span>;
+<span class="reserved">import</span> <span class="string">'package:flutter/painting.dart'</span>;
+
+final BoxDecoration _decoration = <span class="keyword">new</span> BoxDecoration(
+  <span class="attribute">borderRadius</span>: <span class="number">5.0</span>,
+  <span class="attribute">gradient</span>: <span class="keyword">new</span> LinearGradient(
+    <span class="attribute">begin</span>: Point.origin,
+    <span class="attribute">end</span>: <span class="reserved">const</span> Point(<span class="number">0.0</span>, <span class="number">36.0</span>),
+    <span class="attribute">colors</span>: [ <span class="reserved">const</span> Color(<span class="number">0xFFEEEEEE</span>), <span class="reserved">const</span> Color(<span class="number">0xFFCCCCCC</span>) ]
+  )
+);
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyButton</span> <span class="keyword">extends</span> <span class="title">StatelessComponent</span> {</span>
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> GestureDetector(
+      <span class="attribute">onTap</span>: () {
+        <span class="built_in">print</span>(<span class="string">'MyButton was tapped!'</span>);
+      },
+      <span class="attribute">child</span>: <span class="keyword">new</span> Container(
+        <span class="attribute">height</span>: <span class="number">36.0</span>,
+        <span class="attribute">padding</span>: <span class="reserved">const</span> EdgeDims.all(<span class="number">8.0</span>),
+        <span class="attribute">margin</span>: <span class="reserved">const</span> EdgeDims.symmetric(<span class="attribute">horizontal</span>: <span class="number">8.0</span>),
+        <span class="attribute">decoration</span>: _decoration,
+        <span class="attribute">child</span>: <span class="keyword">new</span> Center(
+          <span class="attribute">child</span>: <span class="keyword">new</span> Text(<span class="string">'Engage'</span>)
+        )
+      )
+    );
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>The <code>GestureDetector</code> widget doesn’t have an visual representation but instead<br>detects gestures made by the user. When the user taps the <code>Container</code>, the<br><code>GestureDetector</code> will call its <code>onTap</code> callback, in this case printing a<br>message to the console. You can use <code>GestureDetector</code> to detect a variety of<br>input gestures, including taps, drags, and scales.</p>
+<h2 id="Generic_Components">Generic Components</h2>
+<p>One of the most powerful features of components is the ability to pass around<br>references to already-built widgets and reuse them in your <code>build</code> function. For<br>example, we wouldn’t want to define a new button component every time we wanted<br>a button with a novel label:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="type">MyButton</span> extends <span class="type">StatelessComponent</span> {
+  <span class="type">MyButton</span><span class="container">({ <span class="title">this</span>.<span class="title">child</span>, <span class="title">this</span>.<span class="title">onPressed</span> })</span>;
+
+  final <span class="type">Widget</span> child;
+  final <span class="type">Function</span> onPressed;
+
+  <span class="type">BoxDecoration</span> _decoration;
+
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">GestureDetector</span><span class="container">(
+      <span class="title">onTap</span>: <span class="title">onPressed</span>,
+      <span class="title">child</span>: <span class="title">new</span> <span class="type">Container</span>(
+        <span class="title">height</span>: 36.0,
+        <span class="title">padding</span>: <span class="title">const</span> <span class="type">EdgeDims</span>.<span class="title">all</span>(8.0)</span>,
+        margin: const <span class="type">EdgeDims</span>.symmetric<span class="container">(<span class="title">horizontal</span>: 8.0)</span>,
+        decoration: _decoration,
+        child: new <span class="type">Center</span><span class="container">(<span class="title">child</span>: <span class="title">child</span>)</span>
+      )
+    );
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>Rather than providing the button’s label as a <code>String</code>, we’ve let the code that<br>uses <code>MyButton</code> provide an arbitrary <code>Widget</code> to put inside the button. For<br>example, we can put an elaborate layout involving text and an image inside the<br>button:</p>
+<p><!--
+class MyButton extends FloatingActionButton {
+  MyButton({Widget child}) : super(child: child);
+}
+--></p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> MyButton(
+      <span class="attribute">child</span>: <span class="keyword">new</span> IntrinsicWidth(
+        <span class="attribute">child</span>: <span class="keyword">new</span> Row([
+          <span class="keyword">new</span> NetworkImage(<span class="attribute">src</span>: <span class="string">'thumbs-up.png'</span>, <span class="attribute">width</span>: <span class="number">25.0</span>, <span class="attribute">height</span>: <span class="number">25.0</span>),
+          <span class="keyword">new</span> Container(
+            <span class="attribute">padding</span>: <span class="reserved">const</span> EdgeDims.only(<span class="attribute">left</span>: <span class="number">10.0</span>),
+            <span class="attribute">child</span>: <span class="keyword">new</span> Text(<span class="string">'Thumbs up'</span>)
+          )
+        ])
+      )
+    );
+  }
+</pre></td></tr></table></figure>
+
+<h2 id="State">State</h2>
+<p>Thus far, we’ve used mostly stateless components. Stateless components receive<br>arguments from their parent component, which they store in <code>final</code> member<br>variables. When a component is asked to <code>build</code>, it uses these stored values to<br>derive new arguments for the widgets it creates. For example, the generic<br>version of <code>MyButton</code> above follows this pattern. In this way, state naturally<br>flows “down” the component hierarchy.</p>
+<p>Some components, however, have mutable state that represents the transient state<br>of that part of the user interface. For example, consider a dialog widget with<br>a checkbox. While the dialog is open, the user might check and uncheck the<br>checkbox several times before closing the dialog and committing the final value<br>of the checkbox to the underlying application data model.</p>
+<p>&lt;!—<br>import ‘package:flutter/gestures.dart’;</p>
+<p>class MyButton extends FloatingActionButton {<br>  MyButton({<br>    Widget child,<br>    GestureTapCallback onPressed<br>  }) : super(child: child, onPressed: onPressed);<br>}<br>—&gt;</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="title">MyCheckbox</span> <span class="keyword">extends</span> <span class="title">StatelessComponent</span> </span>{
+  MyCheckbox({ this.value, this.onChanged });
+
+  <span class="keyword">final</span> bool value;
+  <span class="keyword">final</span> Function onChanged;
+
+  Widget build(BuildContext context) {
+    Color color = value ? <span class="keyword">const</span> Color(<span class="number">0xFF00FF00</span>) : <span class="keyword">const</span> Color(<span class="number">0xFF0000FF</span>);
+    <span class="keyword">return</span> <span class="keyword">new</span> GestureDetector(
+      onTap: () { onChanged(!value); },
+      child: <span class="keyword">new</span> Container(
+        height: <span class="number">25.0</span>,
+        width: <span class="number">25.0</span>,
+        decoration: <span class="keyword">new</span> BoxDecoration(backgroundColor: color)
+      )
+    );
+  }
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyDialog</span> <span class="keyword">extends</span> <span class="title">StatefulComponent</span> </span>{
+  MyDialog({ this.onDismissed });
+
+  <span class="keyword">final</span> Function onDismissed;
+
+  MyDialogState createState() =&gt; <span class="keyword">new</span> MyDialogState();
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">MyDialogState</span> <span class="keyword">extends</span> <span class="title">State</span>&lt;<span class="title">MyDialog</span>&gt; </span>{
+  bool _checkboxValue = <span class="keyword">false</span>;
+
+  <span class="keyword">void</span> _handleCheckboxValueChanged(bool value) {
+    setState(() {
+      _checkboxValue = value;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    <span class="keyword">return</span> <span class="keyword">new</span> Row([
+      <span class="keyword">new</span> MyCheckbox(
+        value: _checkboxValue,
+        onChanged: _handleCheckboxValueChanged
+      ),
+      <span class="keyword">new</span> MyButton(
+        onPressed: () =&gt; config.onDismissed(_checkboxValue),
+        child: <span class="keyword">new</span> Text(<span class="string">"Save"</span>)
+      ),
+    ],
+    justifyContent: FlexJustifyContent.center);
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>The <code>MyCheckbox</code> component follows the pattern for stateless components. It<br>stores the values it receives in its constructor in <code>final</code> member variables,<br>which it then uses during its <code>build</code> function. Notice that when the user taps<br>on the checkbox, the checkbox itself doesn’t modify its <code>value</code> field. Instead,<br>the checkbox calls a function it received from its parent component. This<br>pattern lets you store state higher in the component hierarchy, which causes the<br>state to persist for longer periods of time. In the extreme, the state stored on<br>the component passed to <code>runApp</code> persists for the lifetime of the application.</p>
+<p>The <code>MyDialog</code> component is more complicated because it is a stateful component.<br>Let’s walk through the differences in <code>MyDialog</code> caused by its being stateful:</p>
+<ul>
+<li><p><code>MyDialog</code> extends <code>StatefulComponent</code> instead of <code>StatelessComponent</code>.</p>
+</li>
+<li><p><code>MyDialog</code> implements the <code>createState</code> function to create an instance of the<br><code>MyDialogState</code> class that will hold its state.</p>
+</li>
+<li><p><code>MyDialogState</code> has private, mutable member variables. Whenever <code>MyDialog</code><br>modifies its transient state, the dialog does so inside a <code>setState</code><br>callback. Using <code>setState</code> is important because it marks the component as<br>dirty and schedules it to be rebuilt. If a component modifies its transient<br>state outside of a <code>setState</code> callback, the framework won’t know that the<br>component has changed state and might not call the component’s <code>build</code><br>function, which means the user interface might not update to reflect the<br>changed state.</p>
+</li>
+<li><p>To access member variables from <code>MyDialog</code>, the <code>MyDialogState</code> object uses<br>its <code>config</code> property. If the parent component rebuilds and creates a new<br>instance of <code>MyDialog</code> in its build function, the framework will reuse the<br>existing <code>MyDialogState</code> rather than calling <code>createState</code> again. In this way<br>the state for the dialog persists. When that happens, the framework will<br>update the <code>config</code> property to point to the new <code>MyDialog</code> instance, call<br>the <code>didUpdateConfig</code> function (which you can override), and then call the<br><code>build</code> function.</p>
+</li>
+</ul>
+<p>By managing state in this way, you don’t need to write separate code for<br>creating and updating subcomponents. Instead, you simply implement the build<br>function, which handles both situations.</p>
+<p>Finally, when the user taps on the “Save” button, <code>MyDialog</code> follows the same<br>pattern as <code>MyCheckbox</code> and calls a function passed in by its parent component<br>to return the final value of the checkbox up the hierarchy.</p>
+<h2 id="initState_and_dispose">initState and dispose</h2>
+<p>When creating state for a <code>StatefulComponent</code>, the framework calls <code>initState</code><br>on the state object. You can override the <code>initState</code> function to do work needs<br>to happen just once. For example, you can override <code>initState</code> to configure<br>animations or to subscribe to platform services. Implementations of <code>initState</code><br>typically start by calling <code>super.initState</code>.</p>
+<p>When a state object is no longer needed, the framework calls <code>dispose</code> on the<br>state object. You can override the <code>dispose</code> function to do cleanup work. For<br>example, you can override <code>dispose</code> to cancel timers or to unsubscribe from<br>platform services. Implementations of <code>dispose</code> typically end by calling<br><code>super.dispose</code>.</p>
+<h2 id="Keys">Keys</h2>
+<p>You can use keys to control which widgets the framework with match up with which<br>other widgets when a component rebuilds. By default, the framework matches<br>widgets in the current and previous build according to their <code>runtimeType</code> and<br>the order in which they appear. With keys, the framework requires that the two<br>widgets have the same <code>key</code> as well as the same <code>runtimeType</code>.</p>
+<p>Keys are most useful in components that build many instances of the same type of<br>widget. For example, consider an infinite list component that builds just enough<br>copies of a particular widget to fill its visible region:</p>
+<ul>
+<li><p>Without keys, the first entry in the current build would always sync with the<br>first entry in the previous build, even if, semantically, the first entry in<br>the list just scrolled off screen and is no longer visible in the viewport.</p>
+</li>
+<li><p>By assigning each entry in the list a “semantic” key, the infinite list can<br>be more efficient because the framework will sync entries with matching<br>semantic keys and therefore similar (or identical) visual appearances.<br>Moreover, syncing the entries semantically means that state retained in<br>stateful subcomponents will remain attached to the same semantic entry rather<br>than the entry in the same numerical position in the viewport.</p>
+</li>
+</ul>
+<h2 id="Global_Keys">Global Keys</h2>
+<p>You can use global keys to uniquely identify child widgets. Global keys must be<br>globally unique across the entire widget hierarchy, unlike local keys which need<br>only be unique among siblings. Because they are globally unique, a global key<br>can be used to retrieve the state associated with a widget. Consider the<br>following example:</p>
+<p>&lt;!—<br>import ‘package:flutter/gestures.dart’;</p>
+<p>class MyDialog extends StatefulComponent {<br>  State createState() =&gt; null;<br>}</p>
+<p>class MyButton extends FloatingActionButton {<br>  MyButton({<br>    Widget child,<br>    GestureTapCallback onPressed<br>  }) : super(child: child, onPressed: onPressed);<br>}<br>—&gt;</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre><span class="class"><span class="keyword">class</span> <span class="type">MyComponentState</span> extends <span class="type">State</span>&lt;<span class="type">MyDialog</span>&gt; {
+  <span class="type">GlobalKey</span> _scrollable = new <span class="type">GlobalKey</span><span class="container">()</span>;
+
+  <span class="type">Widget</span> build<span class="container">(<span class="type">BuildContext</span> <span class="title">context</span>)</span> {
+    return new <span class="type">Column</span><span class="container">([
+      <span class="title">new</span> <span class="type">MyButton</span>(
+        <span class="title">onPressed</span>: ()</span> {
+          <span class="container">(<span class="title">_scrollable</span>.<span class="title">currentState</span> <span class="title">as</span> <span class="type">ScrollableState</span>)</span>.scrollBy<span class="container">(10.0)</span>;
+        },
+        child: new <span class="type">Text</span><span class="container">('<span class="type">Scroll</span> <span class="title">down'</span>)</span>
+      ),
+      new <span class="type">ScrollableList</span>&lt;int&gt;<span class="container">(
+        <span class="title">items</span>: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        <span class="title">itemExtent</span>: 100.0,
+        <span class="title">itemBuilder</span>: (<span class="type">BuildContext</span> <span class="title">context</span>, <span class="title">int</span> <span class="title">i</span>)</span> {
+          return new <span class="type">Container</span><span class="container">(
+            <span class="title">height</span>: 100.0,
+            <span class="title">child</span>: <span class="title">new</span> <span class="type">Center</span>(<span class="title">child</span>: <span class="title">new</span> <span class="type">Text</span>('$<span class="title">i'</span>)</span>)
+          );
+        }
+      )
+    ]);
+  }
+}</span>
+</pre></td></tr></table></figure>
+
+<p>When <code>MyButton</code> is pressed, the <code>onPressed</code> callback finds the <code>ScrollableState</code><br>object that corresponds to the <code>_scrollable</code> global key and mutates its state.</p>
+<p>Some widgets, such as <code>Input</code> require global keys because they can hold focus,<br>which means they receive any text the user enters into the app. The <code>Focus</code><br>widget keeps track of which <code>InputState</code> object is focused by remembering its<br><code>GlobalKey</code>. That way the same <code>Input</code> widget remains focused even if it moves<br>around in the widget tree.</p>
+<h2 id="Useful_debugging_tools">Useful debugging tools</h2>
+<p>This is a quick way to dump the entire widget tree to the console. This can be<br>quite useful in figuring out exactly what is going on when working with the<br>widgets system.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="function"><span class="title">debugDumpApp</span><span class="params">()</span>;</span>
+</pre></td></tr></table></figure>
+
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+        </script>
+    </body>
+</html>

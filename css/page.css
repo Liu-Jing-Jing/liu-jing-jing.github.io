@@ -25,7 +25,7 @@ pre .tex .special {
   color: #f95555;
 }
 pre .class .title {
-  color: #fff;
+  color: #bf79db;
 }
 pre .attribute {
   color: #42b983;
@@ -121,9 +121,12 @@ code {
 em {
   color: #7f8c8d;
 }
+p {
+  word-spacing: 0.05em;
+}
 .highlight {
   margin: 0;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 .highlight table,
 .highlight tr,
@@ -212,6 +215,9 @@ em {
   #main {
     padding: 0 1.4em;
   }
+  .highlight pre {
+    padding: 1.2em 1em;
+  }
 }
 .sidebar {
   position: absolute;
@@ -240,7 +246,19 @@ em {
 .content {
   padding: 2.2em 0;
   max-width: 720px;
-  margin-left: 280px;
+  margin: 0 auto;
+}
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+.content.with-sidebar {
+  margin: 0 0 0 280px;
+}
+.content.with-sidebar ul {
+  font-size: 0.9em;
+  padding-left: 1.25em;
+  color: #2c3e50;
 }
 .content h1 {
   margin: 0 0 1em;
@@ -257,19 +275,18 @@ em {
 .content figure,
 .content p,
 .content ul {
-  margin: 0.8em 0 0 0.6em;
+  margin: 0.8em 0 0.8em 0.8em;
 }
 .content p,
 .content ul {
   line-height: 1.6em;
 }
 .content ul {
-  font-size: 0.9em;
-  padding-left: 1.25em;
-  color: #2c3e50;
+  padding-left: 1em;
 }
 .content a {
   color: #42b983;
+  font-weight: 600;
 }
 .content blockquote {
   margin: 0;
@@ -290,7 +307,12 @@ em {
     padding-bottom: 2em;
     border-bottom: 1px solid #ddd;
   }
-  .content {
+  .content.with-sidebar {
+    margin-left: 0;
+  }
+  .content figure,
+  .content p,
+  .content ul {
     margin-left: 0;
   }
 }
