@@ -246,7 +246,8 @@ a.button:hover {
   background-color: #53c290;
 }
 #features {
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }
@@ -323,9 +324,18 @@ a.button:hover {
   margin-top: 4em;
 }
 .main_product {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: center;
+  display: -ms-flexbox;
+  -ms-flex-direction: column;
+  -ms-flex-align: center;
+  display: -webkit-flex;
+  -webkit-flex-direction: column;
+  -webkit-align-items: center;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 .main_product img {
   margin-top: 64px;
