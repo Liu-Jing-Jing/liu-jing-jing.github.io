@@ -30,7 +30,7 @@
         <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
         <li><a href="/widgets/" class="nav-link">Widgets</a></li>
         <li><a href="/api/" class="nav-link">Component</a></li>
-        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
         <div id="main">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <p>
-      <a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" class="button">Download v0.0.2</a>
+      <a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" class="button">Download v0.0.3</a>
       <a href="https://gitee.com/marklewis/my.bulb" target="_blank" class="button">Source on Gitee</a>
     </p>
   </div>
@@ -66,6 +66,43 @@
                     }
                 })
             }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
         </script>
     </body>
 </html>
