@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Debugging Flutter Applications - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link current">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Flutter</h2>
+    <ul>
+    
+        <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
+    
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
+    
+        <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
+    
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
+        <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link current">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <p>There are a wide variety of tools and features to help debug Flutter<br>applications.</p>
+<h2 id="The_Dart_Analyzer">The Dart Analyzer</h2>
+<p>Before running your applications, test your code with <code>flutter
+analyze</code>. This tool (which is a wrapper around the <code>dartanalyzer</code><br>tool) will analyze your code and help you find possible mistakes.<br>If you’re using the<br><a href="https://atom.io/packages/flutter" target="_blank">Flutter plugin for Atom</a>, this<br>is already happening for you.</p>
+<p>The Dart analyzer makes heavy use of type annotations that you put in<br>your code to help track problems down. You are encouraged to use them<br>everywhere (avoiding <code>var</code>, untyped arguments, untyped list literals,<br>etc) as this is the quickest and least paintful way of tracking down<br>problems.</p>
+<h2 id="Dart_Observatory_-28-statement-level_single-stepping_debugger_and_profiler-29-">Dart Observatory (statement-level single-stepping debugger and profiler)</h2>
+<p>If you started your application on an Android device using <code>flutter
+start</code>, then, while it is running, you can open the Web page at<br><a href="http://localhost:8181/" target="_blank"><a href="http://localhost:8181/">http://localhost:8181/</a></a> to connect to your<br>application directly with a statement-level single-stepping debugger.<br>Observatory also supports profiling, examining the heap, etc.</p>
+<p>For more information on Observatory, see <a href="https://dart-lang.github.io/observatory/" target="_blank">Observatory’s<br>documentation</a>.</p>
+<p>If you use Observatory for profiling, make sure to run your<br>application in release mode, by passing <code>--no-checked</code> to the <code>flutter
+start</code> command. Otherwise, the main thing that will appear on your<br>profile will be the checked-mode asserts verifying the framework’s<br>various invariants (see “Checked mode assertions” below).</p>
+<h3 id="-3c-code-3e-debugger-28-29-3c-2f-code-3e-_statement"><code>debugger()</code> statement</h3>
+<p>When using the Dart Observatory (or another Dart debugger, such as the<br>debugger in the Atom IDE), you can insert programmatic breakpoints<br>using the <code>debugger()</code> statement. To use this, you have to put <code>import
+&#39;dart:developer&#39;;</code> at the top of the relevant file.</p>
+<p>The <code>debugger()</code> statement takes an optional <code>when</code> argument which you<br>can specify to only break when a certain condition is true, as in:</p>
+<p><!-- import 'dart:developer'; --><br><!-- skip --></p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>void someFunction(double offset) {
+  debugger(when: offset &gt; <span class="number">30.0</span>);
+  // <span class="keyword">...</span>
+}
+</pre></td></tr></table></figure>
+
+<h2 id="-3c-code-3e-print-3c-2f-code-3e-_and_-3c-code-3e-debugPrint-3c-2f-code-3e-_with_-3c-code-3e-flutter_logs-3c-2f-code-3e-"><code>print</code> and <code>debugPrint</code> with <code>flutter logs</code></h2>
+<p>The Dart <code>print()</code> function will output to the system console, which<br>you can view using <code>flutter logs</code> (which is basically a wrapper around<br><code>adb logcat</code>).</p>
+<p>If you output too much at once, then Android sometimes discards some<br>log lines. To avoid this, you can use <code>debugPrint()</code>, from Flutter’s<br><code>services</code> library. This is a wrapper around <code>print</code> which throttles<br>the output to a level that avoids being dropped by Android’s kernel.</p>
+<h2 id="Checked_mode_assertions">Checked mode assertions</h2>
+<p>During development, you are highly encouraged to use Dart’s “checked”<br>mode, sometimes referred to as “debug” mode. This is the default if<br>you use <code>flutter run</code>. In this mode, the Dart <code>assert</code> statement is<br>enabled, and the Flutter framework uses this to perform many runtime<br>checks verifying that invariants aren’t being violated.</p>
+<p>When an invariant is violated, it is reported to the console, with<br>some context information to help with tracking down the source of the<br>problem.</p>
+<p>To turn off checked mode, and use release mode, run your application<br>using <code>flutter run --no-checked</code>.</p>
+<h2 id="Dumping_the_application_state">Dumping the application state</h2>
+<p>Each layer of the Flutter framework provides a function to dump its<br>current state to the console (using <code>debugPrint</code>).</p>
+<h3 id="Widget_layer">Widget layer</h3>
+<p>To dump the state of the Widgets library, call<br><a href="http://docs.flutter.io/flutter/widgets/debugDumpApp.html" target="_blank"><code>debugDumpApp()</code></a>.<br>You can call this more or less any time that the application is not in<br>the middle of running a build phase (i.e. anywhere not inside a<br><code>build()</code> method), so long as the application has built at least once<br>(i.e. any time after calling <code>runApp()</code>).</p>
+<p>For example, this application:</p>
+<figure class="highlight lang-dart"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre><span class="keyword">import</span> <span class="string">'package:flutter/material.dart'</span>;
+
+<span class="keyword">void</span> main() {
+  runApp(
+    <span class="keyword">new</span> MaterialApp(
+      routes: {
+        <span class="string">'/'</span>: (RouteArguments args) =&gt; <span class="keyword">new</span> AppHome()
+      }
+    )
+  );
+}
+
+<span class="class"><span class="keyword">class</span> <span class="title">AppHome</span> <span class="keyword">extends</span> <span class="title">StatelessComponent</span> </span>{
+  Widget build(BuildContext context)  {
+    <span class="keyword">return</span> <span class="keyword">new</span> Material(
+      child: <span class="keyword">new</span> Center(
+        child: <span class="keyword">new</span> FlatButton(
+          onPressed: () { debugDumpApp(); },
+          child: <span class="keyword">new</span> Text(<span class="string">'Dump App'</span>)
+        )
+      )
+    );
+  }
+}
+</pre></td></tr></table></figure>
+
+<p>…will output something like this (the precise details will vary on<br>the version of the framework, the size of the device, and so forth):</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+</pre></td><td class="code"><pre><span class="attribute">android</span>: I/flutter : WidgetFlutterBinding - CHECKED MODE
+<span class="attribute">android</span>: I/flutter : RenderObjectToWidgetAdapter&lt;RenderBox&gt;([GlobalObjectKey RenderView(<span class="number">551740147</span>)]; <span class="attribute">renderObject</span>: RenderView)
+<span class="attribute">android</span>: I/flutter :  └MaterialApp(<span class="attribute">state</span>: _MaterialAppState(<span class="number">373548050</span>))
+<span class="attribute">android</span>: I/flutter :    └MediaQuery(MediaQueryData(Size(<span class="number">411.4</span>, <span class="number">683.4</span>), Orientation.portrait))
+<span class="attribute">android</span>: I/flutter :      └LocaleQuery(<span class="literal">null</span>)
+<span class="attribute">android</span>: I/flutter :        └Theme(Color(<span class="number">0xff2196f3</span>) ThemeBrightness.light etc...)
+<span class="attribute">android</span>: I/flutter :          └DefaultTextStyle(<span class="attribute">inherit</span>: <span class="literal">true</span>; <span class="attribute">color</span>: Color(<span class="number">0xd0ff0000</span>); <span class="attribute">family</span>: <span class="string">"monospace"</span>; <span class="attribute">size</span>: <span class="number">48.0</span>; <span class="attribute">weight</span>: <span class="number">900</span>; <span class="attribute">align</span>: right; <span class="attribute">decoration</span>: double Color(<span class="number">0x00ffff00</span>) TextDecoration.underline)
+<span class="attribute">android</span>: I/flutter :            └DefaultAssetBundle()
+<span class="attribute">android</span>: I/flutter :              └Title(<span class="string">"null"</span>; <span class="attribute">color</span>: Color(<span class="number">0xff2196f3</span>))
+<span class="attribute">android</span>: I/flutter :                └Navigator([GlobalObjectKey _MaterialAppState(<span class="number">373548050</span>)]; <span class="attribute">state</span>: NavigatorState(<span class="number">726056041</span>))
+<span class="attribute">android</span>: I/flutter :                  └Overlay([GlobalKey <span class="number">1019314360</span>]; <span class="attribute">state</span>: OverlayState(<span class="number">808110653</span>; <span class="attribute">entries</span>: [OverlayEntry@<span class="number">293093314</span>(<span class="attribute">opaque</span>: <span class="literal">false</span>), OverlayEntry@<span class="number">893649780</span>(<span class="attribute">opaque</span>: <span class="literal">false</span>)]))
+<span class="attribute">android</span>: I/flutter :                    └Stack(<span class="attribute">renderObject</span>: RenderStack)
+<span class="attribute">android</span>: I/flutter :                      ├_OverlayEntry([GlobalKey <span class="number">578438069</span>]; <span class="attribute">state</span>: _OverlayEntryState(<span class="number">666522661</span>))
+<span class="attribute">android</span>: I/flutter :                      │ └IgnorePointer(<span class="attribute">renderObject</span>: RenderIgnorePointer)
+<span class="attribute">android</span>: I/flutter :                      │   └ModalBarrier()
+<span class="attribute">android</span>: I/flutter :                      │     └Listener(<span class="attribute">listeners</span>: down; <span class="attribute">behavior</span>: opaque; <span class="attribute">renderObject</span>: RenderPointerListener)
+<span class="attribute">android</span>: I/flutter :                      │       └ConstrainedBox(BoxConstraints(biggest); <span class="attribute">renderObject</span>: RenderConstrainedBox)
+<span class="attribute">android</span>: I/flutter :                      └_OverlayEntry([GlobalKey <span class="number">654847632</span>]; <span class="attribute">state</span>: _OverlayEntryState(<span class="number">442518741</span>))
+<span class="attribute">android</span>: I/flutter :                        └_ModalScope([GlobalKey <span class="number">900364748</span>]; <span class="attribute">state</span>: _ModalScopeState(<span class="number">449821236</span>))
+<span class="attribute">android</span>: I/flutter :                          └RepaintBoundary(<span class="attribute">renderObject</span>: RenderRepaintBoundary)
+<span class="attribute">android</span>: I/flutter :                            └Focus([GlobalObjectKey MaterialPageRoute(<span class="number">780921576</span>)]; <span class="attribute">state</span>: FocusState(<span class="number">762448857</span>))
+<span class="attribute">android</span>: I/flutter :                              └_FocusScope(<span class="keyword">this</span> scope has focus)
+<span class="attribute">android</span>: I/flutter :                                └IgnorePointer(<span class="attribute">renderObject</span>: RenderIgnorePointer)
+<span class="attribute">android</span>: I<span class="regexp">/flutter :                                  └_MaterialPageTransition(performance: Performance(⏭ 1.000; paused; for MaterialPageRoute(/</span>)); <span class="attribute">state</span>: _TransitionState(<span class="number">625205573</span>))
+<span class="attribute">android</span>: I/flutter :                                    └Transform(<span class="attribute">renderObject</span>: RenderTransform)
+<span class="attribute">android</span>: I/flutter :                                      └Opacity(<span class="attribute">opacity</span>: <span class="number">1.0</span>; <span class="attribute">renderObject</span>: RenderOpacity)
+<span class="attribute">android</span>: I/flutter :                                        └PageStorage([GlobalKey <span class="number">311418987</span>])
+<span class="attribute">android</span>: I/flutter :                                          └_ModalScopeStatus(active)
+<span class="attribute">android</span>: I/flutter :                                            └AppHome()
+<span class="attribute">android</span>: I/flutter :                                              └Material(<span class="attribute">state</span>: _MaterialState(<span class="number">951717761</span>))
+<span class="attribute">android</span>: I/flutter :                                                └AnimatedContainer(<span class="attribute">state</span>: _AnimatedContainerState(<span class="number">91652829</span>; has background))
+<span class="attribute">android</span>: I/flutter :                                                  └Container(has background)
+<span class="attribute">android</span>: I/flutter :                                                    └DecoratedBox(<span class="attribute">renderObject</span>: RenderDecoratedBox)
+<span class="attribute">android</span>: I/flutter :                                                      └NotificationListener&lt;LayoutChangedNotification&gt;()
+<span class="attribute">android</span>: I/flutter :                                                        └InkFeatures([GlobalKey ink renderer]; <span class="attribute">renderObject</span>: RenderInkFeatures)
+<span class="attribute">android</span>: I/flutter :                                                          └DefaultTextStyle(<span class="attribute">inherit</span>: <span class="literal">false</span>; <span class="attribute">color</span>: Color(<span class="number">0xdd000000</span>); <span class="attribute">size</span>: <span class="number">14.0</span>; <span class="attribute">weight</span>: <span class="number">400</span>; <span class="attribute">baseline</span>: alphabetic; <span class="attribute">height</span>: <span class="number">1.4285714285714286</span>x)
+<span class="attribute">android</span>: I/flutter :                                                            └Center(<span class="attribute">renderObject</span>: RenderPositionedBox)
+<span class="attribute">android</span>: I/flutter :                                                              └FlatButton(dirty; <span class="attribute">state</span>: _FlatButtonState(<span class="number">859098856</span>))
+<span class="attribute">android</span>: I/flutter :                                                                └Container(BoxConstraints(<span class="number">88.0</span>&lt;=w&lt;=Infinity, h=<span class="number">36.0</span>); <span class="attribute">margin</span>: EdgeDims(<span class="number">8.0</span>, <span class="number">8.0</span>, <span class="number">8.0</span>, <span class="number">8.0</span>))
+<span class="attribute">android</span>: I/flutter :                                                                  └Padding(<span class="attribute">renderObject</span>: RenderPadding relayoutSubtreeRoot=up1)
+<span class="attribute">android</span>: I/flutter :                                                                    └ConstrainedBox(BoxConstraints(<span class="number">88.0</span>&lt;=w&lt;=Infinity, h=<span class="number">36.0</span>); <span class="attribute">renderObject</span>: RenderConstrainedBox relayoutSubtreeRoot=up2)
+<span class="attribute">android</span>: I/flutter :                                                                      └DefaultTextStyle(<span class="attribute">inherit</span>: <span class="literal">false</span>; <span class="attribute">color</span>: Color(<span class="number">0xdd000000</span>); <span class="attribute">size</span>: <span class="number">14.0</span>; <span class="attribute">weight</span>: <span class="number">500</span>; <span class="attribute">baseline</span>: alphabetic)
+<span class="attribute">android</span>: I/flutter :                                                                        └InkWell(<span class="attribute">state</span>: _InkResponseState&lt;InkResponse&gt;(<span class="number">365061416</span>))
+<span class="attribute">android</span>: I/flutter :                                                                          └GestureDetector(<span class="attribute">state</span>: _GestureDetectorState(<span class="number">383331210</span>; <span class="attribute">gestures</span>: tap; <span class="attribute">behavior</span>: opaque))
+<span class="attribute">android</span>: I/flutter :                                                                            └Listener(<span class="attribute">listeners</span>: down; <span class="attribute">behavior</span>: opaque; <span class="attribute">renderObject</span>: RenderPointerListener relayoutSubtreeRoot=up3)
+<span class="attribute">android</span>: I/flutter :                                                                              └Container(<span class="attribute">padding</span>: EdgeDims(<span class="number">0.0</span>, <span class="number">8.0</span>, <span class="number">0.0</span>, <span class="number">8.0</span>))
+<span class="attribute">android</span>: I/flutter :                                                                                └Padding(<span class="attribute">renderObject</span>: RenderPadding relayoutSubtreeRoot=up4)
+<span class="attribute">android</span>: I/flutter :                                                                                  └Center(<span class="attribute">renderObject</span>: RenderPositionedBox relayoutSubtreeRoot=up5)
+<span class="attribute">android</span>: I/flutter :                                                                                    └Text(<span class="string">"Dump App"</span>)
+<span class="attribute">android</span>: I/flutter :                                                                                      └RawText(<span class="attribute">renderObject</span>: RenderParagraph relayoutSubtreeRoot=up6)
+</pre></td></tr></table></figure>
+
+<p>This is the “flattened” tree, showing all the widgets projected<br>through their various build functions. You’ll see a lot of widgets in<br>there that don’t appear in your application’s source, because they are<br>inserted by the framework’s widgets’ build functions. For example,<br><a href="http://docs.flutter.io/flutter/material/InkFeatures-class.html" target="_blank"><code>InkFeatures</code></a><br>is an implementation detail of the<br><a href="http://docs.flutter.io/flutter/material/Material-class.html" target="_blank"><code>Material</code></a><br>widget.</p>
+<p>Since the <code>debugDumpApp()</code> call is invoked when the button changes<br>from being pressed to being released, it coincides with the<br><a href="http://docs.flutter.io/flutter/material/FlatButton-class.html" target="_blank"><code>FlatButton</code></a><br>object calling<br><a href="http://docs.flutter.io/flutter/widgets/State/setState.html" target="_blank"><code>setState()</code></a><br>and thus marking itself dirty. That is why if you look at the dump you<br>will see that specific object marked “dirty”. You can also see what<br>gesture listeners have been registered; in this case, a single<br>GestureDetector is listed, and it is listening only to a “tap”<br>gesture.</p>
+<p>If you write your own widgets, you can add information by overriding<br><a href="http://docs.flutter.io/flutter/material/Widget/debugFillDescription.html" target="_blank"><code>debugFillDescription()</code></a>.<br>Add strings to the method’s argument, and call the superclass method.</p>
+<h3 id="Rendering_layer">Rendering layer</h3>
+<p>If you are trying to debug a layout issue, then the Widgets layer’s<br>tree may be insufficiently detailed. In that case, you can dump the<br>rendering tree by calling<br><a href="http://docs.flutter.io/flutter/rendering/debugDumpRenderTree.html" target="_blank"><code>debugDumpRenderTree()</code></a>.<br>As with <code>debugDumpApp()</code>, you can call this more or less any time<br>except during a layout or paint phase. As a general rule, calling it<br>from a <a href="http://docs.flutter.io/flutter/scheduler/Scheduler/addPersistentFrameCallback.html" target="_blank">frame<br>callback</a><br>or an event handler is the best solution.</p>
+<p>To call <code>debugDumpRenderTree()</code>, you need to add <code>import
+&#39;package:flutter/rendering.dart&#39;;</code> to your source file.</p>
+<p>The output for the tiny example above would look something like this:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+</pre></td><td class="code"><pre><span class="attribute">android</span>: <span class="string">I/flutter : RenderView</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │ window size: Size(411.4, 683.4) (in device pixels)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │ device pixel ratio: 3.5 (device pixels per logical pixel)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │ root constraints: Size(411.4, 683.4) (in logical pixels)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  └─child: RenderStack</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ owner: Stack ← Overlay-[GlobalKey 584760605] ← Navigator-[GlobalObjectKey _MaterialAppState(13739219)] ← Title ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ parentData: &lt;none&gt;</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    ├─child 1: RenderIgnorePointer</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ │ owner: IgnorePointer ← _OverlayEntry-[GlobalKey 1033953914] ← Stack ← Overlay-[GlobalKey 584760605] ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ │ parentData: offset=Offset(0.0, 0.0); top=null; right=null; bottom=null; left=null; width=null; height=null</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ │ ignoring: false</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ └─child: RenderPointerListener</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │ owner: Listener ← ModalBarrier ← IgnorePointer ← _OverlayEntry-[GlobalKey 1033953914] ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │ listeners: down</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │ behavior: opaque</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │   └─child: RenderConstrainedBox</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │       owner: ConstrainedBox ← Listener ← ModalBarrier ← IgnorePointer ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │       parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │       constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │       size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │       additionalConstraints: BoxConstraints(biggest)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │    </span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    └─child 2: RenderRepaintBoundary</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :      │ owner: RepaintBoundary ← _ModalScope-[GlobalKey 332465101] ← _OverlayEntry-[GlobalKey 456282113] ← Stack ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :      │ parentData: offset=Offset(0.0, 0.0); top=null; right=null; bottom=null; left=null; width=null; height=null</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :      │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :      │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :      │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :      └─child: RenderIgnorePointer</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        │ owner: IgnorePointer ← _FocusScope ← Focus-[GlobalObjectKey MaterialPageRoute(383010119)] ← RepaintBoundary ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        │ ignoring: false</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        └─child: RenderTransform</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ owner: Transform ← _MaterialPageTransition ← IgnorePointer ← _FocusScope ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ transform matrix:</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │   [0] 1.0,0.0,0.0,0.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │   [1] 0.0,1.0,0.0,0.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │   [2] 0.0,0.0,1.0,0.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │   [3] 0.0,0.0,0.0,1.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ origin: null</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ alignment: null</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │ transformHitTests: true</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :          └─child: RenderOpacity</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            │ owner: Opacity ← Transform ← _MaterialPageTransition ← IgnorePointer ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            │ opacity: 1.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :            └─child: RenderDecoratedBox</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │ owner: DecoratedBox ← Container ← AnimatedContainer ← Material ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │ decoration:</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │   backgroundColor: Color(0xfffafafa)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :              └─child: RenderInkFeatures</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                │ owner: InkFeatures-[GlobalKey ink renderer] ← NotificationListener&lt;LayoutChangedNotification&gt; ← DecoratedBox ← Container ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                └─child: RenderPositionedBox</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  │ owner: Center ← DefaultTextStyle ← InkFeatures-[GlobalKey ink renderer] ← NotificationListener&lt;LayoutChangedNotification&gt; ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  │ constraints: BoxConstraints(w=411.4, h=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  │ size: Size(411.4, 683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  │ alignment: FractionalOffset(0.5, 0.5)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                  └─child: RenderPadding relayoutSubtreeRoot=up1</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    │ owner: Padding ← Container ← FlatButton ← Center ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    │ parentData: offset=Offset(153.7, 315.7)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    │ constraints: BoxConstraints(0.0&lt;=w&lt;=411.4, 0.0&lt;=h&lt;=683.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    │ size: Size(104.0, 52.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    │ padding: EdgeDims(8.0, 8.0, 8.0, 8.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                    └─child: RenderConstrainedBox relayoutSubtreeRoot=up2</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      │ owner: ConstrainedBox ← Padding ← Container ← FlatButton ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      │ parentData: offset=Offset(8.0, 8.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      │ constraints: BoxConstraints(0.0&lt;=w&lt;=395.4, 0.0&lt;=h&lt;=667.4)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      │ size: Size(88.0, 36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      │ additionalConstraints: BoxConstraints(88.0&lt;=w&lt;=Infinity, h=36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                      └─child: RenderPointerListener relayoutSubtreeRoot=up3</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │ owner: Listener ← GestureDetector ← InkWell ← DefaultTextStyle ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │ constraints: BoxConstraints(88.0&lt;=w&lt;=395.4, h=36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │ size: Size(88.0, 36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │ listeners: down</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │ behavior: opaque</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                        └─child: RenderPadding relayoutSubtreeRoot=up4</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          │ owner: Padding ← Container ← Listener ← GestureDetector ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          │ parentData: offset=Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          │ constraints: BoxConstraints(88.0&lt;=w&lt;=395.4, h=36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          │ size: Size(88.0, 36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          │ padding: EdgeDims(0.0, 8.0, 0.0, 8.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                          └─child: RenderPositionedBox relayoutSubtreeRoot=up5</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            │ owner: Center ← Padding ← Container ← Listener ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            │ parentData: offset=Offset(8.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            │ constraints: BoxConstraints(72.0&lt;=w&lt;=379.4, h=36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            │ size: Size(72.0, 36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            │ alignment: FractionalOffset(0.5, 0.5)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                            └─child: RenderParagraph relayoutSubtreeRoot=up6</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                              │ owner: RawText ← Text ← Center ← Padding ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                              │ parentData: offset=Offset(3.0, 10.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                              │ constraints: BoxConstraints(0.0&lt;=w&lt;=379.4, 0.0&lt;=h&lt;=36.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                              │ size: Size(66.0, 16.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                              ╘═╦══ text ═══</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║ StyledTextSpan:</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║   inherit: false</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║   color: Color(0xdd000000)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║   size: 14.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║   weight: 500</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║   baseline: alphabetic</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ║   PlainTextSpan: "Dump App"</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :                                ╚═══════════</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :</span>
+</pre></td></tr></table></figure>
+
+<p>When debugging layout issues, the key fields to look at are the <code>size</code><br>and <code>constraints</code> fields. The constraints flow down the tree, and the<br>sizes flow back up.</p>
+<p>For example, in the dump above you can see that the window size,<br><code>Size(411.4, 683.4)</code>, is used to force all the boxes down to the<br><a href="http://docs.flutter.io/flutter/rendering/RenderPositionedBox-class.html" target="_blank"><code>RenderPositionedBox</code></a><br>to be the size of the screen, with constraints of<br><code>BoxConstraints(w=411.4, h=683.4)</code>. The <code>RenderPositionedBox</code>, which<br>the dump says was created by a<br><a href="http://docs.flutter.io/flutter/widgets/Center-class.html" target="_blank"><code>Center</code></a><br>widget (as described by the <code>owner</code> field), sets its childs<br>constraints to a loose version of this: <code>BoxConstraints(0.0&lt;=w&lt;=411.4,
+0.0&lt;=h&lt;=683.4)</code>. The child, a<br><a href="http://docs.flutter.io/flutter/rendering/RenderPadding-class.html" target="_blank"><code>RenderPadding</code></a>,<br>further inserts these constraints to ensure there is room for the<br>padding, and thus the<br><a href="http://docs.flutter.io/flutter/rendering/RenderConstrainedBox-class.html" target="_blank"><code>RenderConstrainedBox</code></a><br>has a loose constraint of <code>BoxConstraints(0.0&lt;=w&lt;=395.4,
+0.0&lt;=h&lt;=667.4)</code>. This object, which the <code>owner</code> field tells us is<br>probably part of the<br><a href="http://docs.flutter.io/flutter/material/FlatButton-class.html" target="_blank"><code>FlatButton</code></a>‘s<br>definition, sets a minimum width of 88 pixels on its contents and a<br>specific height of 36.0. (This is the <code>FlatButton</code> class implementing<br>the Material Design rules regarding button dimensions.)</p>
+<p>The inner-most <code>RenderPositionedBox</code> loosens the constraints again,<br>this time to center the text within the button. The<br><a href="http://docs.flutter.io/flutter/rendering/RenderParagraph-class.html" target="_blank"><code>RenderParagraph</code></a><br>picks its size based on its contents. If you now follow the sizes back<br>up the chain, you’ll see how the text’s size is what influences the<br>width of all the boxes that form the button, as they all take their<br>child’s dimensions to size themselves.</p>
+<p>Another way to notice this is by looking at the “relayoutSubtreeRoot”<br>part of the descriptions of each box, which essentially tells you how<br>many ancestors depend on this element’s size in some way. Thus the<br><code>RenderParagraph</code> has a <code>relayoutSubtreeRoot=up6</code>, meaning that when<br>the <code>RenderParagraph</code> is dirtied, six ancestors also have to be<br>dirtied because they might be affected by the new dimensions.</p>
+<p>If you write your own render objects, you can add information to the<br>dump by overriding<br><a href="http://docs.flutter.io/flutter/rendering/RenderObject/debugDescribeSettings.html" target="_blank"><code>debugDescribeSettings()</code></a>.<br>Add strings to the method’s argument, and call the superclass method.</p>
+<h3 id="Layers">Layers</h3>
+<p>If you are trying to debug a compositing issue, you can use<br><a href="http://docs.flutter.io/flutter/rendering/debugDumpLayerTree.html" target="_blank"><code>debugDumpLayerTree()</code></a>.<br>For the example above, it would output:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="attribute">android</span>: <span class="string">I/flutter : TransformLayer</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │ owner: [root]</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │ offset: Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │ transform:</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │   [0] 3.5,0.0,0.0,0.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │   [1] 0.0,3.5,0.0,0.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │   [2] 0.0,0.0,1.0,0.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │   [3] 0.0,0.0,0.0,1.0</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :  └─child 1: ContainerLayer</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ owner: RepaintBoundary ← _ModalScope-[GlobalKey 943445263] ← _OverlayEntry-[GlobalKey 792667939] ← Stack ← ⋯</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │ offset: Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    │</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :    └─child 1: PictureLayer</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        offset: Offset(0.0, 0.0)</span>
+<span class="attribute">android</span>: <span class="string">I/flutter :        paintBounds: Rect.fromLTRB(0.0, 0.0, 411.4, 683.4)</span>
+</pre></td></tr></table></figure>
+
+<h2 id="Visual_debugging">Visual debugging</h2>
+<p>You can also debug a layout problem visually, by setting<br><a href="http://docs.flutter.io/flutter/rendering/debugPaintSizeEnabled.html" target="_blank"><code>debugPaintSizeEnabled</code></a><br>to <code>true</code>. This is a boolean from the <code>rendering</code> library. It can be<br>enabled at any time and affects all painting while it is true. The<br>easiest way to set it is at the top of your <code>void main()</code> entry point.</p>
+<p>When it is enabled, all boxes get a bright teal border, padding (from<br>widgets like <code>Padding</code>) is shown in faded blue with a darker blue box<br>around the child, alignment (from widgets like <code>Center</code> and <code>Align</code>)<br>is shown with yellow arrows, and spacers (from widgets like<br><code>Container</code> when they have no child) are shown in gray.</p>
+<p>The<br><a href="http://docs.flutter.io/flutter/rendering/debugPaintBaselinesEnabled.html" target="_blank"><code>debugPaintBaselinesEnabled</code></a><br>does something similar but for objects with baselines. The alphabetic<br>baseline is shown in bright green and the ideographic baseline in<br>orange.</p>
+<p>The<br><a href="http://docs.flutter.io/flutter/rendering/debugPaintPointersEnabled.html" target="_blank"><code>debugPaintPointersEnabled</code></a><br>flag turns on a special mode whereby any objects that are being tapped<br>get highlighted in teal. This can help you determine whether an object<br>is somehow failing to correctly hit test (which might happen if, for<br>instance, it is actually outside the bounds of its parent and thus not<br>being considered for hit testing in the first place).</p>
+<p>If you’re trying to debug compositor layers, for example to determine<br>whether and where to add <code>RepaintBoundary</code> widgets, you can use the<br><a href="http://docs.flutter.io/flutter/rendering/debugPaintLayerBordersEnabled.html" target="_blank"><code>debugPaintLayerBordersEnabled</code></a><br>flag, which outlines each layer’s bounds in orange, or the<br><a href="http://docs.flutter.io/flutter/rendering/debugEnableRepaintRainbox.html" target="_blank"><code>debugEnableRepaintRainbox</code></a><br>flag, which causes layers to be overlayed with a rotating set of<br>colors whenever they are repainted.</p>
+<p>All of these flags only work in checked mode. In general, anything in<br>the Flutter framework that starts with “<code>debug...</code>“ will only work in<br>checked mode.</p>
+<h2 id="Debugging_animations">Debugging animations</h2>
+<p>The easiest way to debug animations is to slow them way down. To do<br>that, set the<br><a href="http://docs.flutter.io/flutter/scheduler/timeDilation.html" target="_blank"><code>timeDilation</code></a><br>variable (from the <code>scheduler</code> library) to a number greater than 1.0,<br>for instance, 50.0. It’s best to only set this once on app startup. If<br>you change it on the fly, especially if you reduce it while animations<br>are running, it’s possible that the framework will observe time going<br>backwards, which will probably result in asserts and generally will<br>interfere with your efforts.</p>
+<h2 id="Debugging_performance_problems">Debugging performance problems</h2>
+<p>To see why your application is causing relayouts or repaints, you can<br>set the<br><a href="http://docs.flutter.io/flutter/rendering/debugPrintMarkNeedsLayoutStacks.html" target="_blank"><code>debugPrintMarkNeedsLayoutStacks</code></a><br>and<br><a href="http://docs.flutter.io/flutter/rendering/debugPrintMarkNeedsPaintStacks.html" target="_blank"><code>debugPrintMarkNeedsPaintStacks</code></a><br>flags respectively. These will log a stack trace to the console any<br>time a render box is asked to relayout and repaint. You can use the<br><code>debugPrintStack()</code> method from the <code>services</code> library to print your<br>own stack traces on demand, if this kind of approach is useful to you.</p>
+<h2 id="PerformanceOverlay">PerformanceOverlay</h2>
+<p>To get a graphical view of the performance of your application, set<br>the <code>showPerformanceOverlay</code> argument of the <a href="http://docs.flutter.io/flutter/material/MaterialApp/MaterialApp.html" target="_blank"><code>MaterialApp</code><br>constructor</a><br>to true. (If you’re not using <code>MaterialApp</code>, you can get the same<br>effect by wrapping your application in a stack and putting a widget on<br>your stack that was created by calling <a href="http://docs.flutter.io/flutter/widgets/PerformanceOverlay/PerformanceOverlay.allEnabled.html"><code>new
+PerformanceOverlay.allEnabled()</code></a>.)</p>
+<p>This will show two graphs. The top one is the time spent by the GPU<br>thread, the bottom one is the time spent by the CPU thread. The white<br>lines across the graphs show 16ms increments along the vertical axis;<br>if the graph ever goes over one of these lines then you are running at<br>less than 60Hz. The horizontal axis represents frames. The graph is<br>only updated when your application paints, so if it is idle the graph<br>will stop moving.</p>
+<p>This should always be done in release mode, since in checked mode<br>performance is intentionally sacrificed in exchange for expensive<br>asserts that are intended to aid development, and thus the results<br>will be misleading.</p>
+<h2 id="Material_grid">Material grid</h2>
+<p>When developing applications that implement <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank">Material<br>design</a>,<br>it can be helpful to overlay a <a href="https://www.google.com/design/spec/layout/metrics-keylines.html" target="_blank">Material design baseline<br>grid</a><br>over the application to help verify alignments. To that end, the<br><a href="http://docs.flutter.io/flutter/material/MaterialApp/MaterialApp.html" target="_blank"><code>MaterialApp</code><br>constructor</a><br>has a <code>debugShowGrid</code> argument which, when set to <code>true</code> in checked<br>mode, will overlay such a grid.</p>
+<p>You can also overlay such a grid on non-Material applications by using<br>the<br><a href="http://docs.flutter.io/flutter/widgets/GridPaper-class.html" target="_blank"><code>GridPaper</code></a><br>widget directly.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
+        </script>
+    </body>
+</html>

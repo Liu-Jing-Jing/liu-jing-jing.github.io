@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Layout - Meng-zi.com</title>
+        <title>Building an APK for Android - Meng-zi.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -43,7 +43,7 @@
     
         <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
     
-        <li><a href="/flutter/layout.html" class="sidebar-link current">Layout</a></li>
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
     
@@ -57,7 +57,7 @@
     
         <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
     
-        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+        <li><a href="/flutter/building-apk.html" class="sidebar-link current">Building an APK for Android</a></li>
     
         <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
     
@@ -73,28 +73,11 @@
 </div>
 
 <div class="content with-sidebar">
-    <p>inspiration from <a href="http://facebook.github.io/react-native/" target="_blank">CSS Layout</a>.</p>
-<p>In Flutter, widgets are rendered by render boxes. Render boxes are given<br>constraints by their parent, and size themselves within those<br>constraints. Constraints consist of minimum and maximum widths and<br>heights; sizes consist of a specific width and height.</p>
-<p>Generally, there are three kinds of boxes, in terms of how they handle<br>their constraints:</p>
-<ul>
-<li>Those that try to be as big as possible.<br>For example, the boxes used by <code>Center</code> and <code>Block</code>.</li>
-<li>Those that try to be the same size as their children.<br>For example, the boxes used by <code>Transform</code> and <code>Opacity</code>.</li>
-<li>Those that try to be a particular size.<br>For example, the boxes used by <code>Image</code> and <code>Text</code>.</li>
-</ul>
-<p>Some widgets, for example <code>Container</code>, vary from type to type based on<br>their constructor arguments. In the case of <code>Container</code>, it defaults<br>to trying to be as big as possible, but if you give it a <code>width</code>, for<br>instance, it tries to honor that and be that particular size.</p>
-<p>Others, for example <code>Row</code> and <code>Column</code> (flex boxes) vary based on the<br>constraints they are given, as described below in the “Flex” section.</p>
-<p>The constraints are sometimes “tight”, meaning that they leave no room<br>for the render box to decide on a size (e.g. if the minimum and<br>maximum width are the same, it is said to have a tight width). The<br>main example of this is the <code>App</code> widget, which is contained by the<br><code>RenderView</code> class: the box used by the child returned by the<br>application’s <code>build</code> function is given a constraint that forces it to<br>exactly fill the application’s content area (typically, the entire<br>screen). Many of the boxes in Flutter, especially those that just take a<br>single child, will pass their constraint on to their children. This<br>means that if you nest a bunch of boxes inside each other at the root<br>of your application’s render tree, they’ll all exactly fit in each<br>other, forced by these tight constraints.</p>
-<p>Some boxes <em>loosen</em> the constraints, meaning the maximum is maintained<br>but the minimum is removed. For example, <code>Center</code>.</p>
-<h2 id="Unbounded_constraints">Unbounded constraints</h2>
-<p>In certain situations, the constraint that is given to a box will be<br><em>unbounded</em>, or infinite. This means that either the maximum width or<br>the maximum height is set to <code>double.INFINITY</code>.</p>
-<p>A box that tries to be as big as possible won’t function usefully when<br>given an unbounded constraint, and in checked mode, will assert with a<br>message saying <code>!_size.isInfinite</code> and a string that points to this<br>file.</p>
-<p>The most common cases where a render box finds itself with unbounded<br>constraints are within flex boxes (<code>Row</code> and <code>Column</code>), and <strong>within<br>scrollable regions</strong> (mainly <code>Block</code>, <code>ScollableList&lt;T&gt;</code>, and<br><code>ScrollableMixedWidgetList</code>).</p>
-<p>In particular, <code>Block</code> tries to expand to fit the space available in<br>its cross-direction (i.e. if it’s a vertically-scrolling block, it<br>will try to be as wide as its parent). If you nest a vertically<br>scrolling <code>Block</code> inside a horizontally scrolling <code>Block</code>, the inner<br>one will try to be as wide as possible, which is infinitely wide,<br>since the outer one is scrollable in that direction.</p>
-<h2 id="Flex">Flex</h2>
-<p>Flex boxes themselves (<code>Row</code> and <code>Column</code>) behave differently based on<br>whether they are in a bounded constraints or unbounded constraints in<br>their given direction.</p>
-<p>In bounded constraints, they try to be as big as possible in that<br>direction.</p>
-<p>In unbounded constraints, they try to fit their children in that<br>direction. In this case, you cannot set <code>flex</code> on the children to<br>anything other than 0 (the default). In the widget hierarchy, this<br>means that you cannot use <code>Flexible</code> when the flex box is inside<br>another flex box or inside a scrollable. If you do, you’ll get an<br>assert that <code>canFlex</code> is not true, pointing you at this section.</p>
-<p>In the <em>cross</em> direction, i.e. in their width for <code>Column</code> (vertical<br>flex) and in their height for <code>Row</code> (horizontal flex), they must never<br>be unbounded, otherwise they would not be able to reasonably align<br>their children.</p>
+    <p><em>Note: An <code>apk/AndroidManifest.xml</code> file was already created for<br>your app by <code>flutter create</code>. You can check it out if you like,<br>but you don’t need to modify it when getting started.</em></p>
+<p>First, ensure you installed the Android SDK tools<br>(see “Setting up your Android device” from <a href="/getting-started">Getting started</a>).</p>
+<p>Run <code>android update sdk</code> from the command line,<br>and install SDK version 22 and build tools version 22.0.1.<br>For now, Flutter currently expects only <em>these</em> versions.</p>
+<p>Then, inside your Flutter app, run <code>flutter apk</code>.</p>
+<p>The APK can be found in <code>$MY_FLUTTER_APP/build/app.apk</code>.</p>
 
 </div>
         </div>

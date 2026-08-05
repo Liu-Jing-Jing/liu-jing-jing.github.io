@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Gestures System - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link current">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Flutter</h2>
+    <ul>
+    
+        <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
+    
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
+    
+        <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
+    
+        <li><a href="/flutter/gesture.html" class="sidebar-link current">Gestures System</a></li>
+    
+        <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <p>The gesture system in Flutter has two separate layers.  The first layer has raw<br>pointer events, which describe the location and movement of pointers (e.g.,<br>touches, mice, and styli) across the screen. The second layer has gestures,<br>which describe semantic actions that consist of one or more pointer movements.</p>
+<h1 id="Pointers">Pointers</h1>
+<p>Pointers represent raw data about the user’s interaction with the device’s<br>screen.  There are four types of pointer events:</p>
+<ul>
+<li><a href="http://docs.flutter.io/flutter/gestures/PointerDownEvent-class.html" target="_blank"><code>PointerDownEvent</code></a><br>The pointer has contacted the screen at a particular location.</li>
+<li><a href="http://docs.flutter.io/flutter/gestures/PointerMoveEvent-class.html" target="_blank"><code>PointerMoveEvent</code></a><br>The pointer has moved from one location on the screen to another.</li>
+<li><a href="http://docs.flutter.io/flutter/gestures/PointerUpEvent-class.html" target="_blank"><code>PointerUpEvent</code></a><br>The pointer has stopped contacting the screen.</li>
+<li><a href="http://docs.flutter.io/flutter/gestures/PointerCancelEvent-class.html" target="_blank"><code>PointerCancelEvent</code></a><br>Input from this pointer is no longer directed towards this app.</li>
+</ul>
+<p>On pointer down, the framework does a <em>hit test</em> on your app to determine what<br>widgets exists at the location where the pointer contacted the screen. The<br>pointer down event (and subsequent events for that pointer) are then dispatched<br>to the innermost widget found by the hit test. From there, the events bubble up<br>the tree and are dispatched to all the widgets on the path from the innermost<br>widget to the root of the tree. There is no mechanism for canceling or stopping<br>pointer events from being dispatched further.</p>
+<h1 id="Gestures">Gestures</h1>
+<p>Gestures represent semantic actions (e.g., tap, drag, and scale) that are<br>recognized from multiple individual pointer events, potentially even multiple<br>individual pointers. Gestures can dispatch multiple events, corresponding to the<br>lifecycle of the gesture (e.g., drag start, drag update, and drag end):</p>
+<ul>
+<li>Tap<ul>
+<li><code>onTapDown</code> A pointer that might cause a tap has contacted the screen at a<br>particular location.</li>
+<li><code>onTapUp</code> A pointer that will trigger a tap has stopped contacting the screen<br>at a particular location.</li>
+<li><code>onTap</code> A tap has occurred.</li>
+<li><code>onTapCancel</code> The pointer that previously triggered the <code>onTapDown</code> will not<br>end up causing a tap.</li>
+</ul>
+</li>
+<li>Double tap<ul>
+<li><code>onDoubleTap</code> The user has tapped the screen at the same location twice in<br>quick succession.</li>
+</ul>
+</li>
+<li>Long press<ul>
+<li><code>onLongPress</code> A pointer has remained in contact with the screen at the same<br>location for a long period of time.</li>
+</ul>
+</li>
+<li>Vertical drag<ul>
+<li><code>onVerticalDragStart</code> A pointer has contacted the screen and might begin to<br>move vertically.</li>
+<li><code>onVerticalDragUpdate</code> A pointer that is in contact with the screen and<br>moving vertically has moved in the vertical direction.</li>
+<li><code>onVerticalDragEnd</code> A pointer that was previously in contact with the screen<br>and moving vertically is no longer in contact with the screen and was moving<br>at a specific velocity when it stopped contacting the screen.</li>
+</ul>
+</li>
+<li>Horizontal drag<ul>
+<li><code>onHorizontalDragStart</code> A pointer has contacted the screen and might begin to<br>move horizontally.</li>
+<li><code>onHorizontalDragUpdate</code> A pointer that is in contact with the screen and<br>moving horizontally has moved in the horizontal direction.</li>
+<li><code>onHorizontalDragEnd</code> A pointer that was previously in contact with the<br>screen and moving horizontally is no longer in contact with the screen and<br>was moving at a specific velocity when it stopped contacting the screen.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Gesture_disambiguation">Gesture disambiguation</h2>
+<p>At a given location on screen, there might be multiple gesture detectors. All<br>of these gesture detectors listen to the stream of pointer events as they flow<br>past and attempt to recognize specific gestures. The<br><a href="http://docs.flutter.io/flutter/widgets/GestureDetector-class.html" target="_blank"><code>GestureDetector</code></a><br>widget decides which gestures to attempt to recognize based on which of its<br>callbacks are non-null.</p>
+<p>When there is more than one gesture recognizer for a given pointer on the<br>screen, the framework disambiguates which gesture the user intends by having<br>each recognizer join the <em>gesture arena</em>. The gesture arena determines which<br>gesture wins using the following rules:</p>
+<ul>
+<li><p>At any time, a recognizer can declare defeat and leave the arena.  If there’s<br>only one recognizer left in the arena, that recognizer is the winner.</p>
+</li>
+<li><p>At any time, a recognizer can declare victory, which causes it to win and all<br>the remaining recognizers to lose.</p>
+</li>
+</ul>
+<p>For example, when disambiguating horizontal and vertical dragging, both<br>recognizers enter the arena when they receive the pointer down event.  The<br>recognizers observe the pointer move events.  If the user moves the pointer more<br>than a certain number of logical pixels horizontally, the horizontal recognizer<br>will declare victory and the gesture will be interpreted as a horizontal drag.<br>Similarly, if the user moves more than a certain number of logical pixels<br>vertically, the vertical recognizer will declare victory.</p>
+<p>The gesture arena is beneficial when there is only a horizontal (or vertical)<br>drag recognizer.  In that case, there will be only one recognizer in the arena<br>and the horizontal drag will be recognized immediately, which means the first<br>pixel of horizontal movement can be treated as a drag and the user will not need<br>to wait for further gesture disambiguation.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
+        </script>
+    </body>
+</html>

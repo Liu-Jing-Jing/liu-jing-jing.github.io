@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Setup - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link current">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Flutter</h2>
+    <ul>
+    
+        <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
+    
+        <li><a href="/flutter/setup.html" class="sidebar-link current">Setup</a></li>
+    
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
+    
+        <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
+    
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
+        <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <p>(Please remember, Flutter is in <em>technology preview</em>. Thanks<br>for trying it out, and please don’t hesitate to<br><a href="https://github.com/flutter/flutter/issues/new" target="_blank">file issues or bugs</a><br>for us.)</p>
+<p>This guide describes how to set up your development environment to run Flutter apps on<br>iOS or Android.</p>
+<ul>
+<li><a href="#System_requirements">System requirements</a></li>
+<li><a href="#Get_the_Flutter_SDK">Get the Flutter SDK</a></li>
+<li><a href="#iOS_setup">iOS setup</a></li>
+<li><a href="#Android_setup">Android setup</a></li>
+<li><a href="#Atom_editor">Atom editor</a></li>
+</ul>
+<h2 id="System_requirements">System requirements</h2>
+<p>To install and run Flutter, your development environment must meet these minimum requirements:</p>
+<ul>
+<li><strong>Operating Systems</strong>: Mac or Linux (64-bit). Windows support is planned.</li>
+<li><strong>Tools</strong>: Flutter depends on these command-line tools being available on your environment.<ul>
+<li><code>bash</code>, <code>mkdir</code>, <code>rm</code>, <code>git</code>, <code>curl</code>, <code>unzip</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Get_the_Flutter_SDK">Get the Flutter SDK</h2>
+<p>To get Flutter, use <code>git</code> to clone the repository and then add the <code>flutter</code> tool to your path:</p>
+<pre>
+$ git clone https://github.com/flutter/flutter.git -b alpha
+$ export PATH=`pwd`/flutter/bin:$PATH
+</pre>
+
+<p>Run the following command to see if there are any dependencies you need to install to complete<br>the setup:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>flutter doctor
+</pre></td></tr></table></figure>
+
+<p>The first time your run the <code>flutter</code> command, it will download its dependencies and compile<br>itself. Subsequent runs should be much faster.</p>
+<p>Once you have installed any missing dependencies, run the <code>flutter doctor</code> command again to<br>verify that you’ve set everything up correctly.</p>
+<h2 id="iOS_setup">iOS setup</h2>
+<p><em>This step is optional, and can be performed at any time before<br>using Flutter to develop apps for iOS.</em><br>To develop Flutter apps for iOS, you need a Mac with Xcode 7.2 or newer:</p>
+<ol>
+<li>Install Xcode 7.2 or newer (via <a href="https://developer.apple.com/xcode/" target="_blank">web download</a> or<br>the <a href="https://itunes.apple.com/us/app/xcode/id497799835" target="_blank">Mac App Store</a>).</li>
+<li>Make sure the Xcode EULA is signed by either opening Xcode once and confirming or<br>running <code>sudo xcodebuild -license</code> from the command-line.</li>
+</ol>
+<p>With Xcode, you’ll be able to run Flutter apps on the iOS simulator.</p>
+<h3 id="Set_up_the_iOS_simulator">Set up the iOS simulator</h3>
+<p>To prepare to run and test your Flutter app on the iOS simulator, follow these steps:</p>
+<ol>
+<li>On your Mac, find the Simulator via Spotlight or by using the following command:</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>    $ <span class="built_in">open</span> -<span class="operator">a</span> Simulator
+</pre></td></tr></table></figure>
+
+<ol>
+<li>Make sure your simulator is using a 64-bit device (iPhone 5s or later) by checking the settings<br>in the simulator’s <strong>Hardware &gt; Device</strong> menu.</li>
+<li>Depending on your development machine’s screen size, simulated high-screen-density iOS devices<br>may overflow your screen. Set the device scale under the <strong>Window &gt; Scale</strong> menu in the simulator.</li>
+</ol>
+<h3 id="Deploy_to_iOS_devices">Deploy to iOS devices</h3>
+<p>To deploy your Flutter app to a physical iOS device, you’ll need some additional tools:</p>
+<ol>
+<li>Install <a href="http://brew.sh/" target="_blank">homebrew</a>.</li>
+<li><p>Open the terminal and run these command to install the toools for deploying Flutter apps to<br>iOS devices.</p>
+ <pre>
+ $ brew tap flutter/flutter
+ $ brew install ideviceinstaller ios-deploy
+ </pre>
+
+</li>
+</ol>
+<h2 id="Android_setup">Android setup</h2>
+<p>To develop Flutter apps for Android, you can use either a Mac or a Linux (64-bit) machine:</p>
+<ol>
+<li>Install <a href="https://developer.android.com/sdk/index.html" target="_blank">Android Studio</a>.</li>
+<li>From Android Studio, install the latest Android SDK and Android SDK Platform-Tools, as described<br>in <a href="https://developer.android.com/sdk/installing/adding-packages.html" target="_blank">Adding SDK Packages</a>.</li>
+</ol>
+<h3 id="Set_up_your_Android_device">Set up your Android device</h3>
+<p>To prepare to run and test your Flutter app on Android, you’ll need an Android device running<br>Android 4.1 (API level 16) or higher.</p>
+<ol>
+<li>Enable developer mode on your device by visiting <strong><code>Settings &gt; About phone</code></strong> and<br>tapping the <strong><code>Build number</code></strong> line seven times.</li>
+<li>Enable <strong><code>Android debugging</code></strong> in <strong><code>Settings &gt; Developer options</code></strong>.</li>
+<li>Using a USB cable, plug your phone into your computer. If prompted on your<br>device, authorize your computer to access your device.</li>
+<li>In the terminal, run the <code>flutter devices</code> command to verify that Flutter recognizes your<br>connected Android device.</li>
+</ol>
+<p>By default, Flutter uses the version of the Android SDK where your <code>adb</code> tool is based. If<br>you want Flutter to use a different installation of the Android SDK, you must set the<br><code>ANDROID_HOME</code> environment variable to that specific installation directory.</p>
+<h2 id="Atom_editor">Atom editor</h2>
+<p>We recommend using <a href="https://atom.io/" target="_blank">Atom</a> for editing, running, and debugging Flutter apps.<br>However, using our command-line tools, you can use any editor to develop Flutter applications.</p>
+<p>To install Atom:</p>
+<ol>
+<li>Download Atom from the <a href="https://atom.io/" target="_blank">atom.io</a> site.</li>
+<li>Extract the Atom executable from the downloaded file.</li>
+</ol>
+<h3 id="Configure_Atom_for_Flutter_development">Configure Atom for Flutter development</h3>
+<p>Before creating your Flutter project in Atom, you’ll need to perform these pre-flight tasks:</p>
+<ol>
+<li>Launch the Atom editor.</li>
+<li><p>Install the <a href="https://atom.io/packages/flutter" target="_blank">Flutter package</a> by following these steps:</p>
+<ul>
+<li>From the menu, open <strong>Packages &gt; Settings View &gt; Install Packages/Themes</strong>.</li>
+<li>In the <strong>Install Packages</strong> field, type <strong>flutter</strong> and click the <strong>Packages</strong> button.</li>
+<li>You should see the Flutter package displayed. Click on the button to install the package.</li>
+</ul>
+</li>
+<li><p>Open <strong>Packages &gt; Flutter &gt; Package Settings</strong>, and set the <strong>FLUTTER_ROOT</strong> field to the<br>root directory where you installed the Flutter SDK.</p>
+</li>
+<li>Open <strong>Packages &gt; Dart &gt; Package Settings</strong>, and set the <strong>Dart SDK Location</strong> field to the<br><code>bin/cache/dart-sdk</code> directory in your Flutter SDK’s root folder.</li>
+<li>If you are using Atom on Mac, you should install the <code>atom</code> and <code>apm</code> shell commands. To do<br>this from the menu bar, click on <strong><code>Atom</code> &gt; <code>Install Shell Commands</code></strong>.</li>
+</ol>
+<p>If you need help installing packages, consult the<br><a href="https://atom.io/docs/v1.3.2/using-atom-atom-packages" target="_blank">Atom documentation</a> or<br><a href="flutter-dev@googlegroups.com">email us</a>.</p>
+<h2 id="Next_steps">Next steps</h2>
+<p>Now, follow our <a href="/flutter/index.html">Getting Started guide</a><br>to run your first Flutter app on iOS and Android.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
+        </script>
+    </body>
+</html>

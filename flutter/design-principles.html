@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Layout - Meng-zi.com</title>
+        <title>Design principles - Meng-zi.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -43,7 +43,7 @@
     
         <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
     
-        <li><a href="/flutter/layout.html" class="sidebar-link current">Layout</a></li>
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
     
@@ -65,7 +65,7 @@
     
         <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
     
-        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+        <li><a href="/flutter/design-principles.html" class="sidebar-link current">Design principles</a></li>
     
         <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
     
@@ -73,28 +73,49 @@
 </div>
 
 <div class="content with-sidebar">
-    <p>inspiration from <a href="http://facebook.github.io/react-native/" target="_blank">CSS Layout</a>.</p>
-<p>In Flutter, widgets are rendered by render boxes. Render boxes are given<br>constraints by their parent, and size themselves within those<br>constraints. Constraints consist of minimum and maximum widths and<br>heights; sizes consist of a specific width and height.</p>
-<p>Generally, there are three kinds of boxes, in terms of how they handle<br>their constraints:</p>
+    <h1 id="Design_principles">Design principles</h1>
+<p>Flutter is written based on some core principles that were mostly<br>intuited from past experiences with other platforms such as the Web<br>and Android, some of which are summarised below.</p>
+<p>This document is most useful if you want to contribute to Flutter, as<br>then we hope you will also follow these philosophies.</p>
+<h2 id="Lazy_programming">Lazy programming</h2>
+<p>Write what you need and no more, but when you write it, do it right.</p>
+<p>Avoid implementing features you don’t need. You can’t design a feature<br>without knowing what the constraints are. Implementing features “for<br>completeness” results in unused code that is expensive to maintain,<br>learn about, document, test, etc.</p>
+<p>When you do implement a feature, implement it the right way. Avoid<br>workarounds. Workarounds merely kick the problem further down the<br>road, but at a higher cost: someone will have to relearn the problem,<br>figure out the workaround and how to dismantle it (and all the places<br>that now use it), <em>and</em> implement the feature.</p>
+<h2 id="Tests">Tests</h2>
+<p>When you fix a bug, first write a test that fails, then fix the bug<br>and verify the test passes.</p>
+<p>When you implement a new feature, write tests for it.</p>
+<p>Run the tests before checking code in. (Travis does this for you, so<br>wait for Travis to give the green light before merging a PR.)</p>
+<h2 id="API_design">API design</h2>
 <ul>
-<li>Those that try to be as big as possible.<br>For example, the boxes used by <code>Center</code> and <code>Block</code>.</li>
-<li>Those that try to be the same size as their children.<br>For example, the boxes used by <code>Transform</code> and <code>Opacity</code>.</li>
-<li>Those that try to be a particular size.<br>For example, the boxes used by <code>Image</code> and <code>Text</code>.</li>
+<li><p>There should be no objects that represent live state that reflects<br>some other state, since they are expensive to maintain. e.g. no<br><code>HTMLCollection</code>.</p>
+</li>
+<li><p>Property getters should be efficient (e.g. just returning a cached<br>value, or an O(1) table lookup). If an operation is inefficient it<br>should be a method instead. e.g. <code>document.getForms()</code>, not<br><code>document.forms</code>.</p>
+</li>
+<li><p>There should be no APIs that require synchronously completing an<br>expensive operation (e.g. computing a full app layout outside of the<br>layout phase).</p>
+</li>
+<li><p>We use a layered framework design, where each layer addresses a<br>narrowly scoped problem and is then used by the next layer to solve<br>a bigger problem. This is true both at a high level (widgets relies<br>on rendering relies on painting) and at the level of individual<br>classes and methods (e.g. in the rendering library, having one class<br>for clipping and one class for opacity rather than one class that<br>does both at the same time).</p>
+<ul>
+<li><p>Convenience APIs belong at the layer above the one they are<br>simplifying.</p>
+</li>
+<li><p>Having dedicated APIs for performance reasons is fine. If one<br>specific operation, say clipping a rounded rectangle, is expensive<br>using the generic API but could be implemented more efficiently<br>using a dedicated API, then a dedicated API is fine.</p>
+</li>
 </ul>
-<p>Some widgets, for example <code>Container</code>, vary from type to type based on<br>their constructor arguments. In the case of <code>Container</code>, it defaults<br>to trying to be as big as possible, but if you give it a <code>width</code>, for<br>instance, it tries to honor that and be that particular size.</p>
-<p>Others, for example <code>Row</code> and <code>Column</code> (flex boxes) vary based on the<br>constraints they are given, as described below in the “Flex” section.</p>
-<p>The constraints are sometimes “tight”, meaning that they leave no room<br>for the render box to decide on a size (e.g. if the minimum and<br>maximum width are the same, it is said to have a tight width). The<br>main example of this is the <code>App</code> widget, which is contained by the<br><code>RenderView</code> class: the box used by the child returned by the<br>application’s <code>build</code> function is given a constraint that forces it to<br>exactly fill the application’s content area (typically, the entire<br>screen). Many of the boxes in Flutter, especially those that just take a<br>single child, will pass their constraint on to their children. This<br>means that if you nest a bunch of boxes inside each other at the root<br>of your application’s render tree, they’ll all exactly fit in each<br>other, forced by these tight constraints.</p>
-<p>Some boxes <em>loosen</em> the constraints, meaning the maximum is maintained<br>but the minimum is removed. For example, <code>Center</code>.</p>
-<h2 id="Unbounded_constraints">Unbounded constraints</h2>
-<p>In certain situations, the constraint that is given to a box will be<br><em>unbounded</em>, or infinite. This means that either the maximum width or<br>the maximum height is set to <code>double.INFINITY</code>.</p>
-<p>A box that tries to be as big as possible won’t function usefully when<br>given an unbounded constraint, and in checked mode, will assert with a<br>message saying <code>!_size.isInfinite</code> and a string that points to this<br>file.</p>
-<p>The most common cases where a render box finds itself with unbounded<br>constraints are within flex boxes (<code>Row</code> and <code>Column</code>), and <strong>within<br>scrollable regions</strong> (mainly <code>Block</code>, <code>ScollableList&lt;T&gt;</code>, and<br><code>ScrollableMixedWidgetList</code>).</p>
-<p>In particular, <code>Block</code> tries to expand to fit the space available in<br>its cross-direction (i.e. if it’s a vertically-scrolling block, it<br>will try to be as wide as its parent). If you nest a vertically<br>scrolling <code>Block</code> inside a horizontally scrolling <code>Block</code>, the inner<br>one will try to be as wide as possible, which is infinitely wide,<br>since the outer one is scrollable in that direction.</p>
-<h2 id="Flex">Flex</h2>
-<p>Flex boxes themselves (<code>Row</code> and <code>Column</code>) behave differently based on<br>whether they are in a bounded constraints or unbounded constraints in<br>their given direction.</p>
-<p>In bounded constraints, they try to be as big as possible in that<br>direction.</p>
-<p>In unbounded constraints, they try to fit their children in that<br>direction. In this case, you cannot set <code>flex</code> on the children to<br>anything other than 0 (the default). In the widget hierarchy, this<br>means that you cannot use <code>Flexible</code> when the flex box is inside<br>another flex box or inside a scrollable. If you do, you’ll get an<br>assert that <code>canFlex</code> is not true, pointing you at this section.</p>
-<p>In the <em>cross</em> direction, i.e. in their width for <code>Column</code> (vertical<br>flex) and in their height for <code>Row</code> (horizontal flex), they must never<br>be unbounded, otherwise they would not be able to reasonably align<br>their children.</p>
+</li>
+<li><p>APIs that encourage bad practices should not exist. e.g., no<br><code>document.write()</code>, <code>innerHTML</code>, <code>insertAdjacentHTML()</code>, etc.</p>
+<ul>
+<li>String manipulation to generate data or code that will subsequently<br>be interpreted or parsed is a bad practice as it leads to code<br>injection vulnerabilities.</li>
+</ul>
+</li>
+<li><p>If we expose some aspect of a mojo service, we should expose/wrap<br>all of it, so that there’s no cognitive cliff when interacting with<br>that service (where you are fine using the exposed API up to a<br>point, but beyond that have to learn all about the underlying<br>service).</p>
+</li>
+</ul>
+<h2 id="Bugs">Bugs</h2>
+<p>“Don’t lick the cookie”: Only assign a bug to yourself when you are<br>actively working on it. If you’re not working on it, leave it<br>unassigned. Don’t assign bugs to people unless you know they are going<br>to work on it.</p>
+<p>File bugs for anything that you come across that needs doing. When you<br>implement something but know it’s not complete, file bugs for what you<br>haven’t done. That way, we can keep track of what still needs doing.</p>
+<h2 id="Regressions">Regressions</h2>
+<p>If a check-in has caused a regression on the trunk, roll back the<br>check-in (even if it isn’t yours) unless doing so would take longer<br>than fixing the bug. When the trunk is broken, it slows down everyone<br>else on the project.</p>
+<p>There is no shame in making mistakes.</p>
+<h2 id="Questions">Questions</h2>
+<p>It’s always ok to ask questions. Our systems are large, nobody will be<br>an expert in all the systems.</p>
 
 </div>
         </div>

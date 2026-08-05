@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Assets and Images - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link current">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Flutter</h2>
+    <ul>
+    
+        <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
+    
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
+    
+        <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
+    
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
+        <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link current">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <p>Flutter applications include both code and assets (sometimes called resources).<br>Assets can include static data, configuration files, or anything else an<br>application needs to function; in particular, assets include icons and other<br>images displayed in the UI.</p>
+<h2 id="Specifying_assets">Specifying assets</h2>
+<p>Flutter uses the <code>flutter.yaml</code> file to identify assets required by an<br>application, as shown in the <a href="/tutorial/">Tutorial</a>. A typical <code>flutter.yaml</code><br>file might include something like the following:</p>
+<pre><code><span class="label">assets:</span>
+  - assets/my_icon<span class="preprocessor">.png</span>
+  - assets/background<span class="preprocessor">.png</span>
+</code></pre><p>The <code>assets</code> section specifies files that should be included with the<br>application. Flutter places them in a special archive called the <em>asset bundle</em>,<br>which applications can read from at runtime. It lists explicit paths (relative<br>to the <code>flutter.yaml</code> file) where the asset files are located.</p>
+<h3 id="Asset_variants">Asset variants</h3>
+<p>The build process supports the notion of asset variants: different versions of<br>an asset that might be displayed in different contexts. When an asset’s path is<br>specified in the <code>assets</code> section of <code>flutter.yaml</code>, the build process looks for<br>any files with the same name in adjacent subdirectories. Such files are then<br>included in the asset bundle along with the specified asset.</p>
+<p>For example, if you have the following assets:</p>
+<pre><code><span class="title">assets</span>/background.png
+<span class="title">assets</span>/dark/background.png
+</code></pre><p>and your <code>flutter.yaml</code> file contains:</p>
+<pre><code><span class="label">assets:</span>
+  - assets/background<span class="preprocessor">.png</span>
+</code></pre><p>then both <code>assets/background.png</code> and <code>assets/dark/background.png</code> will be<br>included in your asset bundle. The former is considered the <em>main asset</em>, while<br>the latter is considered a <em>variant</em>.</p>
+<p>Flutter uses asset variants when choosing resolution appropriate images; see<br>below. In the future, this mechanism may be extended to include variants for<br>different locales or regions, reading directions, etc.</p>
+<h2 id="Working_with_assets">Working with assets</h2>
+<p>Your application can access its assets through the<br><a href="http://docs.flutter.io/flutter/services/AssetBundle-class.html" target="_blank">AssetBundle</a><br>interface. The two main methods on an asset bundle allow you to load a string<br>(<code>loadString</code>) or an image (<code>loadImage</code>) out of the bundle, given a logical key.<br>The logical key maps to the path to the asset specified in the <code>flutter.yaml</code><br>file at build time. The application’s asset bundle is accessible through the<br><a href="http://docs.flutter.io/flutter/widgets/DefaultAssetBundle/of.html" target="_blank">DefaultAssetBundle</a><br>widget’s <code>of</code> method.</p>
+<p>For example, the dark background from the example above could be loaded in a<br>widget’s <code>build</code> method like so:</p>
+<pre><code>Widget build(BuildContext context) {
+  <span class="keyword">...</span>
+  String name = <span class="string">'assets/dark/background.png'</span>;
+  ImageResource image = DefaultAssetBundle.of(context).loadImage(name);
+  <span class="keyword">...</span>
+}
+</code></pre><p>As a convenience, the<br><a href="http://docs.flutter.io/flutter/widgets/AssetImage-class.html" target="_blank">AssetImage</a><br>widget provides a simple way to display an image in the UI.  Images may also<br>be specified as the background in a<br><a href="http://docs.flutter.io/flutter/widgets/DecoratedBox-class.html" target="_blank">DecoratedBox</a>.</p>
+<h2 id="Resolution_awareness">Resolution awareness</h2>
+<p>Flutter can load resolution-appropriate images for the current device<br>pixel ratio.</p>
+<p><a href="http://docs.flutter.io/flutter/widgets/AssetImage-class.html" target="_blank">AssetImage</a><br>understands how to map a logical requested asset onto one that most<br>closely matches the current device pixel ratio. In order for this mapping to<br>work, assets should be arranged according to a particular directory structure:</p>
+<pre><code><span class="keyword">...</span>/image.png
+<span class="keyword">...</span>/Mx/image.png
+<span class="keyword">...</span>/Nx/image.png
+...etc.
+</code></pre><p>Where M and N are numeric identifiers that correspond to the nominal resolution<br>of the images contained within. The main asset is assumed to correspond to a<br>resolution of 1.0. For example, consider the following asset layout for an<br>image named <code>my_icon.png</code>:</p>
+<pre><code><span class="keyword">...</span>/my_icon.png
+<span class="keyword">...</span>/<span class="number">2.</span>0x/my_icon.png
+<span class="keyword">...</span>/<span class="number">3.</span>0x/my_icon.png
+</code></pre><p>On devices with a device pixel ratio of 1.8, the asset <code>.../2.0x/my_icon.png</code><br>would be chosen. For a device pixel ratio of 2.7, the asset<br><code>.../3.0x/my_icon.png</code> would be chosen.</p>
+<p>If the width and height of the rendered image are not specified, the nominal<br>resolution is used to scale the asset so that it will occupy the same amount<br>of screen space as the main asset would have, just with a higher resolution.<br>That is, if <code>.../my_icon.png</code> is 72px by 72px, then <code>.../3.0x/my_icon.png</code><br>should be 216px by 216px; but they both will render into 72px by 72px<br>(in logical pixels) if width and height are not specified.</p>
+<p>The way this works is through an object called<br><a href="http://docs.flutter.io/flutter/widgets/AssetVendor-class.html" target="_blank">AssetVendor</a><br>established at the top of the build tree. AssetVendor replaces the default asset<br>bundle, so anything using the default asset bundle will inherit resolution<br>awareness when loading images.  (If you work with some of the lower level<br>classes, like<br><a href="http://docs.flutter.io/flutter/services/ImageResource-class.html" target="_blank">ImageResource</a><br>or<br><a href="http://docs.flutter.io/flutter/services/ImageCache-class.html" target="_blank">ImageCache</a>,<br>you’ll also notice parameters related to scale.)</p>
+<p>Some caveats:</p>
+<ul>
+<li>If you’re not using<br><a href="http://docs.flutter.io/flutter/material/MaterialApp-class.html" target="_blank">MaterialApp</a><br>in your application, and you want to use resolution awareness, you’ll need to<br>establish your own AssetVendor in your build logic. (This may change, please see<br><a href="https://github.com/flutter/flutter/issues/1346" target="_blank">this issue</a>.)</li>
+<li>If you want establish a your own<br><a href="http://docs.flutter.io/flutter/widgets/MediaQuery-class.html" target="_blank">MediaQuery</a> or<br><a href="http://docs.flutter.io/flutter/widgets/DefaultAssetBundle-class.html" target="_blank">DefaultAssetBundle</a><br>below the root of the widget hierarchy, the root-level AssetVendor won’t be<br>aware of the change.  If you want resolution awareness with the new MediaQuery<br>or DefaultAssetBundle you specify, you’ll need to create an AssetVendor at<br>that point in the tree as well.</li>
+</ul>
+<p>You can see an example<br>(<a href="https://github.com/flutter/flutter/tree/master/examples/widgets" target="_blank">examples/widgets.dart</a>)<br>from the flutter repo.<br>Run <code>flutter run -t resolution_awareness.dart</code> to see it in action.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
+        </script>
+    </body>
+</html>

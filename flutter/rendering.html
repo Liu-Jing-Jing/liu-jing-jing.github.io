@@ -30,7 +30,7 @@
         <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
         <li><a href="/widgets/" class="nav-link">Widgets</a></li>
         <li><a href="/api/" class="nav-link">Component</a></li>
-        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
         <div id="main">
@@ -41,11 +41,33 @@
     
         <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
     
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
         <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link current">Rendering</a></li>
     
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
         <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
     
     </ul>
 </div>
@@ -223,12 +245,10 @@
 5
 6
 7
-8
-</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:flutter/animation.dart';</span>
-<span class="import"><span class="keyword">import</span> 'package:flutter/rendering.dart';</span>
+</pre></td><td class="code"><pre><span class="import"><span class="keyword">import</span> 'package:flutter/rendering.dart';</span>
 
 <span class="title">void</span> main() {
-  scheduler.addPersistentFrameCallback((_) {
+  <span class="type">Renderer</span>.instance.addPersistentFrameCallback((_) {
     debugDumpRenderTree();
   });
 }
@@ -251,6 +271,43 @@
                     }
                 })
             }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
         </script>
     </body>
 </html>

@@ -30,7 +30,7 @@
         <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
         <li><a href="/widgets/" class="nav-link">Widgets</a></li>
         <li><a href="/api/" class="nav-link">Component</a></li>
-        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
         <div id="main">
@@ -41,127 +41,153 @@
     
         <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
     
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
         <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
     
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
         <li><a href="/flutter/FAQ.html" class="sidebar-link current">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
     
     </ul>
 </div>
 
 <div class="content with-sidebar">
-    <h2 id="What_does_Flutter_do-3f-">What does Flutter do?</h2>
-<p>Flutter gives developers an easy and productive way to build and deploy<br>cross-platform, high-performance mobile apps.</p>
-<p>Flutter gives users beautiful, fast, and jitter-free app experiences.</p>
-<h2 id="What_does_Flutter_provide-3f-">What does Flutter provide?</h2>
-<p>Flutter has four main components:</p>
+    <h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-662f-505a-4ec0-4e48-7684-ff1f-22-3e-What_does_Flutter_do-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 是做什么的？">What does Flutter do?</span></h2>
+<p><span class="zh" data-zh="Flutter 为开发者提供了一种简单且高效的方式，用于在 Android 和 iOS 上构建和部署跨平台、高性能的移动应用。">Flutter gives developers an easy and productive way to build and deploy cross-platform, high-performance mobile apps on both Android and iOS.</span></p>
+<p><span class="zh" data-zh="Flutter 为用户带来了美观、流畅且无卡顿的应用体验。">Flutter gives users beautiful, fast, and jitter-free app experiences.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-63d0-4f9b-4e86-4ec0-4e48-ff1f-22-3e-What_does_Flutter_provide-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 提供了什么？">What does Flutter provide?</span></h2>
+<p><span class="zh" data-zh="Flutter 包含三个主要组件：">Flutter has three main components:</span></p>
 <ul>
-<li>a heavily optimized, mobile-first 2D rendering engine (with excellent support<br>for text)</li>
-<li>a functional-reactive framework (optional, you can bring-your-own<br>framework)</li>
-<li>a set of Material Design widgets (optional, you can bring-your-own<br>widgets) libraries, tools, and a plugin for Atom</li>
+<li><span class="zh" data-zh="一个经过高度优化的、移动优先的 2D 渲染引擎（对文本有出色的支持）">a heavily optimized, mobile-first 2D rendering engine (with excellent support for text)</span></li>
+<li><span class="zh" data-zh="一个函数响应式框架（可选，你可以使用自己的框架）">a functional-reactive framework (optional, you can bring-your-own framework)</span></li>
+<li><span class="zh" data-zh="一套 Material Design 组件（可选，你可以使用自己的组件）、库、工具，以及一个 Atom 插件">a set of Material Design widgets (optional, you can bring-your-own widgets), libraries, tools, and a plugin for Atom</span></li>
 </ul>
-<h2 id="What_makes_Flutter_unique-3f-">What makes Flutter unique?</h2>
-<p>Flutter is unique because, <em>for both iOS and Android</em>, it offers the combination<br>of highly productive and fast development experience, fast runtime and engine<br>performance, and beautifully designed widgets and apps.</p>
-<p>Flutter is unique <em>technically</em> because its rendering implementation uses neither<br>WebView nor OEM widgets. Instead, Flutter uses its own high-performance<br>rendering engine to draw widgets.</p>
-<h2 id="Why_would_I_want_to_invest_in_learning_Flutter-3f-">Why would I want to invest in learning Flutter?</h2>
-<p>Learning Flutter will allow you to quickly create high-performance mobile<br>applications for both iOS and Android; leveraging a single codebase investment<br>to ship on multiple platforms. It uses a modern, typed programming language that<br>is instantly familiar to anyone who has done Java or JavaScript programming.<br>Flutter gives developers quick edit cycles for an enjoyable low-friction<br>workflow.</p>
-<h2 id="What_are_Flutter-2019-s_guiding_principles-3f-">What are Flutter’s guiding principles?</h2>
-<p>We believe that:</p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-662f-4ec0-4e48-8ba9-_Flutter_-4e0e-4f17-4e0d-540c-ff1f-22-3e-What_makes_Flutter_unique-3f-3c-2f-span-3e-"><span class="zh" data-zh="是什么让 Flutter 与众不同？">What makes Flutter unique?</span></h2>
+<p><span class="zh" data-zh="Flutter 与大多数其他构建跨平台移动应用的方案不同，因为 Flutter 既不使用 WebView，也不使用设备自带的 OEM 组件。相反，Flutter 使用自己的高性能渲染引擎来绘制组件。">Flutter is different than most other options for building cross-platform mobile apps because Flutter uses neither WebView nor the OEM widgets that shipped with the device. Instead, Flutter uses its own high-performance rendering engine to draw widgets.</span></p>
+<p><span class="zh" data-zh="Flutter 还为开发者提供了高效快速的开发体验、快速的运行时和引擎性能，以及精心设计的组件，从而打造出美观的应用。">Flutter also offers developers a highly productive and fast development experience, fast runtime and engine performance, and beautifully designed widgets that make for beautiful apps.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-4e3a-4ec0-4e48-6211-5e94-8be5-6295-5165-7cbe-529b-5b66-4e60-_Flutter-ff1f-22-3e-Why_would_I_want_to_invest_in_learning_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="为什么我应该投入精力学习 Flutter？">Why would I want to invest in learning Flutter?</span></h2>
+<p><span class="zh" data-zh="Flutter 是一种简便的方式，可以使用单一代码库交付同时在 Android 和 iOS 上运行的精美移动应用。Flutter 为开发者提供了快速编辑/调试的循环，带来愉悦且低摩擦的工作流。">Flutter is an easy way to use a single codebase to deliver beautiful mobile apps that run on both Android and iOS. Flutter gives developers quick edit/debug cycles for an enjoyable low-friction workflow.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-7684-6307-5bfc-539f-5219-662f-4ec0-4e48-ff1f-22-3e-What_are_Flutter-2019-s_guiding_principles-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 的指导原则是什么？">What are Flutter’s guiding principles?</span></h2>
+<p><span class="zh" data-zh="我们相信：">We believe that:</span></p>
 <ul>
-<li>In order to reach every potential user, developers need to target multiple<br>mobile platforms.</li>
-<li>HTML and WebViews as they exist today make it challenging to<br>consistently hit high frame rates and deliver high-fidelity experiences, due to<br>automatic behavior (scrolling, layout) and legacy support.</li>
-<li>Today, it’s too<br>costly to build the same app multiple times: it requires different teams,<br>different code bases, different workflows, different tools, etc.</li>
-<li>Developers want<br>an easier, better way to use a single codebase to build mobile apps for multiple<br>target platforms, and they don’t want to sacrifice quality, control, or<br>performance.</li>
+<li><span class="zh" data-zh="为了触达每一个潜在用户，开发者需要面向多个移动平台。">In order to reach every potential user, developers need to target multiple mobile platforms.</span></li>
+<li><span class="zh" data-zh="当前的 HTML 和 WebView 难以持续达到高帧率并提供高保真体验，原因在于其自动行为（滚动、布局）和遗留支持。">HTML and WebViews as they exist today make it challenging to consistently hit high frame rates and deliver high-fidelity experiences, due to automatic behavior (scrolling, layout) and legacy support.</span></li>
+<li><span class="zh" data-zh="如今，多次构建同一个应用的成本太高：它需要不同的团队、不同的代码库、不同的工作流、不同的工具等等。">Today, it’s too costly to build the same app multiple times: it requires different teams, different code bases, different workflows, different tools, etc.</span></li>
+<li><span class="zh" data-zh="开发者希望有一种更简单、更好的方式，使用单一代码库为多个目标平台构建移动应用，而且他们不想牺牲质量、控制力或性能。">Developers want an easier, better way to use a single codebase to build mobile apps for multiple target platforms, and they don’t want to sacrifice quality, control, or performance.</span></li>
 </ul>
-<p>We are focused on three things:</p>
+<p><span class="zh" data-zh="我们专注于三件事：">We are focused on three things:</span></p>
 <ul>
-<li><em>Control</em> - Developers deserve access to, and control over, all layers of the<br>system. Which leads to:</li>
-<li><em>Performance</em> - Users deserve perfectly fluid, responsive,<br>jank-free apps. Which leads to:</li>
-<li><em>Fidelity</em> - Everyone deserves precise, beautiful,<br>delightful mobile app experiences.</li>
+<li><span class="zh" data-zh="控制 - 开发者应该有权访问并控制系统中的所有层级。这进而带来："><em>Control</em> - Developers deserve access to, and control over, all layers of the system. Which leads to:</span></li>
+<li><span class="zh" data-zh="性能 - 用户应该获得完美流畅、响应迅速、无卡顿的应用。这进而带来："><em>Performance</em> - Users deserve perfectly fluid, responsive, jank-free apps. Which leads to:</span></li>
+<li><span class="zh" data-zh="保真度 - 每个人都应该获得精确、美观、令人愉悦的移动应用体验。"><em>Fidelity</em> - Everyone deserves precise, beautiful, delightful mobile app experiences.</span></li>
 </ul>
-<h2 id="Why_is_Google_building_Flutter-3f-">Why is Google building Flutter?</h2>
-<p>As Eric Schmidt has said: “Mobile won.” We saw that too many engineering teams<br>inside of Google were slowed down by building apps twice: once for Android and<br>once for iOS. Hiring two separate teams is costly: knowledge isn’t shared, code<br>is duplicated, keeping two apps in sync is challenging. We are building Flutter<br>to make it easier for teams to deliver better mobile apps for less cost.</p>
-<h2 id="What_are_the_origins_of_Flutter-3f-">What are the origins of Flutter?</h2>
-<p>Back in 2014, some engineers in Google took a step back to ask, “What would a<br>modern mobile-first rendering engine look like?” Without worrying about<br>backwards compatibility, or desktop concerns, or legacy constraints, they<br>started coding a new engine named Sky. Encouraged by some of their initial<br>performance measurements, they decided to make the experiment a real project and<br>renamed it Flutter. In 2015, internal teams inside of Google started to take<br>notice and began building apps on Flutter, and the<br><a href="http://flutter.io" target="_blank">flutter.io</a> site was born.</p>
-<h2 id="Does_Google_use_Flutter-3f-">Does Google use Flutter?</h2>
-<p>Yes. Even though Flutter itself is open source, the apps built on Flutter are<br>not yet public. Stay tuned!</p>
-<h2 id="What_devices_and_OS_versions_does_Flutter_run_on-3f-">What devices and OS versions does Flutter run on?</h2>
-<p>Flutter is designed to run on Android Jelly Bean and newer, and iOS 5 and newer.<br>We test on a variety of low-end to high-end phones and tablets, but we don’t yet<br>have an official device compatibility guarantee.</p>
-<h2 id="What_technology_is_Flutter_built_with-3f-">What technology is Flutter built with?</h2>
-<p>Flutter is built with C, C++, Dart, Skia (a 2D rendering engine),<br><a href="https://github.com/domokit/mojo" target="_blank">Mojo IPC</a>, and<br>Blink’s text rendering system. See this <architecture diagram> for a better<br>picture of the main components.</p>
-<h2 id="How_does_Flutter_run_my_code_on_Android-3f-">How does Flutter run my code on Android?</h2>
-<p>The engine’s C/C++ code is compiled with Android’s NDK, and the majority of the<br>framework and application code is running on the Dart VM. The Dart VM generates<br>JIT-compiled optimized native code on the device. (In other words, the Dart VM<br>is not an interpreter.)</p>
-<h2 id="How_does_Flutter_run_my_code_on_iOS-3f-">How does Flutter run my code on iOS?</h2>
-<p>The engine’s C/C++ code is compiled with LLVM, and any Dart code is AOT-compiled<br>into native code. The app runs using the native instruction set (no interpreter<br>is involved).</p>
-<h2 id="Does_Flutter_run_on_the_web-3f-">Does Flutter run on the web?</h2>
-<p>No. Flutter is designed, from the ground up, to power high-performance,<br>full-featured apps on mobile devices. We do not plan to provide a web version of<br>Flutter.</p>
-<h2 id="What_operating_systems_can_I_use_to_build_a_Flutter_app-3f-">What operating systems can I use to build a Flutter app?</h2>
-<p>Flutter supports development on Linux and Mac. Windows support is planned.</p>
-<h2 id="What_kinds_of_apps_can_I_build_with_Flutter-3f-">What kinds of apps can I build with Flutter?</h2>
-<p>Flutter is optimized for 2D mobile apps that want to run in both Android and<br>iOS. Apps that use Material Design are particularly well suited for Flutter.</p>
-<h2 id="What_kind_of_app_performance_can_I_expect-3f-">What kind of app performance can I expect?</h2>
-<p>You can expect excellent performance on both Android and iOS. Flutter is<br>designed to help developers easily achieve a constant 60fps. Flutter apps run<br>via natively compiled code, no interpreters are involved.</p>
-<h2 id="Can_I_use_Flutter_to_build_desktop_apps-3f-">Can I use Flutter to build desktop apps?</h2>
-<p>We are focused on mobile-first use cases. However, Flutter is open source and we<br>encourage the community to use Flutter in a variety of interesting ways.</p>
-<h2 id="Can_I_use_Flutter_inside_of_my_existing_native_app-3f-">Can I use Flutter inside of my existing native app?</h2>
-<p>Yes, you can embed a Flutter view in your existing native Android or iOS app.<br>You can learn more about this at [[docs coming soon]]. If you want to do this, we<br>encourage you to email our mailing list:<br><a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
-<h2 id="Can_I_access_native_services_and_APIs_like_sensors_and_local_storage-3f-">Can I access native services and APIs like sensors and local storage?</h2>
-<p>Yes. Flutter gives developers access to any service or API that the host<br>operating system provides, via Mojo’s IPC system. You can learn more about this<br>at [[docs coming soon]]. If you want to do this, we encourage you to email our<br>mailing list: <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
-<h2 id="Can_I_interop_with_my_mobile_platform-2019-s_default_programming_language-3f-">Can I interop with my mobile platform’s default programming language?</h2>
-<p>Yes. Flutter uses Mojo’s IPC system to interop between Flutter’s app code and<br>the host operating system. You can learn more about this at [[docs coming soon]].<br>If you want to do this, we encourage you to email our mailing list:<br><a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
-<h2 id="Does_Flutter_come_with_a_framework-3f-">Does Flutter come with a framework?</h2>
-<p>Yes! Flutter ships with a functional-reactive style framework, inspired by<br>React. However, Flutter’s framework is designed to be optional and layered.<br>Developers can choose to use only parts of the framework, or a different<br>framework.</p>
-<h2 id="Does_Flutter_come_with_widgets-3f-">Does Flutter come with widgets?</h2>
-<p>Yes! Flutter ships with a set of high quality Material Design widgets, layouts,<br>and themes. You can see a collection of those widgets at [[docs coming soon]]. Of<br>course, these widgets are optional. Flutter is designed to make it easy to<br>create your own widgets, or customize the existing widgets.</p>
-<h2 id="Can_I_extend_and_customize_the_bundled_widgets-3f-">Can I extend and customize the bundled widgets?</h2>
-<p>Absolutely. Flutter’s widget system was designed to be easily customizable. You<br>can see an example of that at [[docs coming soon]].</p>
-<h2 id="Does_Flutter_come_with_a_testing_framework-3f-">Does Flutter come with a testing framework?</h2>
-<p>Flutter apps are tested with the<br><a href="https://pub.dartlang.org/packages/test" target="_blank">test package</a>. Learn more about<br>testing with Flutter here [[docs coming soon]].</p>
-<h2 id="Does_Flutter_come_with_a_dependency_injection_framework_or_solution-3f-">Does Flutter come with a dependency injection framework or solution?</h2>
-<p>Not at this time. Please share your ideas at<br><a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
-<h2 id="Does_Flutter_come_with_a_reflection-2f-mirrors_system-3f-">Does Flutter come with a reflection/mirrors system?</h2>
-<p>Not at this time. Because Flutter apps are pre-compiled for iOS, and binary size<br>is always a concern with mobile apps, we disabled dart:mirrors. We are curious<br>what you might need reflection/mirrors for, please email us at<br><a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
-<h2 id="How_do_I_write_parallel_and-2f-or_concurrent_apps_for_Flutter-3f-">How do I write parallel and/or concurrent apps for Flutter?</h2>
-<p>Flutter supports isolates. Isolates are separate heaps in Flutter’s VM, and they<br>are able to run in parallel (usually implemented as separate threads). Isolates<br>communicate by sending and receiving asynchronous messages. Flutter does not<br>currently have a shared-memory parallelism solution, although we are evaluating<br>solutions for this.</p>
-<h2 id="Can_I_use_JSON-2f-XML-2f-protobuffers-2f-etc_with_Flutter-3f-">Can I use JSON/XML/protobuffers/etc with Flutter?</h2>
-<p>Absolutely. There are libraries in<br><a href="https://pub.dartlang.org" target="_blank">pub.dartlang.org</a> for JSON, XML,<br>protobufs, and many other utilities and formats.</p>
-<h2 id="How_do_I_write_well-styled_code_for_Flutter-3f-">How do I write well-styled code for Flutter?</h2>
-<p>Flutter has an<br><a href="https://github.com/flutter/engine/blob/master/sky/specs/style-guide.md" target="_blank">opinionated style guide</a>,<br>which we encourage you to check out.</p>
-<h2 id="Does_Flutter_use_my_system-2019-s_OEM_widgets-3f-">Does Flutter use my system’s OEM widgets?</h2>
-<p>No. Flutter provides a set of Material Design widgets, managed and rendered by<br>Flutter’s framework and engine.</p>
-<h2 id="How_do_I_deploy_a_Flutter_app-3f-">How do I deploy a Flutter app?</h2>
-<p>Flutter apps are most commonly deployed via the mobile platform’s store (such as<br>Apple’s App Store and Google’s Play Store). We plan to deliver tools to easily<br>to <a href="https://github.com/flutter/tools/issues/168" target="_blank">generate an .ipa</a><br>and easily <a href="https://github.com/flutter/tools/issues/167" target="_blank">generate an .apk</a>.</p>
-<h2 id="Can_I_update_my_app_over_the_network-2c-_outside_of_the_Play_Store-3f-">Can I update my app over the network, outside of the Play Store?</h2>
-<p>Yes. On Android, you can update your app over the network (via HTTP), without<br>first publishing to the Play Store. This can be useful because it doesn’t bother<br>the user with a notification, ensures your users are on the latest version,<br>makes it easier to run A/B experiments, and more.</p>
-<p>Unfortunately, due to iOS restrictions, updating your Flutter app over the<br>network is not possible. We are curious how much you use this feature, please<br>let us know at flutter-dev@googlegroups.com.</p>
-<h2 id="What_if_I_don-2019-t_want_to_build_my_app_with_Material_Design-3f-">What if I don’t want to build my app with Material Design?</h2>
-<p>Flutter’s widget system is designed to be extensible, and it’s supported and<br>possible to create your own set of widgets using our base classes.</p>
-<h2 id="Does_Flutter_work_with_any_editors_or_IDEs-3f-">Does Flutter work with any editors or IDEs?</h2>
-<p>We are building a<br><a href="https://atom.io/packages/dartlang" target="_blank">Flutter plugin for Atom</a>. Today, it<br>can syntax highlight, code<br>complete, refactor, launch apps, create new apps from a template, show type<br>hierarchies, jump to definition, and more.</p>
-<h2 id="Can_I_build_3D_-28-OpenGL-29-_apps_with_Flutter-3f-">Can I build 3D (OpenGL) apps with Flutter?</h2>
-<p>Today we don’t support for 3D via OpenGL ES or similar. We have long-term plans<br>to expose an optimized 3D API, but right now we’re focused on 2D.</p>
-<h2 id="How_big_is_the_Flutter_engine-3f-">How big is the Flutter engine?</h2>
-<p>As of November, 2015, we measured the size of a minimal Flutter app, bundled as<br>an APK, to be approximately 8MB. For this simple app that used Material Design<br>widgets, the core engine is approximately 5MB, the framework + app code is<br>approximately 400kb, necessary Java code is 330k, and there is approximately<br>2.5MB of ICU data. We are working to get this smaller.</p>
-<h2 id="Where_can_I_get_support-3f-">Where can I get support?</h2>
-<p>If you think you’ve encountered a bug, please file it in our<br><a href="https://github.com/flutter/engine/issues" target="_blank">issue tracker</a>. We<br>encourage you to use <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a> for “HOWTO”<br>type questions. For discussions,<br>please join our mailing list at<br><a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</p>
-<h2 id="How_do_I_get_involved-3f-">How do I get involved?</h2>
-<p>Flutter is open source, and we encourage you to contribute. You can start by<br>simply filing issues for feature requests and bugs in our<br><a href="https://github.com/flutter/engine/issues" target="_blank">issue tracker</a>. You<br>should also join our mailing list at<br><a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a> and let us<br>know how you’re using Flutter and what you’d like to do with it. If you’re<br>interested in contributing code, you can start by reading our<br><a href="https://github.com/flutter/engine/blob/master/CONTRIBUTING.md" target="_blank">Contributing guide</a>.</p>
-<h2 id="Should_I_build_my_next_production_app_with_Flutter-3f-">Should I build my next production app with Flutter?</h2>
-<p>As of November 2015, Flutter is still being developed heavily and is not yet at<br>1.0. While lower levels of the system are changing less, we envisioning changing<br>parts of the system based on early adopter feedback.</p>
-<h2 id="I_heard_Apple_rejects_apps_built_with_third-party_frameworks-2c-_is_that_true-3f-_Will_Apple_reject_my_Flutter_app-3f-">I heard Apple rejects apps built with third-party frameworks, is that true? Will Apple reject my Flutter app?</h2>
-<p>We can’t speak for Apple, but Apple’s policies have changed, and they have<br>allowed apps built with systems like Flutter. Of course, Apple is in ultimately<br>in charge of their ecosystem, but our goal is to continue to do everything we<br>can to ensure Flutter apps can be deployed into Apple’s App Store.</p>
-<h2 id="What_language_is_Flutter_written_in-3f-">What language is Flutter written in?</h2>
-<p>We looked at a lot of languages and runtimes, and ultimately adopted Dart for<br>the framework and widgets. The underlying graphics framework and the Dart<br>virtual machine are implemented in C/C++.</p>
-<h2 id="Why_did_Flutter_choose_to_use_Dart-3f-">Why did Flutter choose to use Dart?</h2>
-<p>Dart gives us a scalable language and a feature set that supports simple scripts<br>all the way up to full-featured apps. We wanted something that would be<br>instantly familiar to JavaScript, Java, and C# developers. Dart’s robust core<br>libraries meant that we didn’t need to write a lot of core library code.</p>
-<p>We also wanted our apps to be extremely fast, and in our experience the Dart VM<br>has very impressive performance. We also really liked the Dart VM’s other<br>features like the Observatory (a real-time VM profiler, debugger, and<br>introspection tool) and snapshots (a binary form of the app that’s quick to<br>load).</p>
-<p>Very important was the requirement to run fast on iOS. The Dart VM supports an<br>ahead-of-time compilation mode, meaning we can compile Dart code to native code<br>and ship a Flutter app to Apple’s App Store.</p>
-<p>In short, we adopted Dart because it was the best language that we could find<br>that we wanted to code in every day.</p>
-<h2 id="Can_Flutter_run_any_Dart_code-3f-">Can Flutter run any Dart code?</h2>
-<p>Flutter should be able to run most Dart code that does not import (transitively,<br>or directly) dart:mirrors or dart:html.</p>
-<h2 id="Who_works_on_Flutter-3f-">Who works on Flutter?</h2>
-<p>Flutter is an open source project, staffed primarily by engineers at Google.</p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-548c-_Sky_-6709-4ec0-4e48-5173-7cfb-ff1f-22-3e-How_is_Flutter_related_to_Sky-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 和 Sky 有什么关系？">How is Flutter related to Sky?</span></h2>
+<p><span class="zh" data-zh="Sky 是 Flutter 早期版本的代号。">Sky was the codename of an earlier version of Flutter.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-53ef-4ee5-5728-54ea-4e9b-8bbe-5907-548c-64cd-4f5c-7cfb-7edf-7248-672c-4e0a-8fd0-884c-ff1f-22-3e-What_devices_and_OS_versions_does_Flutter_run_on-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 可以在哪些设备和操作系统版本上运行？">What devices and OS versions does Flutter run on?</span></h2>
+<p><span class="zh" data-zh="Flutter 应用可以在 Android Jelly Bean v16、4.1.x 或更高版本，以及 iOS 8 或更高版本上运行。我们在各种从低端到高端的手机和平板上进行了测试，但我们目前还没有官方的设备兼容性保证。">Flutter apps run on Android Jelly Bean, v16, 4.1.x or newer, and iOS 8 or newer. We test on a variety of low-end to high-end phones and tablets, but we don’t yet have an official device compatibility guarantee.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-662f-7528-4ec0-4e48-6280-672f-6784-5efa-7684-ff1f-22-3e-What_technology_is_Flutter_built_with-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 是用什么技术构建的？">What technology is Flutter built with?</span></h2>
+<p><span class="zh" data-zh="Flutter 使用 C、C++、Dart、Skia（一个 2D 渲染引擎）、Mojo IPC 以及 Blink 的文本渲染系统构建。请参阅架构图，以更好地了解主要组件。">Flutter is built with C, C++, Dart, Skia (a 2D rendering engine), <a href="https://github.com/domokit/mojo" target="_blank">Mojo IPC</a>, and Blink’s text rendering system. See this <a href="https://docs.google.com/presentation/d/1cw7A4HbvM_Abv320rVgPVGiUP2msVs7tfGbkgdrTy0I/edit#slide=id.gbb3c3233b_0_162" target="_blank">architecture diagram</a> for a better picture of the main components.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-5982-4f55-5728-_Android_-4e0a-8fd0-884c-6211-7684-4ee3-7801-ff1f-22-3e-How_does_Flutter_run_my_code_on_Android-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 如何在 Android 上运行我的代码？">How does Flutter run my code on Android?</span></h2>
+<p><span class="zh" data-zh="引擎的 C/C++ 代码使用 Android 的 NDK 编译，大部分框架和应用代码运行在 Dart VM 上。Dart VM 会在设备上生成 JIT 编译的优化原生代码。（换句话说，Dart VM 不是解释器。）">The engine’s C/C++ code is compiled with Android’s NDK, and the majority of the framework and application code is running on the Dart VM. The Dart VM generates JIT-compiled optimized native code on the device. (In other words, the Dart VM is not an interpreter.)</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-5982-4f55-5728-_iOS_-4e0a-8fd0-884c-6211-7684-4ee3-7801-ff1f-22-3e-How_does_Flutter_run_my_code_on_iOS-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 如何在 iOS 上运行我的代码？">How does Flutter run my code on iOS?</span></h2>
+<p><span class="zh" data-zh="引擎的 C/C++ 代码使用 LLVM 编译，所有 Dart 代码都被 AOT 编译为原生代码。应用使用原生指令集运行（不涉及解释器）。">The engine’s C/C++ code is compiled with LLVM, and any Dart code is AOT-compiled into native code. The app runs using the native instruction set (no interpreter is involved).</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-53ef-4ee5-5728-_Web_-4e0a-8fd0-884c-5417-ff1f-22-3e-Does_Flutter_run_on_the_web-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 可以在 Web 上运行吗？">Does Flutter run on the web?</span></h2>
+<p><span class="zh" data-zh="不可以。我们不打算提供 Flutter 的 Web 版本。">No. We do not plan to provide a web version of Flutter.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-4f7f-7528-4ec0-4e48-64cd-4f5c-7cfb-7edf-6765-6784-5efa-_Flutter_-5e94-7528-ff1f-22-3e-What_operating_systems_can_I_use_to_build_a_Flutter_app-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以使用什么操作系统来构建 Flutter 应用？">What operating systems can I use to build a Flutter app?</span></h2>
+<p><span class="zh" data-zh="Flutter 支持在 Linux 和 Mac 上进行开发。Windows 支持已在计划中。">Flutter supports development on Linux and Mac. Windows support is planned.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-7528-_Flutter_-6784-5efa-4ec0-4e48-6837-7684-5e94-7528-ff1f-22-3e-What_kinds_of_apps_can_I_build_with_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以用 Flutter 构建什么样的应用？">What kinds of apps can I build with Flutter?</span></h2>
+<p><span class="zh" data-zh="Flutter 为希望在 Android 和 iOS 上运行的 2D 移动应用进行了优化。使用 Material Design 的应用尤其适合 Flutter。">Flutter is optimized for 2D mobile apps that want to run on both Android and iOS. Apps that use Material Design are particularly well suited for Flutter.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-671f-5f85-4ec0-4e48-6837-7684-5e94-7528-6027-80fd-ff1f-22-3e-What_kind_of_app_performance_can_I_expect-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以期待什么样的应用性能？">What kind of app performance can I expect?</span></h2>
+<p><span class="zh" data-zh="你可以期待出色的性能。Flutter 旨在帮助开发者轻松实现稳定的 60fps。Flutter 应用通过原生编译代码运行——不涉及解释器。">You can expect excellent performance. Flutter is designed to help developers easily achieve a constant 60fps. Flutter apps run via natively compiled code – no interpreters are involved.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-7528-_Flutter_-6784-5efa-684c-9762-5e94-7528-5417-ff1f-22-3e-Can_I_build_desktop_apps_with_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以用 Flutter 构建桌面应用吗？">Can I build desktop apps with Flutter?</span></h2>
+<p><span class="zh" data-zh="我们专注于移动优先的使用场景。不过，Flutter 是开源的，我们鼓励社区以各种有趣的方式使用 Flutter。">We are focused on mobile-first use cases. However, Flutter is open source and we encourage the community to use Flutter in a variety of interesting ways.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-5728-73b0-6709-7684-539f-751f-5e94-7528-4e2d-4f7f-7528-_Flutter_-5417-ff1f-22-3e-Can_I_use_Flutter_inside_of_my_existing_native_app-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以在现有的原生应用中使用 Flutter 吗？">Can I use Flutter inside of my existing native app?</span></h2>
+<p><span class="zh" data-zh="可以，你可以在现有的 Android 或 iOS 应用中嵌入 Flutter 视图。你可以在文档即将推出中了解更多相关信息。如果你想这样做，我们鼓励你发送邮件到我们的邮件列表：flutter-dev@googlegroups.com。">Yes, you can embed a Flutter view in your existing Android or iOS app. You can learn more about this at [[docs coming soon]]. If you want to do this, we encourage you to email our mailing list: <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-8bbf-95ee-4f20-611f-5668-548c-672c-5730-5b58-50a8-7b49-539f-751f-670d-52a1-548c-_API_-5417-ff1f-22-3e-Can_I_access_native_services_and_APIs_like_sensors_and_local_storage-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以访问传感器和本地存储等原生服务和 API 吗？">Can I access native services and APIs like sensors and local storage?</span></h2>
+<p><span class="zh" data-zh="可以。Flutter 通过 Mojo 的 IPC 系统让开发者能够访问宿主操作系统提供的任何服务或 API。你可以在文档即将推出中了解更多相关信息。如果你想这样做，我们鼓励你发送邮件到我们的邮件列表：flutter-dev@googlegroups.com。">Yes. Flutter gives developers access to any service or API that the host operating system provides, via Mojo’s IPC system. You can learn more about this at [[docs coming soon]]. If you want to do this, we encourage you to email our mailing list: <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-4e0e-79fb-52a8-5e73-53f0-7684-9ed8-8ba4-7f16-7a0b-8bed-8a00-8fdb-884c-4e92-64cd-4f5c-5417-ff1f-22-3e-Can_I_interop_with_my_mobile_platform-2019-s_default_programming_language-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以与移动平台的默认编程语言进行互操作吗？">Can I interop with my mobile platform’s default programming language?</span></h2>
+<p><span class="zh" data-zh="可以。Flutter 使用 Mojo 的 IPC 系统在 Flutter 的应用代码和宿主操作系统之间进行互操作。你可以在文档即将推出中了解更多相关信息。如果你想这样做，我们鼓励你发送邮件到我们的邮件列表：flutter-dev@googlegroups.com。">Yes. Flutter uses Mojo’s IPC system to interop between Flutter’s app code and the host operating system. You can learn more about this at [[docs coming soon]]. If you want to do this, we encourage you to email our mailing list: <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-81ea-5e26-6846-67b6-5417-ff1f-22-3e-Does_Flutter_come_with_a_framework-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 自带框架吗？">Does Flutter come with a framework?</span></h2>
+<p><span class="zh" data-zh="是的！Flutter 附带了一个受 React 启发的函数响应式风格框架。不过，Flutter 的框架被设计为可选且分层的。开发者可以选择只使用框架的一部分，或者使用不同的框架。">Yes! Flutter ships with a functional-reactive style framework, inspired by React. However, Flutter’s framework is designed to be optional and layered. Developers can choose to use only parts of the framework, or a different framework.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-81ea-5e26-7ec4-4ef6-5417-ff1f-22-3e-Does_Flutter_come_with_widgets-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 自带组件吗？">Does Flutter come with widgets?</span></h2>
+<p><span class="zh" data-zh="是的！Flutter 附带了一套高质量的 Material Design 组件、布局和主题。你可以在文档即将推出中查看这些组件的集合。当然，这些组件是可选的。Flutter 旨在让你轻松创建自己的组件，或自定义现有组件。">Yes! Flutter ships with a set of high quality Material Design widgets, layouts, and themes. You can see a collection of those widgets at [[docs coming soon]]. Of course, these widgets are optional. Flutter is designed to make it easy to create your own widgets, or customize the existing widgets.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-4e3a-4ec0-4e48-_Flutter_-4e0d-4f7f-7528-5bbf-4e3b-5e73-53f0-7684-539f-751f-7ec4-4ef6-ff1f-22-3e-Why_does_Flutter_not_use_the_host_platform-2019-s_native_widgets-3f-3c-2f-span-3e-"><span class="zh" data-zh="为什么 Flutter 不使用宿主平台的原生组件？">Why does Flutter not use the host platform’s native widgets?</span></h2>
+<p><span class="zh" data-zh="我们希望最终结果是更高质量的应用。如果我们复用 OEM 组件，Flutter 应用的质量和性能将受限于这些组件的质量。">We are hoping the end-result will be higher quality apps. If we reused the OEM widgets, the quality and performance of Flutter apps would be limited by the quality of those widgets.</span></p>
+<p><span class="zh" data-zh="例如，在 Android 中，有一组硬编码的手势和固定的规则来消除它们的歧义。而在 Flutter 中，你可以编写自己的手势识别器，它是手势系统中的一等参与者。此外，由不同人编写的两个组件可以协调消除手势歧义。">In Android, for example, there’s a hard-coded set of gestures and fixed rules for disambiguating them. In Flutter, you can write your own gesture recognizer that is a first-class participant in the <a href="http://flutter.io/gestures/" target="_blank">gesture system</a>. Moreover, two widgets authored by different people can coordinate to disambiguate gestures.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-6269-5c55-548c-81ea-5b9a-4e49-5185-7f6e-7684-7ec4-4ef6-5417-ff1f-22-3e-Can_I_extend_and_customize_the_bundled_widgets-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以扩展和自定义内置的组件吗？">Can I extend and customize the bundled widgets?</span></h2>
+<p><span class="zh" data-zh="当然可以。Flutter 的组件系统被设计为易于自定义。你可以在文档即将推出中看到一个示例。">Absolutely. Flutter’s widget system was designed to be easily customizable. You can see an example of that at [[docs coming soon]].</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-81ea-5e26-6d4b-8bd5-6846-67b6-5417-ff1f-22-3e-Does_Flutter_come_with_a_testing_framework-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 自带测试框架吗？">Does Flutter come with a testing framework?</span></h2>
+<p><span class="zh" data-zh="Flutter 应用使用 test 包进行测试。在文档即将推出中了解更多关于 Flutter 测试的信息。">Flutter apps are tested with the <a href="https://pub.dartlang.org/packages/test" target="_blank">test package</a>. Learn more about testing with Flutter here [[docs coming soon]].</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-81ea-5e26-4f9d-8d56-6ce8-5165-6846-67b6-6216-89e3-51b3-65b9-6848-5417-ff1f-22-3e-Does_Flutter_come_with_a_dependency_injection_framework_or_solution-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 自带依赖注入框架或解决方案吗？">Does Flutter come with a dependency injection framework or solution?</span></h2>
+<p><span class="zh" data-zh="目前没有。请在 flutter-dev@googlegroups.com 分享你的想法。">Not at this time. Please share your ideas at <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-81ea-5e26-53cd-5c04-2f-955c-50cf-7cfb-7edf-5417-ff1f-22-3e-Does_Flutter_come_with_a_reflection-2f-mirrors_system-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 自带反射/镜像系统吗？">Does Flutter come with a reflection/mirrors system?</span></h2>
+<p><span class="zh" data-zh="目前没有。因为 Flutter 应用会为 iOS 预编译，而且二进制大小对于移动应用来说始终是一个关注点，所以我们禁用了 dart:mirrors。我们很好奇你可能需要反射/镜像来做什么——请在 flutter-dev@googlegroups.com 告诉我们。">Not at this time. Because Flutter apps are pre-compiled for iOS, and binary size is always a concern with mobile apps, we disabled dart:mirrors. We are curious what you might need reflection/mirrors for – please let us know at <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-5982-4f55-5728-_Flutter_-4e2d-8fdb-884c-56fd-9645-5316-_-28-i18n-29-3001-672c-5730-5316-_-28-l10n-29-_-548c-65e0-969c-788d-_-28-a11y-29-ff1f-22-3e-How_do_I_do_internationalization_-28-i18n-29-2c-_localization_-28-l10n-29-2c-_and_accessibility_-28-a11y-29-_in_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我如何在 Flutter 中进行国际化 (i18n)、本地化 (l10n) 和无障碍 (a11y)？">How do I do internationalization (i18n), localization (l10n), and accessibility (a11y) in Flutter?</span></h2>
+<p><span class="zh" data-zh="这些功能在我们的关注范围内，但我们尚未开始开发相关 API。我们目前正在构建核心框架，并将这些功能纳入考虑。">These capabilities are very much on our radar, but we have not yet started on the APIs. We are currently building the core framework with these capabilities in mind.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-5982-4f55-4e3a-_Flutter_-7f16-5199-5e76-884c-548c-2f-6216-5e76-53d1-5e94-7528-ff1f-22-3e-How_do_I_write_parallel_and-2f-or_concurrent_apps_for_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我如何为 Flutter 编写并行和/或并发应用？">How do I write parallel and/or concurrent apps for Flutter?</span></h2>
+<p><span class="zh" data-zh="Flutter 支持 isolate。Isolate 是 Flutter VM 中独立的堆，它们可以并行运行（通常实现为独立的线程）。Isolate 通过发送和接收异步消息进行通信。Flutter 目前没有共享内存的并行解决方案，不过我们正在评估相关方案。">Flutter supports isolates. Isolates are separate heaps in Flutter’s VM, and they are able to run in parallel (usually implemented as separate threads). Isolates communicate by sending and receiving asynchronous messages. Flutter does not currently have a shared-memory parallelism solution, although we are evaluating solutions for this.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-5728-_Flutter_-4e2d-4f7f-7528-_JSON-2f-XML-2f-protobuf_-7b49-5417-ff1f-22-3e-Can_I_use_JSON-2f-XML-2f-protobuffers-2f-etc_with_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以在 Flutter 中使用 JSON/XML/protobuf 等吗？">Can I use JSON/XML/protobuffers/etc with Flutter?</span></h2>
+<p><span class="zh" data-zh="当然可以。pub.dartlang.org 中有用于 JSON、XML、protobuf 以及许多其他实用工具和格式的库。">Absolutely. There are libraries in <a href="https://pub.dartlang.org" target="_blank">pub.dartlang.org</a> for JSON, XML, protobufs, and many other utilities and formats.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-5982-4f55-4e3a-_Flutter_-7f16-5199-98ce-683c-826f-597d-7684-4ee3-7801-ff1f-22-3e-How_do_I_write_well-styled_code_for_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我如何为 Flutter 编写风格良好的代码？">How do I write well-styled code for Flutter?</span></h2>
+<p><span class="zh" data-zh="Flutter 有一份有主见的风格指南，我们鼓励你查看。">Flutter has an <a href="https://github.com/flutter/engine/blob/master/sky/specs/style-guide.md" target="_blank">opinionated style guide</a>, which we encourage you to check out.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-4f7f-7528-6211-7cfb-7edf-7684-_OEM_-7ec4-4ef6-5417-ff1f-22-3e-Does_Flutter_use_my_system-2019-s_OEM_widgets-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 使用我系统的 OEM 组件吗？">Does Flutter use my system’s OEM widgets?</span></h2>
+<p><span class="zh" data-zh="不使用。Flutter 提供了一套 Material Design 组件，由 Flutter 的框架和引擎管理和渲染。">No. Flutter provides a set of Material Design widgets, managed and rendered by Flutter’s framework and engine.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-5982-4f55-90e8-7f72-_Flutter_-5e94-7528-ff1f-22-3e-How_do_I_deploy_a_Flutter_app-3f-3c-2f-span-3e-"><span class="zh" data-zh="我如何部署 Flutter 应用？">How do I deploy a Flutter app?</span></h2>
+<p><span class="zh" data-zh="Flutter 应用最常通过移动平台的商店（如 Apple 的 App Store 和 Google 的 Play Store）部署。我们计划提供工具来轻松生成 .ipa 和轻松生成 .apk。">Flutter apps are most commonly deployed via the mobile platform’s store (such as Apple’s App Store and Google’s Play Store). We plan to deliver tools to easily to <a href="https://github.com/flutter/flutter/issues/46" target="_blank">generate an .ipa</a> and easily <a href="https://github.com/flutter/flutter/issues/45" target="_blank">generate an .apk</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-5728-_Play_Store_-4e4b-5916-901a-8fc7-7f51-7edc-66f4-65b0-6211-7684-5e94-7528-5417-ff1f-22-3e-Can_I_update_my_app_over_the_network-2c-_outside_of_the_Play_Store-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以在 Play Store 之外通过网络更新我的应用吗？">Can I update my app over the network, outside of the Play Store?</span></h2>
+<p><span class="zh" data-zh="可以。在 Android 上，你可以通过网络（通过 HTTP）更新你的应用，而无需先发布到 Play Store。这很有用，因为它不会用通知打扰用户，能确保你的用户使用最新版本，使运行 A/B 实验更容易等等。">Yes. On Android, you can update your app over the network (via HTTP), without first publishing to the Play Store. This can be useful because it doesn’t bother the user with a notification, ensures your users are on the latest version, makes it easier to run A/B experiments, and more.</span></p>
+<p><span class="zh" data-zh="遗憾的是，由于 iOS 的限制，无法通过网络更新你的 Flutter 应用。我们很好奇你使用此功能的频率，请在 flutter-dev@googlegroups.com 告诉我们。">Unfortunately, due to iOS restrictions, updating your Flutter app over the network is not possible. We are curious how much you use this feature, please let us know at <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-5982-679c-6211-4e0d-60f3-7528-_Material_Design_-6784-5efa-5e94-7528-600e-4e48-529e-ff1f-22-3e-What_if_I_don-2019-t_want_to_build_my_app_with_Material_Design-3f-3c-2f-span-3e-"><span class="zh" data-zh="如果我不想用 Material Design 构建应用怎么办？">What if I don’t want to build my app with Material Design?</span></h2>
+<p><span class="zh" data-zh="Flutter 的组件系统被设计为可扩展的，使用我们的基类创建你自己的组件集是受支持且可行的。">Flutter’s widget system is designed to be extensible, and it’s supported and possible to create your own set of widgets using our base classes.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-53ef-4ee5-4e0e-4efb-4f55-7f16-8f91-5668-6216-_IDE_-914d-5408-4f7f-7528-5417-ff1f-22-3e-Does_Flutter_work_with_any_editors_or_IDEs-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 可以与任何编辑器或 IDE 配合使用吗？">Does Flutter work with any editors or IDEs?</span></h2>
+<p><span class="zh" data-zh="我们正在构建一个 Atom 的 Flutter 插件。目前，它可以进行语法高亮、代码补全、重构、启动应用、从模板创建新应用、显示类型层次结构、跳转到定义等等。">We are building a <a href="https://atom.io/packages/dartlang" target="_blank">Flutter plugin for Atom</a>. Today, it can syntax highlight, code complete, refactor, launch apps, create new apps from a template, show type hierarchies, jump to definition, and more.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-7528-_Flutter_-6784-5efa-_3D_-28-OpenGL-29-_-5e94-7528-5417-ff1f-22-3e-Can_I_build_3D_-28-OpenGL-29-_apps_with_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以用 Flutter 构建 3D (OpenGL) 应用吗？">Can I build 3D (OpenGL) apps with Flutter?</span></h2>
+<p><span class="zh" data-zh="目前我们不支持通过 OpenGL ES 或类似方式实现 3D。我们有长期计划来公开一个优化的 3D API，但目前我们专注于 2D。">Today we don’t support for 3D via OpenGL ES or similar. We have long-term plans to expose an optimized 3D API, but right now we’re focused on 2D.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-5f15-64ce-6709-591a-5927-ff1f-22-3e-How_big_is_the_Flutter_engine-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 引擎有多大？">How big is the Flutter engine?</span></h2>
+<p><span class="zh" data-zh="截至 2015 年 11 月，我们测量了一个最小化的 Flutter 应用（打包为 APK）的大小约为 8MB。对于这个使用 Material Design 组件的简单应用，核心引擎约为 5MB，框架 + 应用代码约为 400kb，必要的 Java 代码为 330k，还有大约 2.5MB 的 ICU 数据。我们正在努力使其更小。">As of November, 2015, we measured the size of a minimal Flutter app, bundled as an APK, to be approximately 8MB. For this simple app that used Material Design widgets, the core engine is approximately 5MB, the framework + app code is approximately 400kb, necessary Java code is 330k, and there is approximately 2.5MB of ICU data. We are working to get this smaller.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-7684-5e94-7528-53f3-4e0a-89d2-6709-4e00-4e2a-_Slow_Mode-ff08-6162-901f-6a21-5f0f-ff09-6a2a-5e45-2f-4e1d-5e26-3002-4e3a-4ec0-4e48-6211-4f1a-770b-5230-5b83-ff1f-22-3e-My_app_has_a_Slow_Mode_banner-2f-ribbon_in_the_upper_right-_Why_am_I_seeing_that-3f-3c-2f-span-3e-"><span class="zh" data-zh="我的应用右上角有一个 Slow Mode（慢速模式）横幅/丝带。为什么我会看到它？">My app has a Slow Mode banner/ribbon in the upper right. Why am I seeing that?</span></h2>
+<p><span class="zh" data-zh="在开发过程中，Flutter 应用默认启用类型检查和断言。这些检查帮助你在开发早期发现错误，但会产生运行时开销。慢速模式横幅表示这些检查已启用。你可以通过向 flutter run 传递 --no-checked 标志来在不启用这些检查的情况下运行你的应用。">In development, Flutter apps run with a type checking and asserts enabled by default. These checks help you catch errors early during development but impose a runtime cost. The “slow mode” banner indicates that these checks are enabled. You can run your app without these checks by passing the <code>--no-checked</code> flag to <code>flutter run</code>.</span></p>
+<p>If you are using the Flutter plugin for Atom, you can disable<br>Slow Mode by editing your run configuration file. Open<br><code>.atom/launches/main.yaml</code> and change <code>checked: true</code> to <code>checked: false</code>.</p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-53ef-4ee5-5728-54ea-91cc-83b7-5f97-652f-6301-ff1f-22-3e-Where_can_I_get_support-3f-3c-2f-span-3e-"><span class="zh" data-zh="我可以在哪里获得支持？">Where can I get support?</span></h2>
+<p><span class="zh" data-zh="如果你认为自己遇到了 bug，请到我们的 issue 跟踪器中提交。我们鼓励你使用 Stack Overflow 提问操作指南类的问题。如需讨论，请加入我们的邮件列表 flutter-dev@googlegroups.com。">If you think you’ve encountered a bug, please file it in our <a href="https://github.com/flutter/flutter/issues" target="_blank">issue tracker</a>. We encourage you to use <a href="https://stackoverflow.com/" target="_blank">Stack Overflow</a> for “HOWTO” type questions. For discussions, please join our mailing list at <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-5982-4f55-53c2-4e0e-5176-4e2d-ff1f-22-3e-How_do_I_get_involved-3f-3c-2f-span-3e-"><span class="zh" data-zh="我如何参与其中？">How do I get involved?</span></h2>
+<p><span class="zh" data-zh="Flutter 是开源的，我们鼓励你贡献。你可以从在我们的 issue 跟踪器中提交功能请求和 bug 开始。你还应该加入我们的邮件列表 flutter-dev@googlegroups.com，让我们了解你如何使用 Flutter 以及你想用它做什么。如果你有兴趣贡献代码，可以从阅读我们的贡献指南开始。">Flutter is open source, and we encourage you to contribute. You can start by simply filing issues for feature requests and bugs in our <a href="https://github.com/flutter/flutter/issues" target="_blank">issue tracker</a>. You should also join our mailing list at <a href="mailto:flutter-dev@googlegroups.com">flutter-dev@googlegroups.com</a> and let us know how you’re using Flutter and what you’d like to do with it. If you’re interested in contributing code, you can start by reading our <a href="https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md" target="_blank">Contributing guide</a>.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-5e94-8be5-7528-_Flutter_-6784-5efa-6211-7684-4e0b-4e00-4e2a-751f-4ea7-5e94-7528-5417-ff1f-22-3e-Should_I_build_my_next_production_app_with_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="我应该用 Flutter 构建我的下一个生产应用吗？">Should I build my next production app with Flutter?</span></h2>
+<p><span class="zh" data-zh="截至 2015 年 11 月，Flutter 仍在大力开发中，尚未达到 1.0 版本。虽然系统的较低层级变化较少，但我们设想根据早期采用者的反馈来更改系统的部分内容。">As of November 2015, Flutter is still being developed heavily and is not yet at 1.0. While lower levels of the system are changing less, we envision changing parts of the system based on early adopter feedback.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-6211-542c-8bf4-_Apple_-4f1a-62d2-7edd-4f7f-7528-7b2c-4e09-65b9-6846-67b6-6784-5efa-7684-5e94-7528-ff0c-8fd9-662f-771f-7684-5417-ff1f-Apple_-4f1a-62d2-7edd-6211-7684-_Flutter_-5e94-7528-5417-ff1f-22-3e-I_heard_Apple_rejects_apps_built_with_third-party_frameworks-2c-_is_that_true-3f-_Will_Apple_reject_my_Flutter_app-3f-3c-2f-span-3e-"><span class="zh" data-zh="我听说 Apple 会拒绝使用第三方框架构建的应用，这是真的吗？Apple 会拒绝我的 Flutter 应用吗？">I heard Apple rejects apps built with third-party frameworks, is that true? Will Apple reject my Flutter app?</span></h2>
+<p><span class="zh" data-zh="我们无法代表 Apple 发言，但 Apple 的政策已经改变，他们已经允许使用类似 Flutter 的系统构建的应用。当然，Apple 最终对其生态系统拥有决定权，但我们的目标是继续尽一切努力确保 Flutter 应用能够部署到 Apple 的 App Store。">We can’t speak for Apple, but Apple’s policies have changed, and they have allowed apps built with systems like Flutter. Of course, Apple is ultimately in charge of their ecosystem, but our goal is to continue to do everything we can to ensure Flutter apps can be deployed into Apple’s App Store.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-662f-7528-4ec0-4e48-8bed-8a00-7f16-5199-7684-ff1f-22-3e-What_language_is_Flutter_written_in-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 是用什么语言编写的？">What language is Flutter written in?</span></h2>
+<p><span class="zh" data-zh="我们考察了许多语言和运行时，最终采用了 Dart 来编写框架和组件。底层的图形框架和 Dart 虚拟机是用 C/C++ 实现的。">We looked at a lot of languages and runtimes, and ultimately adopted Dart for the framework and widgets. The underlying graphics framework and the Dart virtual machine are implemented in C/C++.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-4e3a-4ec0-4e48-_Flutter_-9009-62e9-4f7f-7528-_Dart-ff1f-22-3e-Why_did_Flutter_choose_to_use_Dart-3f-3c-2f-span-3e-"><span class="zh" data-zh="为什么 Flutter 选择使用 Dart？">Why did Flutter choose to use Dart?</span></h2>
+<p><span class="zh" data-zh="Dart 为我们提供了一种可扩展的语言和功能集，支持从简单脚本到功能完整的应用。我们希望选择一种让 JavaScript、Java 和 C# 开发者都能立即熟悉的东西。Dart 强大的核心库意味着我们不需要编写大量的核心库代码。">Dart gives us a scalable language and a feature set that supports simple scripts all the way up to full-featured apps. We wanted something that would be instantly familiar to JavaScript, Java, and C# developers. Dart’s robust core libraries meant that we didn’t need to write a lot of core library code.</span></p>
+<p><span class="zh" data-zh="我们还希望我们的应用极其快速，根据我们的经验，Dart VM 具有令人印象深刻的性能。我们也很喜欢 Dart VM 的其他功能，如 Observatory（一个实时 VM 分析器、调试器和内省工具）和快照（一种快速加载的应用二进制形式）。">We also wanted our apps to be extremely fast, and in our experience the Dart VM has very impressive performance. We also really liked the Dart VM’s other features like the Observatory (a real-time VM profiler, debugger, and introspection tool) and snapshots (a binary form of the app that’s quick to load).</span></p>
+<p><span class="zh" data-zh="非常重要的一点是在 iOS 上快速运行的要求。Dart VM 支持提前编译模式，这意味着我们可以将 Dart 代码编译为原生代码，并将 Flutter 应用发布到 Apple 的 App Store。">Very important was the requirement to run fast on iOS. The Dart VM supports an ahead-of-time compilation mode, meaning we can compile Dart code to native code and ship a Flutter app to Apple’s App Store.</span></p>
+<p><span class="zh" data-zh="简而言之，我们采用 Dart 是因为它是我们能找到的最好的语言，是我们每天都想用来编程的语言。">In short, we adopted Dart because it was the best language that we could find that we wanted to code in every day.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-Flutter_-53ef-4ee5-8fd0-884c-4efb-4f55-_Dart_-4ee3-7801-5417-ff1f-22-3e-Can_Flutter_run_any_Dart_code-3f-3c-2f-span-3e-"><span class="zh" data-zh="Flutter 可以运行任何 Dart 代码吗？">Can Flutter run any Dart code?</span></h2>
+<p><span class="zh" data-zh="Flutter 应该能够运行大多数 Dart 代码，只要这些代码不（传递地或直接地）导入 dart:mirrors 或 dart:html。">Flutter should be able to run most Dart code that does not import (transitively, or directly) dart:mirrors or dart:html.</span></p>
+<h2 id="-3c-span_class-3d-22-zh-22-_data-zh-3d-22-8c01-5728-5f00-53d1-_Flutter-ff1f-22-3e-Who_works_on_Flutter-3f-3c-2f-span-3e-"><span class="zh" data-zh="谁在开发 Flutter？">Who works on Flutter?</span></h2>
+<p><span class="zh" data-zh="Flutter 是一个开源项目。目前，大部分开发工作由 Google 的工程师完成。如果你对 Flutter 感到兴奋，我们鼓励你加入社区并为 Flutter 做出贡献！">Flutter is an open source project. Currently, the bulk of the development is done by engineers at Google. If you’re excited about Flutter, we encourage you to join the community and contribute to Flutter!</span></p>
 
 </div>
         </div>
@@ -179,6 +205,43 @@
                     }
                 })
             }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
         </script>
     </body>
 </html>

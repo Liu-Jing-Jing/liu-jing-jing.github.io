@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Layout - Meng-zi.com</title>
+        <title>Writing Useful Bug Reports - Meng-zi.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -43,7 +43,7 @@
     
         <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
     
-        <li><a href="/flutter/layout.html" class="sidebar-link current">Layout</a></li>
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
     
@@ -67,34 +67,39 @@
     
         <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
     
-        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link current">Writing Useful Bug Reports</a></li>
     
     </ul>
 </div>
 
 <div class="content with-sidebar">
-    <p>inspiration from <a href="http://facebook.github.io/react-native/" target="_blank">CSS Layout</a>.</p>
-<p>In Flutter, widgets are rendered by render boxes. Render boxes are given<br>constraints by their parent, and size themselves within those<br>constraints. Constraints consist of minimum and maximum widths and<br>heights; sizes consist of a specific width and height.</p>
-<p>Generally, there are three kinds of boxes, in terms of how they handle<br>their constraints:</p>
+    <p>The instructions in this document detail the current steps required to provide the most actionable bug reports for crashes and other bad behavior. Each step is optional but will greatly improve how quickly issues are diagnosed and addressed. We appreciate your effort in sending us as much feedback as possible.</p>
+<h2 id="Create_an_Issue_on_Github">Create an Issue on Github</h2>
 <ul>
-<li>Those that try to be as big as possible.<br>For example, the boxes used by <code>Center</code> and <code>Block</code>.</li>
-<li>Those that try to be the same size as their children.<br>For example, the boxes used by <code>Transform</code> and <code>Opacity</code>.</li>
-<li>Those that try to be a particular size.<br>For example, the boxes used by <code>Image</code> and <code>Text</code>.</li>
+<li>A new Github issue may be created at <a href="https://github.com/flutter/flutter/issues/new" target="_blank"><a href="https://github.com/flutter/flutter/issues/new">https://github.com/flutter/flutter/issues/new</a></a></li>
 </ul>
-<p>Some widgets, for example <code>Container</code>, vary from type to type based on<br>their constructor arguments. In the case of <code>Container</code>, it defaults<br>to trying to be as big as possible, but if you give it a <code>width</code>, for<br>instance, it tries to honor that and be that particular size.</p>
-<p>Others, for example <code>Row</code> and <code>Column</code> (flex boxes) vary based on the<br>constraints they are given, as described below in the “Flex” section.</p>
-<p>The constraints are sometimes “tight”, meaning that they leave no room<br>for the render box to decide on a size (e.g. if the minimum and<br>maximum width are the same, it is said to have a tight width). The<br>main example of this is the <code>App</code> widget, which is contained by the<br><code>RenderView</code> class: the box used by the child returned by the<br>application’s <code>build</code> function is given a constraint that forces it to<br>exactly fill the application’s content area (typically, the entire<br>screen). Many of the boxes in Flutter, especially those that just take a<br>single child, will pass their constraint on to their children. This<br>means that if you nest a bunch of boxes inside each other at the root<br>of your application’s render tree, they’ll all exactly fit in each<br>other, forced by these tight constraints.</p>
-<p>Some boxes <em>loosen</em> the constraints, meaning the maximum is maintained<br>but the minimum is removed. For example, <code>Center</code>.</p>
-<h2 id="Unbounded_constraints">Unbounded constraints</h2>
-<p>In certain situations, the constraint that is given to a box will be<br><em>unbounded</em>, or infinite. This means that either the maximum width or<br>the maximum height is set to <code>double.INFINITY</code>.</p>
-<p>A box that tries to be as big as possible won’t function usefully when<br>given an unbounded constraint, and in checked mode, will assert with a<br>message saying <code>!_size.isInfinite</code> and a string that points to this<br>file.</p>
-<p>The most common cases where a render box finds itself with unbounded<br>constraints are within flex boxes (<code>Row</code> and <code>Column</code>), and <strong>within<br>scrollable regions</strong> (mainly <code>Block</code>, <code>ScollableList&lt;T&gt;</code>, and<br><code>ScrollableMixedWidgetList</code>).</p>
-<p>In particular, <code>Block</code> tries to expand to fit the space available in<br>its cross-direction (i.e. if it’s a vertically-scrolling block, it<br>will try to be as wide as its parent). If you nest a vertically<br>scrolling <code>Block</code> inside a horizontally scrolling <code>Block</code>, the inner<br>one will try to be as wide as possible, which is infinitely wide,<br>since the outer one is scrollable in that direction.</p>
-<h2 id="Flex">Flex</h2>
-<p>Flex boxes themselves (<code>Row</code> and <code>Column</code>) behave differently based on<br>whether they are in a bounded constraints or unbounded constraints in<br>their given direction.</p>
-<p>In bounded constraints, they try to be as big as possible in that<br>direction.</p>
-<p>In unbounded constraints, they try to fit their children in that<br>direction. In this case, you cannot set <code>flex</code> on the children to<br>anything other than 0 (the default). In the widget hierarchy, this<br>means that you cannot use <code>Flexible</code> when the flex box is inside<br>another flex box or inside a scrollable. If you do, you’ll get an<br>assert that <code>canFlex</code> is not true, pointing you at this section.</p>
-<p>In the <em>cross</em> direction, i.e. in their width for <code>Column</code> (vertical<br>flex) and in their height for <code>Row</code> (horizontal flex), they must never<br>be unbounded, otherwise they would not be able to reasonably align<br>their children.</p>
+<h2 id="Provide_the_Flutter_Version">Provide the Flutter Version</h2>
+<ul>
+<li>Run <code>flutter --version</code> in your project and paste the results into the Github Issue<br><img src="/images/flutter_version.png" alt="flutter version"></li>
+</ul>
+<h2 id="Run_the_Command_in_Verbose_Mode">Run the Command in Verbose Mode</h2>
+<p>Follow these steps only if your issue is related to the <code>flutter</code> tool.</p>
+<ul>
+<li>All Flutter commands accept the <code>--verbose</code> flag. If attached to the issue, the output from this command may aid in diagnosing the issue.</li>
+<li>Attach the results of the command to the Github issue.<br><img src="/images/verbose_flag.png" alt="flutter verbose"></li>
+</ul>
+<h2 id="Provide_the_Most_Recent_Logs">Provide the Most Recent Logs</h2>
+<ul>
+<li>Logs for the currently connected device may be accessed via <code>flutter logs</code></li>
+<li>If the crash is reproducible, clear the logs (⌘ + k on Mac), reproduce the crash and copy the newly generated logs into a file attached to the bug report.</li>
+<li>If you are getting exceptions thrown by the framework, include all the output between and including the dashed lines of the first such exception.<br><img src="/images/logs.png" alt="flutter logs"></li>
+</ul>
+<h2 id="Provide_the_Crash_Report">Provide the Crash Report</h2>
+<ul>
+<li>In case the iOS simulator crashes, a crash report is generated in <code>~/Library/Logs/DiagnosticReports/</code>.</li>
+<li>In case the iOS device crashes, a crash report is generated in <code>~/Library/Logs/CrashReporter/MobileDevice</code>.</li>
+<li>Find the report corresponding to the crash (usually the latest) and attach it to the Github issue.<br><img src="/images/crash_reports.png" alt="crash report"></li>
+</ul>
 
 </div>
         </div>

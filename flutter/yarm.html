@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Layout - Meng-zi.com</title>
+        <title>Flutter .yarm Format - Meng-zi.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
@@ -43,7 +43,7 @@
     
         <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
     
-        <li><a href="/flutter/layout.html" class="sidebar-link current">Layout</a></li>
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
     
@@ -61,7 +61,7 @@
     
         <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
     
-        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+        <li><a href="/flutter/yarm.html" class="sidebar-link current">Flutter .yarm Format</a></li>
     
         <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
     
@@ -73,28 +73,56 @@
 </div>
 
 <div class="content with-sidebar">
-    <p>inspiration from <a href="http://facebook.github.io/react-native/" target="_blank">CSS Layout</a>.</p>
-<p>In Flutter, widgets are rendered by render boxes. Render boxes are given<br>constraints by their parent, and size themselves within those<br>constraints. Constraints consist of minimum and maximum widths and<br>heights; sizes consist of a specific width and height.</p>
-<p>Generally, there are three kinds of boxes, in terms of how they handle<br>their constraints:</p>
-<ul>
-<li>Those that try to be as big as possible.<br>For example, the boxes used by <code>Center</code> and <code>Block</code>.</li>
-<li>Those that try to be the same size as their children.<br>For example, the boxes used by <code>Transform</code> and <code>Opacity</code>.</li>
-<li>Those that try to be a particular size.<br>For example, the boxes used by <code>Image</code> and <code>Text</code>.</li>
-</ul>
-<p>Some widgets, for example <code>Container</code>, vary from type to type based on<br>their constructor arguments. In the case of <code>Container</code>, it defaults<br>to trying to be as big as possible, but if you give it a <code>width</code>, for<br>instance, it tries to honor that and be that particular size.</p>
-<p>Others, for example <code>Row</code> and <code>Column</code> (flex boxes) vary based on the<br>constraints they are given, as described below in the “Flex” section.</p>
-<p>The constraints are sometimes “tight”, meaning that they leave no room<br>for the render box to decide on a size (e.g. if the minimum and<br>maximum width are the same, it is said to have a tight width). The<br>main example of this is the <code>App</code> widget, which is contained by the<br><code>RenderView</code> class: the box used by the child returned by the<br>application’s <code>build</code> function is given a constraint that forces it to<br>exactly fill the application’s content area (typically, the entire<br>screen). Many of the boxes in Flutter, especially those that just take a<br>single child, will pass their constraint on to their children. This<br>means that if you nest a bunch of boxes inside each other at the root<br>of your application’s render tree, they’ll all exactly fit in each<br>other, forced by these tight constraints.</p>
-<p>Some boxes <em>loosen</em> the constraints, meaning the maximum is maintained<br>but the minimum is removed. For example, <code>Center</code>.</p>
-<h2 id="Unbounded_constraints">Unbounded constraints</h2>
-<p>In certain situations, the constraint that is given to a box will be<br><em>unbounded</em>, or infinite. This means that either the maximum width or<br>the maximum height is set to <code>double.INFINITY</code>.</p>
-<p>A box that tries to be as big as possible won’t function usefully when<br>given an unbounded constraint, and in checked mode, will assert with a<br>message saying <code>!_size.isInfinite</code> and a string that points to this<br>file.</p>
-<p>The most common cases where a render box finds itself with unbounded<br>constraints are within flex boxes (<code>Row</code> and <code>Column</code>), and <strong>within<br>scrollable regions</strong> (mainly <code>Block</code>, <code>ScollableList&lt;T&gt;</code>, and<br><code>ScrollableMixedWidgetList</code>).</p>
-<p>In particular, <code>Block</code> tries to expand to fit the space available in<br>its cross-direction (i.e. if it’s a vertically-scrolling block, it<br>will try to be as wide as its parent). If you nest a vertically<br>scrolling <code>Block</code> inside a horizontally scrolling <code>Block</code>, the inner<br>one will try to be as wide as possible, which is infinitely wide,<br>since the outer one is scrollable in that direction.</p>
-<h2 id="Flex">Flex</h2>
-<p>Flex boxes themselves (<code>Row</code> and <code>Column</code>) behave differently based on<br>whether they are in a bounded constraints or unbounded constraints in<br>their given direction.</p>
-<p>In bounded constraints, they try to be as big as possible in that<br>direction.</p>
-<p>In unbounded constraints, they try to fit their children in that<br>direction. In this case, you cannot set <code>flex</code> on the children to<br>anything other than 0 (the default). In the widget hierarchy, this<br>means that you cannot use <code>Flexible</code> when the flex box is inside<br>another flex box or inside a scrollable. If you do, you’ll get an<br>assert that <code>canFlex</code> is not true, pointing you at this section.</p>
-<p>In the <em>cross</em> direction, i.e. in their width for <code>Column</code> (vertical<br>flex) and in their height for <code>Row</code> (horizontal flex), they must never<br>be unbounded, otherwise they would not be able to reasonably align<br>their children.</p>
+    <p>Every Flutter application needs some metadata so it can specify its dependencies<br>(services, assets, etc.). Flutter stores this information in a file named<br><code>flutter.yaml</code>, which is written in the <a href="http://www.yaml.org/" target="_blank">YAML</a> language.</p>
+<p>At the top level are a series of fields. The currently supported ones are:</p>
+<p><code>name</code>: Required for every application.</p>
+<p><code>assets</code>: Optional. Array of strings. Relative paths to assets for the application.</p>
+<p><code>material-design-icons</code>: Optional. Array of dictionaries specifying icons to include as assets.</p>
+<p><code>services</code>: Optional. Array of strings.  Names of platform and third-party services<br>(Firebase, Google Cloud Messaging, etc.) to expose to your application.</p>
+<p><code>version</code>: Optional. String used by <a href="https://github.com/flutter/flutter/wiki/On-the-fly-app-updates" target="_blank">updater service</a>. Follows <a href="http://semver.org/spec/v2.0.0.html" target="_blank">semantic versioning</a>.</p>
+<p><code>update-url</code>: Optional. Url string used by <a href="https://github.com/flutter/flutter/wiki/On-the-fly-app-updates" target="_blank">updater service</a>.</p>
+<p>All other fields are ignored. A complete <code>flutter.yaml</code> looks something like the<br>following:</p>
+<figure class="highlight lang-yarm"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="comment">\{</span> <span class="comment">%</span> <span class="comment">prettify</span> <span class="comment">yaml</span> <span class="comment">%</span> <span class="comment">\}</span>
+<span class="comment">name:</span> <span class="comment">example</span>
+<span class="comment">assets:</span>
+  <span class="literal">-</span> <span class="comment">assets/flutter_logo</span><span class="string">.</span><span class="comment">png</span>
+  <span class="literal">-</span> <span class="comment">packages/flutter_gallery_assets/sun</span><span class="string">.</span><span class="comment">png</span>
+<span class="comment">material</span><span class="literal">-</span><span class="comment">design</span><span class="literal">-</span><span class="comment">icons:</span>
+  <span class="literal">-</span> <span class="comment">name:</span> <span class="comment">action/alarm</span>
+  <span class="literal">-</span> <span class="comment">name:</span> <span class="comment">action/android</span>
+<span class="comment">services:</span>
+  <span class="literal">-</span> <span class="comment">firebase</span>
+<span class="comment">\{%</span> <span class="comment">endprettify</span> <span class="comment">%\}</span>
+</pre></td></tr></table></figure>
+
+<h2 id="Name">Name</h2>
+<p>Every application needs a name.  This is used by the flutter tool when<br>manipulating files relating to your application on your behalf.</p>
+<p>There are no restrictions at this time on valid characters in a name.</p>
+<h2 id="Assets">Assets</h2>
+<p>Assets are optional, however nearly every application includes them.  These are<br>any files which you wish to have bundled in your applications <code>flx</code> file for<br>access via the <code>asset_bundle</code> service, or through the <code>AssetImage</code> widget, etc.</p>
+<h2 id="Material_Design_Icons">Material Design Icons</h2>
+<p>Material Design Icons are optional. These icons are separate from general assets<br>as the flutter tools know how to handle bundling the right icons for the devices<br>you are targeting.</p>
+<p>Google <a href="https://design.google.com/icons/" target="_blank">documents</a> the full list of available<br>material design icons.  If you find one missing from Flutter, please <a href="https://github.com/flutter/flutter/issues/new" target="_blank">file an<br>issue</a></p>
+<h2 id="Services">Services</h2>
+<p>Services are optional, but most applications will want to include them.<br>Services are how Flutter applications access platform APIs or third party<br>frameworks.</p>
+<p>At time of writing only two services are optional <code>firebase</code> and <code>gcm</code>.</p>
+<h2 id="Version">Version</h2>
+<p>A version number is only required to update your application via the<br><a href="https://github.com/flutter/flutter/wiki/On-the-fly-app-updates" target="_blank">updater service</a>.</p>
+<p>Each time you publish your package, you publish it at a specific version.<br>Once that’s been done, consider it hermetically sealed: you can’t touch it<br>anymore. To make more changes, you’ll need a new version.</p>
+<p>When you select a version, follow <a href="http://semver.org/spec/v2.0.0.html" target="_blank">semantic versioning</a>.</p>
+<h1 id="Update_URL">Update URL</h1>
+<p>An update url is only required to update your application via the<br><a href="https://github.com/flutter/flutter/wiki/On-the-fly-app-updates" target="_blank">updater service</a>.</p>
 
 </div>
         </div>

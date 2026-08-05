@@ -30,7 +30,7 @@
         <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
         <li><a href="/widgets/" class="nav-link">Widgets</a></li>
         <li><a href="/api/" class="nav-link">Component</a></li>
-        <li><a href="https://gitee.com/marklewis/my.bulb/releases/tag/version-0.0.2" target="_blank" class="nav-link">Download</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
     </ul>
 </div>
         <div id="main">
@@ -41,76 +41,87 @@
     
         <li><a href="/flutter/index.html" class="sidebar-link current">Skia Frameork</a></li>
     
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
         <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
     
         <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
     
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
         <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
     
     </ul>
 </div>
 
 <div class="content with-sidebar">
-    <p>Flutter currently supports developers on Mac and Linux,<br>with Windows support in the works.</p>
-<p>To get started, we need to set up Dart SDK:</p>
+    <p>This quickstart guide describes how to create and run your first Flutter app on iOS or Android.</p>
 <ul>
-<li>Install the <a href="https://www.dartlang.org/downloads/" target="_blank">Dart SDK</a>:<ul>
-<li>Mac: <code>brew tap dart-lang/dart &amp;&amp; brew install dart --devel</code></li>
-<li>Linux: See <a href="https://www.dartlang.org/downloads/linux.html" target="_blank">www.dartlang.org/downloads/linux.html</a></li>
-<li>Windows: Stay tuned, Windows support is in the works.</li>
+<li><a href="#Before_you_begin">Before you begin</a></li>
+<li><a href="#1-_Create_your_first_Flutter_app">1. Create your first Flutter app</a></li>
+<li><a href="#2-_Run_your_Flutter_app">2. Run your Flutter app</a></li>
+<li><a href="#3-_View_the_logs">3. View the logs</a></li>
+<li><a href="#Next_steps">Next steps</a></li>
 </ul>
-</li>
-<li>Ensure that the <code>pub</code> executable is in your <code>PATH</code>.</li>
-</ul>
-<p>Once you have installed Dart SDK, activate the <code>flutter</code> command line<br>tool and add it to your path:</p>
+<h2 id="Before_you_begin">Before you begin</h2>
+<p>To write Flutter apps, you will need to install the Flutter SDK. You also need to set up a Linux or<br>Mac development machine to run and test your apps on Android or iOS. See<br><a href="/flutter/setup.html">Flutter Setup</a> for instructions on how to set up your development environment.</p>
+<h2 id="1-_Create_your_first_Flutter_app">1. Create your first Flutter app</h2>
+<p>To create a starter project, open a terminal and run the <code>flutter</code> command .</p>
+<p>Here is an example:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="char">$ </span>pub global activate flutter
-<span class="char">$ </span>export <span class="class">PATH</span>=<span class="char">$H</span>OME/.pub-cache/<span class="method">bin:</span><span class="char">$P</span>ATH
+</pre></td><td class="code"><pre><span class="variable">$ </span>flutter create myapp
 </pre></td></tr></table></figure>
 
-<p>Now we can use the <code>flutter</code> command to create a project named <code>my_app</code>:</p>
+<p>The above command creates a Flutter project directory called <code>myapp</code> that contains a simple demo<br>app that uses <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank">Material Design</a>.</p>
+<p>In the project directory, the code for your app is in <code>myapp/lib/main.dart</code>.</p>
+<h2 id="2-_Run_your_Flutter_app">2. Run your Flutter app</h2>
+<p>Use the <code>flutter run</code> command to run your Flutter app on all connected<br>devices and simulators. (The <code>flutter devices</code> command will list connected devices and<br>simulators.)</p>
+<p>To run your app from the command-line:</p>
+<ol>
+<li>Open a terminal and change directories to the root of your app (the same directory that<br>contains the <code>pubspec.yaml</code> file for your project).</li>
+<li>Run the following command.</li>
+</ol>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">$</span> <span class="comment">flutter</span> <span class="comment">init</span> <span class="literal">-</span><span class="comment">o</span> <span class="comment">my_app</span>
+</pre></td><td class="code"><pre>  <span class="variable">$ </span>flutter run
 </pre></td></tr></table></figure>
 
-<p>This command creates a <code>my_app</code> directory that contains a simple demo<br>app that uses <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank">Material Design</a>.</p>
-<p>The code for your app is in <code>my_app/lib/main.dart</code>. Execution starts in<br>the <code>main</code> function, which uses <code>runApp</code> to run a <code>MaterialApp</code> widget.<br>The <code>MaterialApp</code> widget is configured with a route map, with one entry<br>for every screen of your app. In this case, there’s only one screen, the<br>home screen named <code>/</code>, which builds a <code>FlutterDemo</code> component.</p>
-<p>To learn more about how to build apps with Flutter, please see the<br><a href="/tutorial/">tutorial</a>.</p>
-<h2 id="Setting_up_your_Android_device">Setting up your Android device</h2>
-<p>Currently Flutter requires an Android device running the Lollipop (or newer) version<br>of the Android operating system.</p>
+<p>Alternatively, if you are using the <a href="https://atom.io/" target="_blank">Atom editor</a> with the<br><a href="https://atom.io/packages/flutter" target="_blank">Flutter package</a>, you can start your Flutter app by selecting<br>the <code>/lib/main.dart</code> file in the project and pressing the Run App shortcut in the main editor<br>screen. The shortcut depends on the operating system of the development machine you are using:</p>
 <ul>
-<li><p>Install the <code>adb</code> tool from the <a href="https://developer.android.com/sdk/installing/index.html?pkg=tools" target="_blank">Android SDK</a>:</p>
-<ul>
-<li>Mac: <code>brew install android-platform-tools</code></li>
-<li>Linux: <code>sudo apt-get install android-tools-adb</code><ul>
-<li>If the version of <code>adb</code> provided by your Linux distribution is too old,<br>you might need to <a href="https://developer.android.com/sdk/installing/index.html?pkg=tools" target="_blank">install the Android SDK manually</a>.</li>
+<li><strong>Linux</strong>: <code>Ctrl+R</code></li>
+<li><strong>Mac</strong>: <code>Command+R</code></li>
 </ul>
-</li>
-</ul>
-</li>
-<li><p>Enable developer mode on your device by visiting <code>Settings &gt; About phone</code> and<br>tapping the <code>Build number</code> field seven times.</p>
-</li>
-<li><p>Enable <code>Android debugging</code> in <code>Settings &gt; Developer options</code>.</p>
-</li>
-<li><p>Using a USB cable, plug your phone into your computer. If prompted on your<br>device, authorize your computer to access your device.</p>
-</li>
-</ul>
-<h2 id="Running_a_Flutter_application">Running a Flutter application</h2>
-<p>You can use the <code>flutter</code> command to run Flutter apps on your devices. First,<br>change directories to the root of your apps (i.e., the same directory that<br>contains the <code>pubspec.yaml</code> file).</p>
-<p>To start your app, use the <code>start</code> command:</p>
+<p>If everything works, you should see your starter app on your Android device or iOS Simulator.</p>
+<p><img src="/images/flutter_starter_app_screenshot.png" alt="First Flutter app running on an Android phone"></p>
+<h2 id="3-_View_the_logs">3. View the logs</h2>
+<p>The <code>flutter logs</code> command lets you see textual output from your app, including <code>print</code><br>statements and unhandled exceptions.</p>
+<p>To start streaming the logs when your Flutter app is running on an Android device or on the iOS<br>Simulator, run this command:</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="comment">$</span> <span class="comment">flutter</span> <span class="comment">start</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">checked</span>
-<span class="comment">$</span> <span class="comment">flutter</span> <span class="comment">logs</span>
+</pre></td><td class="code"><pre><span class="variable">$ </span>flutter logs
 </pre></td></tr></table></figure>
 
-<p>The <code>--checked</code> flag turns on type checking and asserts, both of which are quite<br>useful during development. The <code>logs</code> command lets you see textual output from<br>your app, including <code>print</code> statements and unhandled exceptions. To avoid confusion<br>from old log messages, you might want to use <code>flutter logs --clear</code> to clear the<br>logs between runs.</p>
-<p>To improve your iteration speed, you can use <code>flutter listen --checked</code> instead<br>of <code>flutter start</code>. The <code>listen</code> command watches the file system and automatically<br>reloads your app whenever you make a change to its code.</p>
-<h2 id="Debugging">Debugging</h2>
-<p>Flutter uses <a href="https://www.dartlang.org/tools/observatory/" target="_blank">Observatory</a> for<br>debugging and profiling. While running your app, you can access Observatory<br>by navigating your web browser to <a href="http://localhost:8181/" target="_blank"><a href="http://localhost:8181/">http://localhost:8181/</a></a>.</p>
-<h2 id="Building_a_standalone_APK">Building a standalone APK</h2>
-<p>Although it is possible to build a standalone APK containing your application,<br>doing so right now is difficult. If you’re feeling brave, you can see how we<br>build the <code>Stocks.apk</code> in<br><a href="https://github.com/flutter/engine/tree/master/examples/stocks" target="_blank">examples/stocks</a>.<br>Eventually we plan to make this much easier and support platforms other than<br>Android, but that work still in progress.</p>
+<p>To avoid confusion from old log messages, you can use the <code>flutter logs --clear</code> option to clear<br>the logs between runs.</p>
+<h2 id="Next_steps">Next steps</h2>
+<p>Please reach out to us at our <a href="mailto:flutter-dev@googlegroups.com">mailing list</a>. We’d love<br>to hear from you!</p>
+<p>You might also want to check out our <a href="/tutorial/tutorial.html">Tutorial</a> and our<br><a href="/flutter/debugging.html">Debugging guide</a>.</p>
+<p>Happy Fluttering!</p>
 
 </div>
         </div>
@@ -128,6 +139,43 @@
                     }
                 })
             }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
         </script>
     </body>
 </html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Animations in Flutter - Meng-zi.com</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,400italic|Source+Code+Pro' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="/images/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="/css/page.css" type="text/css">
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-46852172-1', 'meng-zi.com');
+  ga('send', 'pageview');
+</script>
+    </head>
+    <body>
+        <div id="header">
+    <a id="logo" href="/">
+        <img src="/images/logo.png">
+        <span>meng-zi</span>
+    </a>
+    <ul id="nav">
+        <li><a href="/install/" class="nav-link">Install</a></li>
+        <!-- <li><a href="https://github.com/domokit/sky_engine/" target="_blank" class="nav-link">Source</a></li> -->
+        <li><a href="/flutter/" class="nav-link current">Sky</a></li>
+        <li><a href="/tutorial/" class="nav-link">Tutorial</a></li>
+        <li><a href="/widgets/" class="nav-link">Widgets</a></li>
+        <li><a href="/api/" class="nav-link">Component</a></li>
+        <li><a href="https://gitee.com/marklewis/ApplicationKit/tree/v0.0.3" target="_blank" class="nav-link">Download</a></li>
+    </ul>
+</div>
+        <div id="main">
+            
+    <div class="sidebar">
+    <h2>Flutter</h2>
+    <ul>
+    
+        <li><a href="/flutter/index.html" class="sidebar-link">Skia Frameork</a></li>
+    
+        <li><a href="/flutter/setup.html" class="sidebar-link">Setup</a></li>
+    
+        <li><a href="/flutter/layout.html" class="sidebar-link">Layout</a></li>
+    
+        <li><a href="/flutter/rendering.html" class="sidebar-link">Rendering</a></li>
+    
+        <li><a href="/flutter/gesture.html" class="sidebar-link">Gestures System</a></li>
+    
+        <li><a href="/flutter/FAQ.html" class="sidebar-link">FAQ</a></li>
+    
+        <li><a href="/flutter/upgrading.html" class="sidebar-link">Upgrading Flutter</a></li>
+    
+        <li><a href="/flutter/animations.html" class="sidebar-link current">Animations in Flutter</a></li>
+    
+        <li><a href="/flutter/assets-and-images.html" class="sidebar-link">Assets and Images</a></li>
+    
+        <li><a href="/flutter/building-apk.html" class="sidebar-link">Building an APK for Android</a></li>
+    
+        <li><a href="/flutter/debugging.html" class="sidebar-link">Debugging Flutter Applications</a></li>
+    
+        <li><a href="/flutter/yarm.html" class="sidebar-link">Flutter .yarm Format</a></li>
+    
+        <li><a href="/flutter/style-guide.html" class="sidebar-link">Style guide</a></li>
+    
+        <li><a href="/flutter/design-principles.html" class="sidebar-link">Design principles</a></li>
+    
+        <li><a href="/flutter/bug-reports.html" class="sidebar-link">Writing Useful Bug Reports</a></li>
+    
+    </ul>
+</div>
+
+<div class="content with-sidebar">
+    <h1 id="Introduction">Introduction</h1>
+<p>The animation system in Flutter is based on typed<br><a href="http://docs.flutter.io/flutter/animation/Animation-class.html" target="_blank"><code>Animation</code></a><br>objects. Widgets can either incorporate these animations in their build<br>functions directly by reading their current value and listening to their<br>state changes or they can use the animations as the basis of more elaborate<br>animations that they pass along to other widgets.</p>
+<h2 id="Animation">Animation</h2>
+<p>The primary building block of the animation system is the<br><a href="http://docs.flutter.io/flutter/animation/Animation-class.html" target="_blank"><code>Animation</code></a><br>class.  An animation represents a value of a specific type that can change<br>over the lifetime of the animation. Most widgets that perform an animation<br>receive an <code>Animation</code> object as a parameter, from which they read the current<br>value of the animation and to which they listen for changes to that value.</p>
+<h3 id="-3c-code-3e-addListener-3c-2f-code-3e-"><code>addListener</code></h3>
+<p>Whenever the animation’s value changes, the animation notifies all the<br>listeners added with<br><a href="http://docs.flutter.io/flutter/animation/Animation/addListener.html" target="_blank"><code>addListener</code></a>.<br>Typically, a <a href="http://docs.flutter.io/flutter/widgets/State-class.html" target="_blank"><code>State</code></a><br>object that listens to an animation will call<br><a href="http://docs.flutter.io/flutter/widgets/State/setState.html" target="_blank"><code>setState</code></a> on<br>itself in its listener callback to notify the widget system that it needs to<br>rebuild with the new value of the animation.</p>
+<p>This pattern is so common that there are two widgets that help widgets rebuild<br>when animations change value:<br><a href="http://docs.flutter.io/flutter/widgets/AnimatedComponent-class.html" target="_blank"><code>AnimatedComponent</code></a><br>and<br><a href="http://docs.flutter.io/flutter/widgets/AnimatedBuilder-class.html" target="_blank"><code>AnimatedBuilder</code></a>.<br>The first, <code>AnimatedComponent</code>, is most useful for stateless animated widgets.<br>To use <code>AnimatedComponent</code>, simply subclass it and implement the<br><a href="http://docs.flutter.io/flutter/widgets/AnimatedComponent/build.html" target="_blank"><code>build</code></a><br>function. The second, <code>AnimatedBuilder</code>, is useful for more complex components<br>that wish to include an animation as part of a larger build function. To use<br><code>AnimatedBuilder</code>, simply construct the widget and pass it a <code>builder</code> function.</p>
+<h3 id="-3c-code-3e-addStatusListener-3c-2f-code-3e-"><code>addStatusListener</code></h3>
+<p>Animations also provide a<br><a href="http://docs.flutter.io/flutter/animation/AnimationStatus-class.html" target="_blank"><code>AnimationStatus</code></a>,<br>which indicates how the animation will evolve over time. Whenever the animation’s<br>status changes, the animation notifies all the listeners added with<br><a href="http://docs.flutter.io/flutter/animation/Animation/addStatusListener.html" target="_blank"><code>addStatusListener</code></a>.<br>Typically, animations start out in the <code>dismissed</code> status, which means they’re<br>at the beginning of their range. For example, animations that progress from 0.0<br>to 1.0 will be <code>dismissed</code> when their value is 0.0. An animation might then run<br><code>forward</code> (e.g., from 0.0 to 1.0) or perhaps in <code>reverse</code> (e.g., from 1.0 to<br>0.0). Eventually, if the animation reaches the end of its range (e.g., 1.0), the<br>animation reaches the <code>completed</code> status.</p>
+<h2 id="AnimationController">AnimationController</h2>
+<p>To create an animation, first create a<br><a href="http://docs.flutter.io/flutter/animation/AnimationController-class.html" target="_blank"><code>AnimationController</code></a>.<br>As well as being an animation itself, an <code>AnimationController</code> lets you control<br>the animation. For example, you can tell the controller to play the animation<br><a href="http://docs.flutter.io/flutter/animation/AnimationController/forward.html" target="_blank"><code>forward</code></a><br>or <a href="http://docs.flutter.io/flutter/animation/AnimationController/stop.html" target="_blank"><code>stop</code></a><br>the animation and later<br><a href="http://docs.flutter.io/flutter/animation/AnimationController/resume.html" target="_blank"><code>resume</code></a><br>it. You can also <a href="http://docs.flutter.io/flutter/animation/AnimationController/fling.html" target="_blank"><code>fling</code></a><br>animations, which uses a physical simulation, such as a spring, to drive the<br>animation.</p>
+<p>Once you’ve created an animation controller, you can start building other<br>animations based on it. For example, you can create a<br><a href="http://docs.flutter.io/flutter/animation/ReverseAnimation-class.html" target="_blank"><code>ReverseAnimation</code></a><br>that mirrors the original animation but runs in the opposite direction (e.g.,<br>from 1.0 to 0.0). Similarly, you can create a<br><a href="http://docs.flutter.io/flutter/animation/CurvedAnimation-class.html" target="_blank"><code>CurvedAnimation</code></a><br>whose value is adjusted by a <a href="http://docs.flutter.io/flutter/animation/Curves-class.html" target="_blank">curve</a>.</p>
+<h2 id="Tweens">Tweens</h2>
+<p>To animate beyond the 0.0 to 1.0 interval, you can use a<br><a href="http://docs.flutter.io/flutter/animation/Tween-class.html" target="_blank"><code>Tween&lt;T&gt;</code></a>, which<br>interpolates between its<br><a href="http://docs.flutter.io/flutter/animation/Tween/begin.html" target="_blank"><code>begin</code></a><br>and <a href="http://docs.flutter.io/flutter/animation/Tween/end.html" target="_blank"><code>end</code></a><br>values. Many types have specific <code>Tween</code> subclasses that provide type-specific<br>interpolation. For example,<br><a href="http://docs.flutter.io/flutter/animation/ColorTween-class.html" target="_blank"><code>ColorTween</code></a><br>interpolates between colors and<br><a href="http://docs.flutter.io/flutter/animation/RectTween-class.html" target="_blank"><code>RectTween</code></a><br>interpolates between rects. You can define your own interpolations by creating<br>your own subclass of <code>Tween</code> and overriding its<br><a href="http://docs.flutter.io/flutter/animation/Tween/lerp.html" target="_blank"><code>lerp</code></a><br>function.</p>
+<p>By itself, a tween just defines how to interpolate between two values. To get<br>a concrete value for the current frame of an animation, you also need an<br>animation to determine the current state. There are two ways to combine a tween<br>with an animation to get a concrete value:</p>
+<ol>
+<li><p>You can <a href="http://docs.flutter.io/flutter/animation/Tween/evaluate.html" target="_blank"><code>evaluate</code></a><br>the tween at the current value of an animation. This approach is most useful<br>for components that are already listening to the animation and hence<br>rebuilding whenever the animation changes value.</p>
+</li>
+<li><p>You can <a href="http://docs.flutter.io/flutter/animation/Animatable/animate.html" target="_blank"><code>animate</code></a><br>the tween based on the animation. Rather than returning a single value, the<br>animate function returns a new <code>Animation</code> that incorporates the tween. This<br>approach is most useful when you want to give the newly created animation to<br>another component, which can then read the current value that incorporates<br>the tween as well as listen for changes to the value.</p>
+</li>
+</ol>
+<h1 id="Architecture">Architecture</h1>
+<p>Animations are actually built from a number of core building blocks.</p>
+<h2 id="Scheduler">Scheduler</h2>
+<p>The<br><a href="http://docs.flutter.io/flutter/scheduler/Scheduler-class.html" target="_blank"><code>Scheduler</code></a><br>is a singleton class that exposes the Flutter scheduling primitives.</p>
+<p>For this discussion, the key primitive is the frame callbacks. Each<br>time a frame needs to be shown on the screen, Flutter’s engine<br>triggers a “begin frame” callback which the scheduler multiplexes to<br>all the listeners registered using<br><a href="http://docs.flutter.io/flutter/scheduler/Scheduler/addFrameCallback.html" target="_blank"><code>addFrameCallback()</code></a>.<br>All these callbacks are given the official time stamp of the frame, in<br>the form of a <code>Duration</code> from some arbitrary epoch. Since all the<br>callbacks have the same time, any animations triggered from these<br>callbacks will appear to be exactly synchronised even if they take a<br>few milliseconds to be executed.</p>
+<h2 id="Tickers">Tickers</h2>
+<p>The<br><a href="http://docs.flutter.io/flutter/scheduler/Ticker-class.html" target="_blank"><code>Ticker</code></a><br>class hooks into the scheduler’s<br><a href="http://docs.flutter.io/flutter/scheduler/Scheduler/addFrameCallback.html" target="_blank"><code>addFrameCallback()</code></a><br>mechanism to invoke a callback every tick.</p>
+<p>A <code>Ticker</code> can be started and stopped. When started, it returns a<br><code>Future</code> that will resolve when it is stopped.</p>
+<p>Each tick, the <code>Ticker</code> provides the callback with the duration since<br>the first tick after it was started.</p>
+<p>Because tickers always give their elapsed time relative to the first<br>tick after they were started, tickers are all synchronised. If you<br>start three ticks at different times between two frames, they will all<br>nonetheless be synchronised with the same starting time, and will<br>subsequently tick in lockstep.</p>
+<h2 id="Simulations">Simulations</h2>
+<p>The<br><a href="http://docs.flutter.io/newton/newton/Simulation-class.html" target="_blank"><code>Simulation</code></a><br>abstract class maps a relative time value (an elapsed time) to a<br>double value, and has a notion of completion.</p>
+<p>In principle simulations are stateless but in practice some<br>simulations (e.g.<br><a href="http://docs.flutter.io/newton/newton/ScrollSimulation-class.html" target="_blank"><code>ScrollSimulation</code></a>)<br>change state irreversibly when queried.</p>
+<p>There are <a href="http://docs.flutter.io/newton/newton/newton-library.html" target="_blank">various concrete<br>implementations</a><br>of the <code>Simulation</code> class for different effects.</p>
+<h2 id="Forces">Forces</h2>
+<p>The<br><a href="http://docs.flutter.io/flutter/animation/Force-class.html" target="_blank"><code>Force</code></a><br>abstract class provides a factory for <code>Simulation</code> instances.</p>
+<h2 id="Animatables">Animatables</h2>
+<p>The<br><a href="http://docs.flutter.io/flutter/animation/Animatable-class.html" target="_blank"><code>Animatable</code></a><br>abstract class maps a double to a value of a particular type.</p>
+<p><code>Animatable</code> classes are stateless and immutable.</p>
+<h3 id="Tweens-1">Tweens</h3>
+<p>The<br><a href="http://docs.flutter.io/flutter/animation/Tween-class.html" target="_blank"><code>Tween</code></a><br>abstract class maps a double value nominally in the range 0.0-1.0 to a<br>typed value (e.g. a <code>Color</code>, or another double). It is an<br><code>Animatable</code>.</p>
+<p>It has a notion of an output type (<code>T</code>), a <code>begin</code> value and an <code>end</code><br>value of that type, and a way to interpolate (<code>lerp</code>) between the<br>begin and end values for a given input value (the double nominally in<br>the range 0.0-1.0).</p>
+<p><code>Tween</code> classes are stateless and immutable.</p>
+<h3 id="Chaining_animatables">Chaining animatables</h3>
+<p>Passing an <code>Animatable&lt;double&gt;</code> (the parent) to an <code>Animatable</code>‘s<br><code>chain()</code> method creates a new <code>Animatable</code> subclass that applies the<br>parent’s mapping then the child’s mapping.</p>
+<h2 id="Curves">Curves</h2>
+<p>The<br><a href="http://docs.flutter.io/flutter/animation/Curve-class.html" target="_blank"><code>Curve</code></a><br>abstract class maps doubles nominally in the range 0.0-1.0 to doubles<br>nominally in the range 0.0-1.0.</p>
+<p><code>Curve</code> classes are stateless and immutable.</p>
+<h2 id="Animations">Animations</h2>
+<p>The<br><a href="http://docs.flutter.io/flutter/animation/Animation-class.html" target="_blank"><code>Animation</code></a><br>abstract class provides a value of a given type, a concept of<br>animation direction and animation status, and a listener interface to<br>register callbacks that get invoked when the value or status change.</p>
+<p>Some subclasses of <code>Animation</code> have values that never change<br>(<a href="http://docs.flutter.io/flutter/animation/kAlwaysCompleteAnimation-constant.html" target="_blank"><code>kAlwaysCompleteAnimation</code></a>,<br><a href="http://docs.flutter.io/flutter/animation/kAlwaysDismissedAnimation-constant.html" target="_blank"><code>kAlwaysDismissedAnimation</code></a>,<br><a href="http://docs.flutter.io/flutter/animation/AlwaysStoppedAnimation-class.html" target="_blank"><code>AlwaysStoppedAnimation</code></a>);<br>registering callbacks on these has no effect as the callbacks are<br>never called.</p>
+<p>The <code>Animation&lt;double&gt;</code> variant is special because it can be used to<br>represent a double nominally in the range 0.0-1.0, which is the input<br>expected by <code>Curve</code> and <code>Tween</code> classes, as well as some further<br>subclasses of <code>Animation</code>.</p>
+<p>Some <code>Animation</code> subclasses are stateless, merely forwarding listeners<br>to their parents. Some are very stateful.</p>
+<h3 id="Chainable_animations">Chainable animations</h3>
+<p>Most <code>Animation</code> subclasses take an explicit “parent”<br><code>Animation&lt;double&gt;</code>. They are driven by that parent.</p>
+<p>The <code>CurvedAnimation</code> subclass takes an <code>Animation&lt;double&gt;</code> class (the<br>parent) and a couple of <code>Curve</code> classes (the forward and reverse<br>curves) as input, and uses the value of the parent as input to the<br>curves to determine its output. <code>CurvedAnimation</code> is immutable and<br>stateless.</p>
+<p>The <code>ReverseAnimation</code> subclass takes an <code>Animation&lt;double&gt;</code> class as<br>its parent and reverses all the values of the animation. It assumes<br>the parent is using a value nominally in the range 0.0-1.0 and returns<br>a value in the range 1.0-0.0. The status and direction of the parent<br>animation are also reversed. <code>CurvedAnimation</code> is immutable and<br>stateless.</p>
+<p>The <code>ProxyAnimation</code> subclass takes an <code>Animation&lt;double&gt;</code> class as<br>its parent and merely forwards the current state of that parent.<br>However, the parent is mutable.</p>
+<p>The <code>TrainHoppingAnimation</code> subclass takes two parents, and switches<br>between them when their values cross.</p>
+<h3 id="Animation_Controllers">Animation Controllers</h3>
+<p>The<br><a href="http://docs.flutter.io/flutter/animation/AnimationController-class.html" target="_blank"><code>AnimationController</code></a><br>is stateful <code>Animation&lt;double&gt;</code> that uses a <code>Ticker</code> to give itself<br>life. It can be started and stopped. Each tick, it takes the time<br>elapsed since it was started and passes it to a <code>Simulation</code> to obtain<br>a value. That is then the value it reports. If the <code>Simulation</code><br>reports that at that time it has ended, then the controller stops<br>itself.</p>
+<p>The animation controller can be given a lower and upper bound to<br>animate between, and a duration.</p>
+<p>In the simple case (using <code>forward()</code>, <code>reverse()</code>, <code>play()</code>, or<br><code>resume()</code>), the animation controller simply does a linear<br>interpolation from the lower bound to the upper bound (or vice versa,<br>for the reverse direction) over the given duration.</p>
+<p>When using <code>repeat()</code>, the animation controller uses a linear<br>interpolation between the given bounds over the given duration, but<br>does not stop.</p>
+<p>When using <code>animateTo()</code>, the animation controller does a linear<br>interpolation over the given duration from the current value to the<br>given target. If no duration is given to the method, the default<br>duration of the controller and the range described by the controller’s<br>lower bound and upper bound is used to determine the velocity of the<br>animation.</p>
+<p>When using <code>fling()</code>, a <code>Force</code> is used to create a specific<br>simulation which is then used to drive the controller.</p>
+<p>When using <code>animateWith()</code>, the given simulation is used to drive the<br>controller.</p>
+<p>These methods all return the future that the <code>Ticker</code> provides and<br>which will resolve when the controller next stops or changes<br>simulation.</p>
+<h3 id="Attaching_animatables_to_animations">Attaching animatables to animations</h3>
+<p>Passing an <code>Animation&lt;double&gt;</code> (the new parent) to an <code>Animatable</code>‘s<br><code>animate()</code> method creates a new <code>Animation</code> subclass that acts like<br>the <code>Animatable</code> but is driven from the given parent.</p>
+
+</div>
+        </div>
+        <script>
+            var main = document.getElementById('main'),
+                doc = document.documentElement,
+                body = document.body
+            if (document.querySelector('.sidebar')) {
+                window.addEventListener('scroll', function () {
+                    var top = doc && doc.scrollTop || body.scrollTop
+                    if (top > 94) {
+                        main.className = 'fix-sidebar'
+                    } else {
+                        main.className = ''
+                    }
+                })
+            }
+
+            // Bilingual hover tooltip
+            (function () {
+                var tip = document.createElement('div')
+                tip.className = 'zh-tooltip'
+                document.body.appendChild(tip)
+                var active = null
+
+                document.addEventListener('mouseover', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el && el.getAttribute('data-zh')) {
+                        active = el
+                        tip.textContent = el.getAttribute('data-zh')
+                        tip.style.display = 'block'
+                    }
+                })
+
+                document.addEventListener('mouseout', function (e) {
+                    var el = e.target.closest ? e.target.closest('.zh') : null
+                    if (el === active) {
+                        active = null
+                        tip.style.display = 'none'
+                    }
+                })
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!active) return
+                    var x = e.clientX + 16
+                    var y = e.clientY + 16
+                    var w = tip.offsetWidth
+                    var h = tip.offsetHeight
+                    if (x + w > window.innerWidth) x = e.clientX - w - 16
+                    if (y + h > window.innerHeight) y = e.clientY - h - 16
+                    tip.style.left = x + 'px'
+                    tip.style.top = y + 'px'
+                })
+            })()
+        </script>
+    </body>
+</html>
